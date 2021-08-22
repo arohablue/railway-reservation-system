@@ -1,0 +1,81 @@
+create table user
+(id int(10) primary key auto_increment ,
+	email varchar(20),
+	password varchar(30),
+	age int(20), 
+	gender varchar(20), 
+	mobile varchar(200), 
+	state varchar(20),
+	city varchar(20),  
+	role varchar(30)
+);
+-----------------------------------------------------
+ALTER TABLE user ALTER COLUMN role SET DEFAULT 'user';
+------------------------------------------------------------
+create table pnrTable
+(pnr varchar(20) primary key ,
+	userId varchar(20)
+);
+
+------------------------------------------------------------
+
+create table passengerTicket
+(passengerNo int(20) primary key auto_increment,
+	pnr varchar(20),
+	trainId varchar(20), 
+	p_name varchar(20),
+	age int(20), 
+	gender varchar(20),
+	journeyDate date,
+	bookingStatus varchar(20),
+	foreign key (pnr) REFERENCES pnrTable(pnr)
+);
+------------------------------------------------------------
+create table route
+(routeid int(20) primary key auto_increment,
+	sourceid varchar(20),
+	destinationid varchar(20)
+);
+-----------------------------------------------------------
+create table train
+(id int(200) primary key ,
+	trainname varchar(20), 
+	traintype varchar(20), 
+	classgen int(20), 
+	classac int(20),
+	departuretime time,
+	arrivaltime time,
+	routeid int(20),
+	foreign key (routeid) REFERENCES route(routeid)
+);
+------------------------------------------------------------
+create table station
+(stationid int primary key,
+	stationname varchar(20)
+);
+
+------------------------------------------------------------
+create table trainStatus
+( journeyDate date ,
+	trainId varchar(20),
+	availableSeatGen int(20), 
+	bookedSeatGen int(20), 
+	availableSeatAC int(20), 
+	bookedSeatAC int(20), 
+	primary key(journeyDate ,trainId  )
+);
+------------------------------------------------------------
+insert into train values( 1235, "Pune-Thane", "passenger", 8 ,7, "2:00:00","3:00:00",11112);
+
+
+
+
+
+
+
+
+
+
+
+
+

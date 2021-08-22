@@ -1,0 +1,11 @@
+{
+    "userno" : 14,
+    "userId" : "xyz@gmail.com",
+    "password" : "12345",
+    "age" : 20,
+    "gender" : "M",
+    "mobile" : 7798237285,
+    "state" : "MH",
+    "city" : "mumbai",
+    "role" : "user"
+}
