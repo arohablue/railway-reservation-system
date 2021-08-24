@@ -1,8 +1,8 @@
-package com.sunbeam.dtos;
+package com.sunbeam.dto;
+
+import com.sunbeam.entity.Station;
 
 import org.springframework.beans.BeanUtils;
-
-import com.sunbeam.entities.Station;
 
 
 public class StationDTO {

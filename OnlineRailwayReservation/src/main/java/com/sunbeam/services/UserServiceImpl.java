@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunbeam.daos.UserDao;
-import com.sunbeam.entities.User;
+import com.sunbeam.dao.UserDao;
+import com.sunbeam.entity.User;
 
 @Transactional
 @Service

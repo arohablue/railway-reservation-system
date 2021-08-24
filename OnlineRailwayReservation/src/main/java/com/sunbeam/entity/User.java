@@ -1,169 +1,135 @@
-package com.sunbeam.dtos;
+package com.sunbeam.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import org.springframework.beans.BeanUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.sunbeam.entities.Train;
-import com.sunbeam.entities.User;
+@Entity
+@Table(name = "buser")
+public class User {
 
-public class UserDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int id;
+
+	@Column(name = "email")
 	private String email;
+
+	@Column(name = "password")
 	private String password;
+
+	@Column(name = "age")
 	private int age;
+
+	@Column(name = "gender")
 	private String gender;
+
+	@Column(name = "mobile")
 	private String mobile;
+
+	@Column(name = "state")
 	private String state;
+
+	@Column(name = "city")
 	private String city;
+
+	@Column(name = "role")
 	private String role;
-	public UserDTO() {
-		
-	}
-	public UserDTO(int id, String email, String password, int age, String gender, String mobile, String state,
-			String city, String role) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.age = age;
-		this.gender = gender;
-		this.mobile = mobile;
-		this.state = state;
-		this.city = city;
-		this.role = role;
-	}
 
 	public int getId() {
 		return id;
 	}
 
-
+	// Child Relationships
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	private List<PNRTable> pnrTables = new ArrayList<>();
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
 	public int getAge() {
 		return age;
 	}
-
-
 
 	public void setAge(int age) {
 		this.age = age;
 	}
 
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-
-
 	public String getMobile() {
 		return mobile;
 	}
-
-
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
-
-
 	public String getState() {
 		return state;
 	}
-
-
 
 	public void setState(String state) {
 		this.state = state;
 	}
 
-
-
 	public String getCity() {
 		return city;
 	}
-
-
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-
-
 	public String getRole() {
 		return role;
 	}
-
-
 
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-	
-
-	@Override
-	public String toString() {
-		return "UserDTO [id=" + id + ", email=" + email + ", password=" + password + ", age=" + age + ", gender="
-				+ gender + ", mobile=" + mobile + ", state=" + state + ", city=" + city + ", role=" + role + "]";
+	public List<PNRTable> getPnrTables() {
+		return pnrTables;
 	}
 
-
-
-	public static UserDTO fromEntity(User user) {
-		UserDTO dto = new UserDTO();
-		BeanUtils.copyProperties(user, dto);
-		dto.setId(user.getId());
-		return dto;
+	public void setPnrTables(List<PNRTable> pnrTables) {
+		this.pnrTables = pnrTables;
 	}
-	
-	public static User toEntity(UserDTO dto) {
-		User user = new User();
-		BeanUtils.copyProperties(dto, user);
-		user.setId(dto.getId());
-		return user;
-	}
-	
-	
 }

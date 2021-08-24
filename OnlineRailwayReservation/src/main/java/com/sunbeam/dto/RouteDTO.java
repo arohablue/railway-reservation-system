@@ -1,9 +1,9 @@
-package com.sunbeam.dtos;
+package com.sunbeam.dto;
+
+import com.sunbeam.entity.Route;
+import com.sunbeam.entity.User;
 
 import org.springframework.beans.BeanUtils;
-
-import com.sunbeam.entities.Route;
-import com.sunbeam.entities.User;
 
 public class RouteDTO {
 	private int id;

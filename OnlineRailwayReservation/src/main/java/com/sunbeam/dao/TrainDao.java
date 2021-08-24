@@ -1,12 +1,12 @@
-package com.sunbeam.daos;
+package com.sunbeam.dao;
 
 import java.util.List;
 
+import com.sunbeam.entity.Train;
+import com.sunbeam.entity.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import com.sunbeam.entities.Train;
-import com.sunbeam.entities.User;
 
 public interface TrainDao extends JpaRepository<Train, Integer>{
 	Train findById(int Id);

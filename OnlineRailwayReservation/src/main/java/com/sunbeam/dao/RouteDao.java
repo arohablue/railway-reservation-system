@@ -1,10 +1,10 @@
-package com.sunbeam.daos;
+package com.sunbeam.dao;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.sunbeam.entity.Route;
 
-import com.sunbeam.entities.Route;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface RouteDao extends JpaRepository<Route, Integer>{

@@ -1,17 +1,14 @@
-package com.sunbeam.entities;
-
+package com.sunbeam.dto;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity 
-@Table(name="user")
-public class User {
-	@Id
+import com.sunbeam.entity.Train;
+import com.sunbeam.entity.User;
+
+import org.springframework.beans.BeanUtils;
+
+public class UserDTO {
 	private int id;
 	private String email;
 	private String password;
@@ -21,11 +18,12 @@ public class User {
 	private String state;
 	private String city;
 	private String role;
-	public User() {
+	public UserDTO() {
 		
 	}
-	public User(int id, String email, String password, int age, String gender, String mobile, String state, String city,
-			String role) {
+	public UserDTO(int id, String email, String password, int age, String gender, String mobile, String state,
+			String city, String role) {
+		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -36,64 +34,135 @@ public class User {
 		this.city = city;
 		this.role = role;
 	}
+
 	public int getId() {
 		return id;
 	}
+
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+
 	public int getAge() {
 		return age;
 	}
+
+
+
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+
+
 	public String getGender() {
 		return gender;
 	}
+
+
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+
+
 	public String getMobile() {
 		return mobile;
 	}
+
+
+
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+
+
+
 	public String getState() {
 		return state;
 	}
+
+
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
+
+
 	public String getCity() {
 		return city;
 	}
+
+
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+
+
 	public String getRole() {
 		return role;
 	}
+
+
+
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", age=" + age + ", gender=" + gender
-				+ ", mobile=" + mobile + ", state=" + state + ", city=" + city + ", role=" + role + "]";
+		return "UserDTO [id=" + id + ", email=" + email + ", password=" + password + ", age=" + age + ", gender="
+				+ gender + ", mobile=" + mobile + ", state=" + state + ", city=" + city + ", role=" + role + "]";
+	}
+
+
+
+	public static UserDTO fromEntity(User user) {
+		UserDTO dto = new UserDTO();
+		BeanUtils.copyProperties(user, dto);
+		dto.setId(user.getId());
+		return dto;
+	}
+	
+	public static User toEntity(UserDTO dto) {
+		User user = new User();
+		BeanUtils.copyProperties(dto, user);
+		user.setId(dto.getId());
+		return user;
 	}
 	
 	

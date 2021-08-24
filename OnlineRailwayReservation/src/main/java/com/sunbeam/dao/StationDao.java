@@ -1,10 +1,10 @@
-package com.sunbeam.daos;
+package com.sunbeam.dao;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.sunbeam.entity.Station;
 
-import com.sunbeam.entities.Station;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StationDao extends JpaRepository<Station, Integer> {
 	Station findById(int Id);

@@ -1,14 +1,14 @@
-package com.sunbeam.dtos;
+package com.sunbeam.dto;
 
 import java.util.Date;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.sunbeam.entity.Train;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.sunbeam.entities.Train;
 
 
 public class TrainDTO {

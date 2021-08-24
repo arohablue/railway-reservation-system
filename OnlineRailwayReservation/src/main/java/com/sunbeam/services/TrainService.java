@@ -2,7 +2,7 @@ package com.sunbeam.services;
 
 import java.util.List;
 
-import com.sunbeam.entities.Train;
+import com.sunbeam.entity.Train;
 
 public interface TrainService {
 	Train findById(int Id);

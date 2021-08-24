@@ -2,7 +2,7 @@ package com.sunbeam.services;
 
 import java.util.List;
 
-import com.sunbeam.entities.Station;
+import com.sunbeam.entity.Station;
 
 public interface StationService {
 	Station findById(int Id);

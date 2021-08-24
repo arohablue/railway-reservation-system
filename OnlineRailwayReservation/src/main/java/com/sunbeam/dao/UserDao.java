@@ -1,10 +1,10 @@
-package com.sunbeam.daos;
+package com.sunbeam.dao;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.sunbeam.entity.User;
 
-import com.sunbeam.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 	User findByEmail(String email);

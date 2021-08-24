@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunbeam.dtos.RouteDTO;
-import com.sunbeam.dtos.StationDTO;
-import com.sunbeam.dtos.TrainDTO;
-import com.sunbeam.dtos.UserDTO;
-import com.sunbeam.entities.Route;
-import com.sunbeam.entities.Station;
-import com.sunbeam.entities.Train;
-import com.sunbeam.entities.User;
+import com.sunbeam.dto.RouteDTO;
+import com.sunbeam.dto.StationDTO;
+import com.sunbeam.dto.TrainDTO;
+import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.Route;
+import com.sunbeam.entity.Station;
+import com.sunbeam.entity.Train;
+import com.sunbeam.entity.User;
 import com.sunbeam.models.Credentials;
 import com.sunbeam.models.Response;
 import com.sunbeam.services.RouteService;
@@ -37,17 +37,17 @@ import com.sunbeam.services.UserService;
 @RestController
 public class AdminController {
 	@Autowired
-	private UserService uService;
+	private UserService userService;
 	
 	@Autowired
-	private TrainService tService;
+	private TrainService trainService;
 	
 	@Autowired
-	private RouteService rService;
+	private RouteService routeService;
 	
 	
 	@Autowired
-	private StationService sService;
+	private StationService stationService;
 	
 //	@GetMapping("/adminpanel/user")
 //	public ResponseEntity<?> findUserAll() {
@@ -60,7 +60,7 @@ public class AdminController {
 	
 	@GetMapping("/adminpanel/user")
 	public ResponseEntity<?> findUserAll() {
-		List<User> list = uService.findAll();
+		List<User> list = userService.findAll();
 		Stream<UserDTO> result = list.stream().map(user -> UserDTO.fromEntity(user));
 		return Response.success(result);
 	}
@@ -68,7 +68,7 @@ public class AdminController {
 	
 	@GetMapping("/{email}")
 	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) {
-		User user = uService.findByEmail(email);
+		User user = userService.findByEmail(email);
 		return ResponseEntity.ok(UserDTO.fromEntity(user));
 	}
 	
@@ -84,13 +84,13 @@ public class AdminController {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(UserDTO userDto){
 		User user = UserDTO.toEntity(userDto);
-		user = uService.update(user);
+		user = userService.update(user);
 		return ResponseEntity.ok(user);
 	}
 	
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticate(Credentials cred) { 
-		User user = uService.authenticate(cred.getEmail(), cred.getPassword());
+		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
 		if(user != null && user.getRole().equals("admin"))
 			System.out.println("Admin login validate");  
 		return ResponseEntity.ok(user); 
@@ -99,7 +99,7 @@ public class AdminController {
 	
 	@GetMapping("/adminpanel/train")
 	public ResponseEntity<?> findTrainAll() {
-		List<Train> list = tService.findAll();
+		List<Train> list = trainService.findAll();
 		Stream<TrainDTO> result = list.stream().map(train -> TrainDTO.fromEntity(train));
 		return Response.success(result);
 	}
@@ -108,13 +108,13 @@ public class AdminController {
 	
 	@DeleteMapping("/adminpanel/route/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id ) {
-		boolean success = rService.deleteById(id);
+		boolean success = routeService.deleteById(id);
 		return ResponseEntity.ok(success);
 	}
 	
 	@GetMapping("/adminpanel/route")
 	public ResponseEntity<?> findRouteAll() {
-		List<Route> list = rService.findAll();
+		List<Route> list = routeService.findAll();
 		Stream<RouteDTO> result = list.stream().map(route -> RouteDTO.fromEntity(route));
 		return Response.success(result);
 	}
@@ -139,7 +139,7 @@ public class AdminController {
 	public ResponseEntity<?> saveRoute(RouteDTO routeDto) {
 		Route route = RouteDTO.toEntity(routeDto);
 		System.out.println(route.toString());
-		route = rService.save(route);
+		route = routeService.save(route);
 		return Response.success(route);
 	}
 	
@@ -147,7 +147,7 @@ public class AdminController {
 	public ResponseEntity<?> saveTrain(TrainDTO trainDto) {
 		Train train = TrainDTO.toEntity(trainDto);
 		System.out.println(train.toString());
-		train = tService.save(train);
+		train = trainService.save(train);
 		return Response.success(train);
 	}
 	

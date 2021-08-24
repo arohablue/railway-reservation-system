@@ -2,7 +2,7 @@ package com.sunbeam.services;
 
 import java.util.List;
 
-import com.sunbeam.entities.Route;
+import com.sunbeam.entity.Route;
 
 public interface RouteService {
 	Route findById(int Id);

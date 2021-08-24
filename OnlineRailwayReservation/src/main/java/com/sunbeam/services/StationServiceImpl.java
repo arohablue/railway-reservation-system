@@ -7,9 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.sunbeam.daos.StationDao;
-import com.sunbeam.entities.Station;
+import com.sunbeam.dao.StationDao;
+import com.sunbeam.entity.Station;
 
 
 @Transactional

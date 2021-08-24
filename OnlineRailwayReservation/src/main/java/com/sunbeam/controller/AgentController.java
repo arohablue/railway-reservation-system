@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunbeam.dtos.UserDTO;
-import com.sunbeam.entities.User;
+import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.User;
 import com.sunbeam.services.UserService;
 
 @CrossOrigin

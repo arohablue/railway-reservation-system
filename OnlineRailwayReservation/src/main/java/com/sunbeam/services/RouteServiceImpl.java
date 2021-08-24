@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunbeam.daos.RouteDao;
-import com.sunbeam.entities.Route;
+import com.sunbeam.dao.RouteDao;
+import com.sunbeam.entity.Route;
 
 
 @Transactional

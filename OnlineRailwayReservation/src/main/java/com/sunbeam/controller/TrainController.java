@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunbeam.daos.TrainDao;
-import com.sunbeam.dtos.TrainDTO;
-import com.sunbeam.dtos.UserDTO;
-import com.sunbeam.entities.Train;
-import com.sunbeam.entities.User;
+import com.sunbeam.dao.TrainDao;
+import com.sunbeam.dto.TrainDTO;
+import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.Train;
+import com.sunbeam.entity.User;
 import com.sunbeam.services.TrainService;
 import com.sunbeam.services.UserService;
 

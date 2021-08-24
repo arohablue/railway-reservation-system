@@ -2,8 +2,8 @@ package com.sunbeam.models;
 
 import org.springframework.beans.BeanUtils;
 
-import com.sunbeam.dtos.UserDTO;
-import com.sunbeam.entities.User;
+import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.User;
 
 public class Credentials {
 	private String email;
