@@ -76,10 +76,8 @@ public class UserController {
 	public ResponseEntity<?> update(ChangePassword cred){
 		User user = uService.findByEmail(cred.getEmail());
 		if(user.getEmail().equals(cred.getEmail())) {
-			
 			user.setPassword(cred.getPassword());
 			uService.save(user);
-			
 			return ResponseEntity.ok(user);
 		}
 		return null;
