@@ -32,13 +32,7 @@ public class Route {
 	@Column(name = "destination_id")
 	private String destinationId;
 
-	// Parent Relationships
-
 	// Child Relationships
-	@OneToMany(mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnore
-	private List<Station> routeStations = new ArrayList<>();
-
 	@OneToMany(mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Train> trains = new ArrayList<>();
@@ -75,14 +69,6 @@ public class Route {
 
 	public void setDestinationId(String destinationId) {
 		this.destinationId = destinationId;
-	}
-
-	public List<Station> getRouteStations() {
-		return routeStations;
-	}
-
-	public void setRouteStations(List<Station> routeStations) {
-		this.routeStations = routeStations;
 	}
 
 	public List<Train> getTrains() {

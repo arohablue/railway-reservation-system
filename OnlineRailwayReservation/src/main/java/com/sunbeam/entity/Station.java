@@ -25,13 +25,7 @@ public class Station {
 	@Column(name = "station_name")
 	private String stationName;
 
-
 	// Parent Relationships	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "train_route_id")
-	private Route route;
-
 	@OneToOne(mappedBy = "sourceStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Route routeSource;
 
