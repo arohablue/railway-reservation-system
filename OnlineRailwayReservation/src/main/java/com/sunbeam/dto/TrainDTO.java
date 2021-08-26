@@ -98,14 +98,14 @@ public class TrainDTO {
 	public static TrainDTO fromEntity(Train train) {
 		TrainDTO tdto = new TrainDTO();
 		BeanUtils.copyProperties(train, tdto);
-		tdto.setId(train.getId());
+		tdto.setTrainId(train.getId());
 		return tdto;
 	}
 
 	public static Train toEntity(TrainDTO tdto) {
 		Train train = new Train();
 		BeanUtils.copyProperties(tdto, train);
-		train.setId(tdto.getId());
+		train.setId(tdto.getTrainId());
 		return train;
 	}
 }
