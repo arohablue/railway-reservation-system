@@ -10,7 +10,7 @@ public interface StationService {
 	List<Station>findAll();
 	Station save(Station station);
 	boolean deleteById(int Id);
-	Boolean saveStation(StationDTO stationDTO);
+	Station saveStation(StationDTO stationDTO);
     Boolean updateStation(StationDTO stationDTO);
     Boolean deleteStation(StationDTO stationDTO);
 }

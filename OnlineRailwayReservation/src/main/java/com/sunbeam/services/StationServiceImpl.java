@@ -44,8 +44,9 @@ public class StationServiceImpl implements StationService {
 	}
 
 	@Override
-	public Boolean saveStation(StationDTO stationDTO) {
-		// TODO Auto-generated method stub
+	public Station saveStation(StationDTO stationDTO) {
+		Station station = StationDTO.toEntity(stationDTO);
+		save(station);
 		return null;
 	}
 
