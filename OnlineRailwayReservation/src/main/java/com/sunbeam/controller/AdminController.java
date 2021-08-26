@@ -1,20 +1,7 @@
 package com.sunbeam.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.dto.StationDTO;
@@ -26,10 +13,22 @@ import com.sunbeam.entity.Train;
 import com.sunbeam.entity.User;
 import com.sunbeam.models.Credentials;
 import com.sunbeam.models.Response;
+import com.sunbeam.services.AdminService;
 import com.sunbeam.services.RouteService;
 import com.sunbeam.services.StationService;
 import com.sunbeam.services.TrainService;
 import com.sunbeam.services.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RequestMapping("/admin")
@@ -46,6 +45,9 @@ public class AdminController {
 
 	@Autowired
 	private StationService stationService;
+
+	@Autowired
+	private AdminService adminService;
 
 	// @GetMapping("/adminpanel/user")
 	// public ResponseEntity<?> findUserAll() {
@@ -115,7 +117,6 @@ public class AdminController {
 	@PostMapping("/adminpanel/route")
 	public ResponseEntity<?> saveRoute(RouteDTO routeDto) {
 		Route route = RouteDTO.toEntity(routeDto);
-		System.out.println(route.toString());
 		route = routeService.save(route);
 		return Response.success(route);
 	}

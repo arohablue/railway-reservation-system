@@ -1,7 +1,6 @@
 package com.sunbeam.dto;
 
 import com.sunbeam.entity.Route;
-import com.sunbeam.entity.User;
 
 import org.springframework.beans.BeanUtils;
 
@@ -59,7 +58,6 @@ public class RouteDTO {
 	public static Route toEntity(RouteDTO rdto) {
 		Route route = new Route();
 		BeanUtils.copyProperties(rdto, route);
-		route.setId(rdto.getRouteId());
 		return route;
 	}
 }

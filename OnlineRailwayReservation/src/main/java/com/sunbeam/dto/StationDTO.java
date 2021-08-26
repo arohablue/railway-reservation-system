@@ -5,23 +5,23 @@ import com.sunbeam.entity.Station;
 import org.springframework.beans.BeanUtils;
 
 public class StationDTO {
-	private int id;
+	private int stationId;
 	private String stationName;
 
 	public StationDTO() {
 	}
 
-	public StationDTO(int id, String stationName) {
-		this.id = id;
+	public StationDTO(int stationId, String stationName) {
+		this.stationId = stationId;
 		this.stationName = stationName;
 	}
 
-	public int getId() {
-		return id;
+	public int getStationId() {
+		return stationId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setStationId(int stationId) {
+		this.stationId = stationId;
 	}
 
 	public String getStationName() {
@@ -34,13 +34,13 @@ public class StationDTO {
 
 	@Override
 	public String toString() {
-		return "StationDTO [id=" + id + ", stationName=" + stationName + "]";
+		return "StationDTO [id=" + stationId + ", stationName=" + stationName + "]";
 	}
 
 	public static StationDTO fromEntity(Station station) {
 		StationDTO sdto = new StationDTO();
 		BeanUtils.copyProperties(station, sdto);
-		sdto.setId(station.getId());
+		sdto.setStationId(station.getId());
 		return sdto;
 	}
 

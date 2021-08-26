@@ -125,7 +125,6 @@ public class UserDTO {
 	public static User toEntity(UserDTO dto) {
 		User user = new User();
 		BeanUtils.copyProperties(dto, user);
-		user.setId(dto.getUserId());
 		return user;
 	}
 

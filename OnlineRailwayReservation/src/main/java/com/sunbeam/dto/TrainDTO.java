@@ -105,7 +105,6 @@ public class TrainDTO {
 	public static Train toEntity(TrainDTO tdto) {
 		Train train = new Train();
 		BeanUtils.copyProperties(tdto, train);
-		train.setId(tdto.getTrainId());
 		return train;
 	}
 }

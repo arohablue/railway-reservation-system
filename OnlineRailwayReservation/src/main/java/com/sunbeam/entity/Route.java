@@ -26,12 +26,6 @@ public class Route {
 	@Column(name = "train_route_id")
 	private int id;
 
-	@Column(name = "source_id")
-	private String sourceId;
-
-	@Column(name = "destination_id")
-	private String destinationId;
-
 	@Column(name = "fair")
 	private int classAC;
 
@@ -56,22 +50,6 @@ public class Route {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getSourceId() {
-		return sourceId;
-	}
-
-	public void setSourceId(String sourceId) {
-		this.sourceId = sourceId;
-	}
-
-	public String getDestinationId() {
-		return destinationId;
-	}
-
-	public void setDestinationId(String destinationId) {
-		this.destinationId = destinationId;
 	}
 
 	public List<Train> getTrains() {
