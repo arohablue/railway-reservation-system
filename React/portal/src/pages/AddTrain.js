@@ -6,14 +6,13 @@ import { url } from '../common/constants'
 
 
 const AddTrain= () => {
-    const [id, setId] = useState('')
-    const [trainname, setTrainname] = useState('')
-    const [traintype, setTraintype] = useState('')
-    const [classgen, setClassgen] = useState('')
-    const [classac, setClassac] = useState('')
-    const [departuretime, setDeparturetime] = useState('')
-    const [arrivaltime, setArrivaltime] = useState('')
-    const [routeid, setRouteid] = useState('')
+    const [trainname, setTrainName] = useState('')
+    const [traintype, setTrainType] = useState('')
+    const [classgen, setClassGen] = useState('')
+    const [classac, setClassAc] = useState('')
+    const [departuretime, setDepartureTime] = useState('')
+    const [arrivaltime, setArrivalTime] = useState('')
+    const [route, setRoute] = useState('')
    
     const history = useHistory()
   
@@ -36,14 +35,21 @@ const AddTrain= () => {
         alert('enter routeid')
       } else {
         const data = new FormData()
-        data.append('id', id)
+
+        const data = {
+          trainName: trainName ,
+          trainType: trainName ,
+          trainName: trainName ,
+          trainName: trainName ,
+          destinationStation: { stationId: destinationStation },
+        };
         data.append('trainname', trainname)
         data.append('traintype', traintype)
         data.append('classgen', classgen)
         data.append('classac', classac)
         data.append('departuretime', departuretime)
         data.append('arrivaltime', arrivaltime)
-        data.append('routeid', routeid)
+        data.append('route', route)
        
   
         // send the album info to the API
@@ -63,22 +69,11 @@ const AddTrain= () => {
     return (
       <div>
         <h1 className="page-title">Add Train</h1>
-  
         <div className="mb-3">
-          <label htmlFor="">TrainId</label>
+          <label htmlFor="">Name</label>
           <input
             onChange={(e) => {
-                setId(e.target.value)
-            }}
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="">TrainName</label>
-          <input
-            onChange={(e) => {
-                setTrainname(e.target.value)
+                setTrainName(e.target.value)
             }}
             type="text"
             className="form-control"

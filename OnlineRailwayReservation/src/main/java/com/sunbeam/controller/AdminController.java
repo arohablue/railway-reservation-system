@@ -13,7 +13,6 @@ import com.sunbeam.entity.Train;
 import com.sunbeam.entity.User;
 import com.sunbeam.models.Credentials;
 import com.sunbeam.models.Response;
-import com.sunbeam.services.AdminService;
 import com.sunbeam.services.RouteService;
 import com.sunbeam.services.StationService;
 import com.sunbeam.services.TrainService;
@@ -27,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -107,16 +107,15 @@ public class AdminController {
 		return ResponseEntity.ok(success);
 	}
 
-	@GetMapping("/adminpanel/route")
-	public ResponseEntity<?> findRouteAll() {
+	@GetMapping("/adminpanel/getallroutes")
+	public ResponseEntity<?> getAllRoutes() {
 		List<Route> list = routeService.findAll();
 		Stream<RouteDTO> result = list.stream().map(route -> RouteDTO.fromEntity(route));
 		return Response.success(result);
 	}
 
 	@PostMapping("/adminpanel/addroute")
-	public ResponseEntity<?> saveRoute(RouteDTO routeDto) {
-
+	public ResponseEntity<?> saveRoute(@RequestBody RouteDTO routeDto) {
 		Route route = routeService.saveRoute(routeDto);
 		return Response.success(route);
 	}

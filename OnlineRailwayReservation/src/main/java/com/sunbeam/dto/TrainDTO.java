@@ -10,22 +10,22 @@ public class TrainDTO {
 	private int trainId;
 	private String trainName;
 	private String trainType;
-	private int noOfClassGenSeats;
-	private int noOfClassACSeats;
 	private Date departureTime;
 	private Date arrivalTime;
 	private RouteDTO route;
+	private Integer noOfSeatsGen;
+	private Integer noOfSeatsAC;
 
 	public TrainDTO() {
 	}
 
-	public TrainDTO(int trainId, String trainName, String trainType, int noOfClassGenSeats, int noOfClassACSeats,
+	public TrainDTO(int trainId, String trainName, String trainType, int noOfSeatsGen, int noOfSeatsAC,
 			Date departureTime, Date arrivalTime, RouteDTO route) {
 		this.trainId = trainId;
 		this.trainName = trainName;
 		this.trainType = trainType;
-		this.noOfClassGenSeats = noOfClassGenSeats;
-		this.noOfClassACSeats = noOfClassACSeats;
+		this.noOfSeatsGen = noOfSeatsGen;
+		this.noOfSeatsAC = noOfSeatsAC;
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 		this.route = route;
@@ -55,20 +55,20 @@ public class TrainDTO {
 		this.trainType = trainType;
 	}
 
-	public int getNoOfClassGenSeats() {
-		return noOfClassGenSeats;
+	public Integer getNoOfSeatsGen() {
+		return noOfSeatsGen;
 	}
 
-	public void setNoOfClassGenSeats(int noOfClassGenSeats) {
-		this.noOfClassGenSeats = noOfClassGenSeats;
+	public void setNoOfSeatsGen(Integer noOfSeatsGen) {
+		this.noOfSeatsGen = noOfSeatsGen;
 	}
 
-	public int getNoOfClassACSeats() {
-		return noOfClassACSeats;
+	public Integer getNoOfSeatsAC() {
+		return noOfSeatsAC;
 	}
 
-	public void setNoOfClassACSeats(int noOfClassACSeats) {
-		this.noOfClassACSeats = noOfClassACSeats;
+	public void setNoOfSeatsAC(Integer noOfSeatsAC) {
+		this.noOfSeatsAC = noOfSeatsAC;
 	}
 
 	public Date getDepartureTime() {
