@@ -26,9 +26,11 @@ public class Station {
 	private String stationName;
 
 	// Parent Relationships
+	@JsonIgnore
 	@OneToOne(mappedBy = "sourceStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Route routeSource;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "destinationStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Route routeDestination;
 

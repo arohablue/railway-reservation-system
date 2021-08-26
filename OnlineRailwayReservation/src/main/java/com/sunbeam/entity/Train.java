@@ -40,11 +40,11 @@ public class Train {
 	@Column(name = "train_type")
 	private String trainType;
 
-	@Column(name = "class_gen")
-	private int classGen;
+	@Column(name = "no_of_seats_gen")
+	private int noOfSeatsGen;
 
-	@Column(name = "class_AC")
-	private int classAC;
+	@Column(name = "no_of_seats_AC")
+	private int noOfSeatsAC;
 
 	@DateTimeFormat(pattern = "HH:MM:SS")
 	@Temporal(TemporalType.TIME)
@@ -103,20 +103,28 @@ public class Train {
 		this.trainType = trainType;
 	}
 
-	public int getClassGen() {
-		return classGen;
+	public int getNoOfSeatsGen() {
+		return noOfSeatsGen;
 	}
 
-	public void setClassGen(int classGen) {
-		this.classGen = classGen;
+	public void setNoOfSeatsGen(int noOfSeatsGen) {
+		this.noOfSeatsGen = noOfSeatsGen;
 	}
 
-	public int getClassAC() {
-		return classAC;
+	public int getNoOfSeatsAC() {
+		return noOfSeatsAC;
 	}
 
-	public void setClassAC(int classAC) {
-		this.classAC = classAC;
+	public void setNoOfSeatsAC(int noOfSeatsAC) {
+		this.noOfSeatsAC = noOfSeatsAC;
+	}
+
+	public List<TrainStatus> getTrainStatus() {
+		return trainStatus;
+	}
+
+	public void setTrainStatus(List<TrainStatus> trainStatus) {
+		this.trainStatus = trainStatus;
 	}
 
 	public Date getDepartureTime() {

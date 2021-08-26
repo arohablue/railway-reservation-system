@@ -7,10 +7,16 @@ import com.sunbeam.entity.Route;
 
 public interface RouteService {
 	Route findById(int Id);
-	List<Route>findAll();
-	Route save(Route route);
+
+	List<Route> findAll();
+
+	Route save(Route route);	
+
 	boolean deleteById(int Id);
+
 	Route saveRoute(RouteDTO routeDTO);
-    Boolean updateRoute(RouteDTO routeDTO);
-    Boolean deleteRoute(RouteDTO routeDTO);
+
+	Boolean updateRoute(RouteDTO routeDTO);
+
+	Boolean deleteRoute(RouteDTO routeDTO);
 }

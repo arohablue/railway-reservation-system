@@ -107,8 +107,8 @@ public class AdminController {
 		return ResponseEntity.ok(success);
 	}
 
-	@GetMapping("/adminpanel/route")
-	public ResponseEntity<?> findRouteAll() {
+	@GetMapping("/adminpanel/getallroutes")
+	public ResponseEntity<?> getAllRoutes() {
 		List<Route> list = routeService.findAll();
 		Stream<RouteDTO> result = list.stream().map(route -> RouteDTO.fromEntity(route));
 		return Response.success(result);

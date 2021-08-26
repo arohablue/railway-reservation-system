@@ -37,13 +37,11 @@ public class Route {
 	@JsonIgnore
 	private List<Train> trains = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToOne(optional = true, fetch = FetchType.LAZY)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "source_station_id")
 	private Station sourceStation;
 
-	@JsonIgnore
-	@OneToOne(optional = true, fetch = FetchType.LAZY)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "destination_station_id")
 	private Station destinationStation;
 

@@ -66,6 +66,8 @@ public class RouteDTO {
 	public static RouteDTO fromEntity(Route route) {
 		RouteDTO rdto = new RouteDTO();
 		BeanUtils.copyProperties(route, rdto);
+		rdto.setSourceStation(StationDTO.fromEntity(route.getSourceStation()));
+		rdto.setDestinationStation(StationDTO.fromEntity(route.getDestinationStation()));
 		rdto.setRouteId(route.getId());
 		return rdto;
 	}
