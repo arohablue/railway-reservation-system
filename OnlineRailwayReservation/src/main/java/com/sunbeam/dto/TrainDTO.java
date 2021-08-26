@@ -2,95 +2,106 @@ package com.sunbeam.dto;
 
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.sunbeam.entity.Train;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.format.annotation.DateTimeFormat;
-
 
 public class TrainDTO {
-	private int id ;
-	private String trainname;
-	private String traintype;
-	private int classgen;
-	private int classac;
-	private Date departuretime;
-	private Date arrivaltime;
-	private int routeid;
+	private int trainId;
+	private String trainName;
+	private String trainType;
+	private int noOfClassGenSeats;
+	private int noOfClassACSeats;
+	private Date departureTime;
+	private Date arrivalTime;
+	private RouteDTO route;
+
 	public TrainDTO() {
 	}
-	public TrainDTO(int id, String trainname, String traintype, int classgen, int classac, Date departuretime,
-			Date arrivaltime, int routeid) {
-		this.id = id;
-		this.trainname = trainname;
-		this.traintype = traintype;
-		this.classgen = classgen;
-		this.classac = classac;
-		this.departuretime = departuretime;
-		this.arrivaltime = arrivaltime;
-		this.routeid = routeid;
-	}
-	
-	
 
-	public int getId() {
-		return id;
+	public TrainDTO(int trainId, String trainName, String trainType, int noOfClassGenSeats, int noOfClassACSeats,
+			Date departureTime, Date arrivalTime, RouteDTO route) {
+		this.trainId = trainId;
+		this.trainName = trainName;
+		this.trainType = trainType;
+		this.noOfClassGenSeats = noOfClassGenSeats;
+		this.noOfClassACSeats = noOfClassACSeats;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+		this.route = route;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public int getTrainId() {
+		return trainId;
 	}
-	public String getTrainname() {
-		return trainname;
+
+	public void setTrainId(int trainId) {
+		this.trainId = trainId;
 	}
-	public void setTrainname(String trainname) {
-		this.trainname = trainname;
+
+	public String getTrainName() {
+		return trainName;
 	}
-	public String getTraintype() {
-		return traintype;
+
+	public void setTrainName(String trainName) {
+		this.trainName = trainName;
 	}
-	public void setTraintype(String traintype) {
-		this.traintype = traintype;
+
+	public String getTrainType() {
+		return trainType;
 	}
-	public int getClassgen() {
-		return classgen;
+
+	public void setTrainType(String trainType) {
+		this.trainType = trainType;
 	}
-	public void setClassgen(int classgen) {
-		this.classgen = classgen;
+
+	public int getNoOfClassGenSeats() {
+		return noOfClassGenSeats;
 	}
-	public int getClassac() {
-		return classac;
+
+	public void setNoOfClassGenSeats(int noOfClassGenSeats) {
+		this.noOfClassGenSeats = noOfClassGenSeats;
 	}
-	public void setClassac(int classac) {
-		this.classac = classac;
+
+	public int getNoOfClassACSeats() {
+		return noOfClassACSeats;
 	}
-	public Date getDeparturetime() {
-		return departuretime;
+
+	public void setNoOfClassACSeats(int noOfClassACSeats) {
+		this.noOfClassACSeats = noOfClassACSeats;
 	}
-	public void setDeparturetime(Date departuretime) {
-		this.departuretime = departuretime;
+
+	public Date getDepartureTime() {
+		return departureTime;
 	}
-	public Date getArrivaltime() {
-		return arrivaltime;
+
+	public void setDepartureTime(Date departureTime) {
+		this.departureTime = departureTime;
 	}
-	public void setArrivaltime(Date arrivaltime) {
-		this.arrivaltime = arrivaltime;
+
+	public Date getArrivalTime() {
+		return arrivalTime;
 	}
-	public int getRouteid() {
-		return routeid;
+
+	public void setArrivalTime(Date arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
-	public void setRouteid(int routeid) {
-		this.routeid = routeid;
+
+	public RouteDTO getRoute() {
+		return route;
 	}
+
+	public void setRoute(RouteDTO route) {
+		this.route = route;
+	}
+
 	public static TrainDTO fromEntity(Train train) {
 		TrainDTO tdto = new TrainDTO();
 		BeanUtils.copyProperties(train, tdto);
 		tdto.setId(train.getId());
 		return tdto;
 	}
-	
+
 	public static Train toEntity(TrainDTO tdto) {
 		Train train = new Train();
 		BeanUtils.copyProperties(tdto, train);
