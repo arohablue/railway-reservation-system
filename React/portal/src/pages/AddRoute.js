@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 
@@ -13,7 +13,7 @@ const AddRoute = () => {
     getStations();
   }, []);
 
-  const getStations = () => {
+  const getStations = useCallback(() => {
     axios.get(url + "/admin/adminpanel/getallstation").then((response) => {
       const result = response.data;
       if (result.status === "success") {
@@ -26,7 +26,7 @@ const AddRoute = () => {
         alert("error while loading list of Train");
       }
     });
-  };
+  }, [setStations]);
 
   const history = useHistory();
 
