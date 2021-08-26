@@ -6,50 +6,60 @@ import com.sunbeam.entity.User;
 import org.springframework.beans.BeanUtils;
 
 public class RouteDTO {
-	private int id;
-	private String sourceid;
-	private String destinationid;
+	private int routeId;
+	private StationDTO sourceStation;
+	private StationDTO destinationStation;
+
 	public RouteDTO() {
 	}
-	public RouteDTO(int id, String sourceid, String destinationid) {
-		this.id = id;
-		this.sourceid = sourceid;
-		this.destinationid = destinationid;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getSourceid() {
-		return sourceid;
-	}
-	public void setSourceid(String sourceid) {
-		this.sourceid = sourceid;
-	}
-	public String getDestinationid() {
-		return destinationid;
-	}
-	public void setDestinationid(String destinationid) {
-		this.destinationid = destinationid;
-	}
+
 	@Override
 	public String toString() {
-		return "RouteDTO [id=" + id + ", sourceid=" + sourceid + ", destinationid=" + destinationid + "]";
+		return "RouteDTO [destinationStation=" + destinationStation + ", routeId=" + routeId + ", sourceStation="
+				+ sourceStation + "]";
 	}
-	
+
+	public RouteDTO(int routeId, StationDTO sourceStation, StationDTO destinationStation) {
+		this.routeId = routeId;
+		this.sourceStation = sourceStation;
+		this.destinationStation = destinationStation;
+	}
+
+	public int getRouteId() {
+		return routeId;
+	}
+
+	public void setRouteId(int routeId) {
+		this.routeId = routeId;
+	}
+
+	public StationDTO getSourceStation() {
+		return sourceStation;
+	}
+
+	public void setSourceStation(StationDTO sourceStation) {
+		this.sourceStation = sourceStation;
+	}
+
+	public StationDTO getDestinationStation() {
+		return destinationStation;
+	}
+
+	public void setDestinationStation(StationDTO destinationStation) {
+		this.destinationStation = destinationStation;
+	}
+
 	public static RouteDTO fromEntity(Route route) {
 		RouteDTO rdto = new RouteDTO();
 		BeanUtils.copyProperties(route, rdto);
-		rdto.setId(route.getId());
+		rdto.setRouteId(route.getId());
 		return rdto;
 	}
-	
+
 	public static Route toEntity(RouteDTO rdto) {
 		Route route = new Route();
 		BeanUtils.copyProperties(rdto, route);
-		route.setId(rdto.getId());
+		route.setId(rdto.getRouteId());
 		return route;
 	}
 }
