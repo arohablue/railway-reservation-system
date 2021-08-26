@@ -7,7 +7,7 @@ const StationRow = ({station}) => {
     return (
       <tr>
         <td>{station.id}</td>
-        <td>{station.stationname}</td>
+        <td>{station.stationName}</td>
         <td>
          
           <button

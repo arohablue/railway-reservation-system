@@ -42,4 +42,45 @@ public class PNRTable {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable")
 	private List<PassengerTicket> passengerTickets = new ArrayList<>();
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPnr() {
+		return pnr;
+	}
+
+	public void setPnr(String pnr) {
+		this.pnr = pnr;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<PassengerTicket> getPassengerTickets() {
+		return passengerTickets;
+	}
+
+	public void setPassengerTickets(List<PassengerTicket> passengerTickets) {
+		this.passengerTickets = passengerTickets;
+	}
+	
+
 }

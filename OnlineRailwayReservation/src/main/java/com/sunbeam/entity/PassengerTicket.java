@@ -61,4 +61,76 @@ public class PassengerTicket {
 	@JoinColumn(name = "pnr_id")
 	private PNRTable pnrTable;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPnr() {
+		return pnr;
+	}
+
+	public void setPnr(String pnr) {
+		this.pnr = pnr;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getBookingStatus() {
+		return bookingStatus;
+	}
+
+	public void setBookingStatus(String bookingStatus) {
+		this.bookingStatus = bookingStatus;
+	}
+
+	public Train getTrain() {
+		return train;
+	}
+
+	public void setTrain(Train train) {
+		this.train = train;
+	}
+
+	public PNRTable getPnrTable() {
+		return pnrTable;
+	}
+
+	public void setPnrTable(PNRTable pnrTable) {
+		this.pnrTable = pnrTable;
+	}
+
 }

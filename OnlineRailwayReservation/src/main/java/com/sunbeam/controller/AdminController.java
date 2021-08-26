@@ -31,72 +31,67 @@ import com.sunbeam.services.StationService;
 import com.sunbeam.services.TrainService;
 import com.sunbeam.services.UserService;
 
-
 @CrossOrigin
 @RequestMapping("/admin")
 @RestController
 public class AdminController {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private TrainService trainService;
-	
+
 	@Autowired
 	private RouteService routeService;
-	
-	
+
 	@Autowired
 	private StationService stationService;
-	
-//	@GetMapping("/adminpanel/user")
-//	public ResponseEntity<?> findUserAll() {
-//		List<User> list = uService.findAll();
-//		List<UserDTO> result = new ArrayList<UserDTO>();
-//		for (User user : list) 
-//			result.add(UserDTO.fromEntity(user));
-//		return ResponseEntity.ok(result);
-//	}
-	
+
+	// @GetMapping("/adminpanel/user")
+	// public ResponseEntity<?> findUserAll() {
+	// List<User> list = uService.findAll();
+	// List<UserDTO> result = new ArrayList<UserDTO>();
+	// for (User user : list)
+	// result.add(UserDTO.fromEntity(user));
+	// return ResponseEntity.ok(result);
+	// }
+
 	@GetMapping("/adminpanel/user")
 	public ResponseEntity<?> findUserAll() {
 		List<User> list = userService.findAll();
 		Stream<UserDTO> result = list.stream().map(user -> UserDTO.fromEntity(user));
 		return Response.success(result);
 	}
-	
-	
+
 	@GetMapping("/{email}")
 	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) {
 		User user = userService.findByEmail(email);
 		return ResponseEntity.ok(UserDTO.fromEntity(user));
 	}
-	
-	
-//	@PostMapping("/signup")
-//	public ResponseEntity<?> save(UserDTO userDto) {
-//		User user = UserDTO.toEntity(userDto);
-//		System.out.println(user.toString());
-//		user = uService.save(user);
-//		return ResponseEntity.ok(user);
-//	}
-	
+
+	// @PostMapping("/signup")
+	// public ResponseEntity<?> save(UserDTO userDto) {
+	// User user = UserDTO.toEntity(userDto);
+	// System.out.println(user.toString());
+	// user = uService.save(user);
+	// return ResponseEntity.ok(user);
+	// }
+
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(UserDTO userDto){
+	public ResponseEntity<?> update(UserDTO userDto) {
 		User user = UserDTO.toEntity(userDto);
 		user = userService.update(user);
 		return ResponseEntity.ok(user);
 	}
-	
+
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> authenticate(Credentials cred) { 
+	public ResponseEntity<?> authenticate(Credentials cred) {
 		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
-		if(user != null && user.getRole().equals("admin"))
-			System.out.println("Admin login validate");  
-		return ResponseEntity.ok(user); 
+		if (user != null && user.getRole().equals("admin"))
+			System.out.println("Admin login validate");
+		return ResponseEntity.ok(user);
 	}
-	
-	
+
 	@GetMapping("/adminpanel/train")
 	public ResponseEntity<?> findTrainAll() {
 		List<Train> list = trainService.findAll();
@@ -104,37 +99,19 @@ public class AdminController {
 		return Response.success(result);
 	}
 
-
-	
 	@DeleteMapping("/adminpanel/route/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id ) {
+	public ResponseEntity<?> delete(@PathVariable("id") int id) {
 		boolean success = routeService.deleteById(id);
 		return ResponseEntity.ok(success);
 	}
-	
+
 	@GetMapping("/adminpanel/route")
 	public ResponseEntity<?> findRouteAll() {
 		List<Route> list = routeService.findAll();
 		Stream<RouteDTO> result = list.stream().map(route -> RouteDTO.fromEntity(route));
 		return Response.success(result);
 	}
-	
-	
-//	@GetMapping("/adminpanel/station")
-//	public ResponseEntity<?> findStationAll() {
-//		List<Station> list = sService.findAll();
-//		Stream<StationDTO> result = list.stream().map(station -> StationDTO.fromEntity(station));
-//		return Response.success(result);
-//	}
-	
-//	@PostMapping("/signup")
-//	public ResponseEntity<?> save(UserDTO userDto) {
-//		User user = UserDTO.toEntity(userDto);
-//		System.out.println(user.toString());
-//		user = uService.save(user);
-//		return ResponseEntity.ok(user);
-//	}
-	
+
 	@PostMapping("/adminpanel/route")
 	public ResponseEntity<?> saveRoute(RouteDTO routeDto) {
 		Route route = RouteDTO.toEntity(routeDto);
@@ -142,7 +119,7 @@ public class AdminController {
 		route = routeService.save(route);
 		return Response.success(route);
 	}
-	
+
 	@PostMapping("/adminpanel/train")
 	public ResponseEntity<?> saveTrain(TrainDTO trainDto) {
 		Train train = TrainDTO.toEntity(trainDto);
@@ -150,13 +127,18 @@ public class AdminController {
 		train = trainService.save(train);
 		return Response.success(train);
 	}
-	
-	
-//	@PostMapping("/adminpanel/station")
-//	public ResponseEntity<?> saveStation(StationDTO stationDto) {
-//		Station station = StationDTO.toEntity(stationDto);
-//		System.out.println(station.toString());
-//		station = sService.save(station);
-//		return Response.success(station);
-//	}
+
+	@PostMapping("/adminpanel/station")
+	public ResponseEntity<?> addStation(StationDTO stationDto) {
+		Station station = StationDTO.toEntity(stationDto);
+		station = stationService.save(station);
+		return Response.success(station);
+	}
+
+	@GetMapping("/adminpanel/allstations")
+	public ResponseEntity<?> getAllStation(StationDTO stationDto) {
+		List<Station> stationList = stationService.findAll();
+		Stream<StationDTO> result = stationList.stream().map(station -> StationDTO.fromEntity(station));
+		return Response.success(result);
+	}
 }

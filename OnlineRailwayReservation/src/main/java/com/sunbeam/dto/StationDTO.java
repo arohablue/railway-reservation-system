@@ -7,12 +7,12 @@ import org.springframework.beans.BeanUtils;
 
 public class StationDTO {
 	private int id ;
-	private String stationname;
+	private String stationName;
 	public StationDTO() {
 	}
-	public StationDTO(int id, String stationname) {
+	public StationDTO(int id, String stationName) {
 		this.id = id;
-		this.stationname = stationname;
+		this.stationName = stationName;
 	}
 	public int getId() {
 		return id;
@@ -20,28 +20,27 @@ public class StationDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getStationname() {
-		return stationname;
+	public String getStationName() {
+		return stationName;
 	}
-	public void setStationname(String stationname) {
-		this.stationname = stationname;
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
 	}
 	@Override
 	public String toString() {
-		return "StationDTO [id=" + id + ", stationname=" + stationname + "]";
+		return "StationDTO [id=" + id + ", stationName=" + stationName + "]";
 	}
 	
-//	public static StationDTO fromEntity(Station station) {
-//		StationDTO sdto = new StationDTO();
-//		BeanUtils.copyProperties(station, sdto);
-//		sdto.setId(station.getId());
-//		return sdto;
-//	}
+	public static StationDTO fromEntity(Station station) {
+		StationDTO sdto = new StationDTO();
+		BeanUtils.copyProperties(station, sdto);
+		sdto.setId(station.getId());
+		return sdto;
+	}
 	
-//	public static Station toEntity(StationDTO sdto) {
-//		Station station = new Station();
-//		BeanUtils.copyProperties(sdto, station);
-//		station.setId(sdto.getId());
-//		return station;
-//	}
+	public static Station toEntity(StationDTO sdto) {
+		Station station = new Station();
+		BeanUtils.copyProperties(sdto, station);
+		return station;
+	}
 }

@@ -49,4 +49,60 @@ public class TrainStatus {
 	@JoinColumn(name = "train_id")
 	private Train train;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getJourneyDate() {
+        return journeyDate;
+    }
+
+    public void setJourneyDate(Date journeyDate) {
+        this.journeyDate = journeyDate;
+    }
+
+    public int getAvailableSeatGen() {
+        return availableSeatGen;
+    }
+
+    public void setAvailableSeatGen(int availableSeatGen) {
+        this.availableSeatGen = availableSeatGen;
+    }
+
+    public int getBookedSeatGen() {
+        return bookedSeatGen;
+    }
+
+    public void setBookedSeatGen(int bookedSeatGen) {
+        this.bookedSeatGen = bookedSeatGen;
+    }
+
+    public int getAvailableSeatAC() {
+        return availableSeatAC;
+    }
+
+    public void setAvailableSeatAC(int availableSeatAC) {
+        this.availableSeatAC = availableSeatAC;
+    }
+
+    public int getBookedSeatAC() {
+        return bookedSeatAC;
+    }
+
+    public void setBookedSeatAC(int bookedSeatAC) {
+        this.bookedSeatAC = bookedSeatAC;
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
 }

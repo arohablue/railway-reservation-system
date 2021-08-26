@@ -25,11 +25,53 @@ public class Station {
 	@Column(name = "station_name")
 	private String stationName;
 
-	// Parent Relationships	
+	// Parent Relationships
 	@OneToOne(mappedBy = "sourceStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Route routeSource;
 
 	@OneToOne(mappedBy = "destinationStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Route routeDestination;
+
+	public int getId() {
+		return id;
+	}
+
+	public Station(int id, String stationName, Route routeSource, Route routeDestination) {
+		this.id = id;
+		this.stationName = stationName;
+		this.routeSource = routeSource;
+		this.routeDestination = routeDestination;
+	}
+
+	public Station() {
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStationName() {
+		return stationName;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
+	public Route getRouteSource() {
+		return routeSource;
+	}
+
+	public void setRouteSource(Route routeSource) {
+		this.routeSource = routeSource;
+	}
+
+	public Route getRouteDestination() {
+		return routeDestination;
+	}
+
+	public void setRouteDestination(Route routeDestination) {
+		this.routeDestination = routeDestination;
+	}
 
 }

@@ -32,6 +32,9 @@ public class Route {
 	@Column(name = "destination_id")
 	private String destinationId;
 
+	@Column(name = "fair")
+	private int classAC;
+
 	// Child Relationships
 	@OneToMany(mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore

@@ -26,7 +26,7 @@ import com.sunbeam.services.UserService;
 @RestController
 public class UserController {
 	@Autowired
-	private UserService uService;
+	private UserService userService;
 	
 //Admin will fetch all user so these method will be in admincontroller
 //	@GetMapping("/{email}")
@@ -49,7 +49,7 @@ public class UserController {
 	public ResponseEntity<?> save(UserDTO userDto) {
 		User user = UserDTO.toEntity(userDto);
 		System.out.println(user.toString());
-		user = uService.save(user);
+		user = userService.save(user);
 		return ResponseEntity.ok(user);
 	}
 	
@@ -66,7 +66,7 @@ public class UserController {
 
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticate(Credentials cred) { 
-		User user = uService.authenticate(cred.getEmail(), cred.getPassword());
+		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
 		if(user != null)
 			System.out.println("login validate");  
 		return ResponseEntity.ok(user); 
@@ -74,11 +74,11 @@ public class UserController {
 	
 	@PostMapping("/changepassword")
 	public ResponseEntity<?> update(ChangePassword cred){
-		User user = uService.findByEmail(cred.getEmail());
+		User user = userService.findByEmail(cred.getEmail());
 		if(user.getEmail().equals(cred.getEmail())) {
 			
 			user.setPassword(cred.getPassword());
-			uService.save(user);
+			userService.save(user);
 			
 			return ResponseEntity.ok(user);
 		}
