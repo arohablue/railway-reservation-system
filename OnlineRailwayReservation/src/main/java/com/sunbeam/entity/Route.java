@@ -26,8 +26,11 @@ public class Route {
 	@Column(name = "train_route_id")
 	private int id;
 
-	@Column(name = "fair")
-	private int classAC;
+	@Column(name = "ac_fair")
+	private Double acClassFair = 0.0;
+
+	@Column(name = "general_fair")
+	private Double generalClassFair = 0.0;
 
 	// Child Relationships
 	@OneToMany(mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -44,12 +47,36 @@ public class Route {
 	@JoinColumn(name = "destination_station_id")
 	private Station destinationStation;
 
+	@Override
+	public String toString() {
+		return "Route [acClassFair=" + acClassFair + ", destinationStation=" + destinationStation
+				+ ", generalClassFair=" + generalClassFair + ", id=" + id + ", sourceStation=" + sourceStation
+				+ ", trains=" + trains + "]";
+	}
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public Double getAcClassFair() {
+		return acClassFair;
+	}
+
+	public void setAcClassFair(Double acClassFair) {
+		this.acClassFair = acClassFair;
+	}
+
+	public Double getGeneralClassFair() {
+		return generalClassFair;
+	}
+
+	public void setGeneralClassFair(Double generalClassFair) {
+		this.generalClassFair = generalClassFair;
 	}
 
 	public List<Train> getTrains() {

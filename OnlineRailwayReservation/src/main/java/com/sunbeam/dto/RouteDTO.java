@@ -8,20 +8,35 @@ public class RouteDTO {
 	private int routeId;
 	private StationDTO sourceStation;
 	private StationDTO destinationStation;
+	private Double acClassFair;
+	private Double generalClassFair;
 
 	public RouteDTO() {
 	}
 
-	@Override
-	public String toString() {
-		return "RouteDTO [destinationStation=" + destinationStation + ", routeId=" + routeId + ", sourceStation="
-				+ sourceStation + "]";
-	}
-
-	public RouteDTO(int routeId, StationDTO sourceStation, StationDTO destinationStation) {
+	public RouteDTO(int routeId, StationDTO sourceStation, StationDTO destinationStation, Double acClassFair,
+			Double generalClassFair) {
 		this.routeId = routeId;
 		this.sourceStation = sourceStation;
 		this.destinationStation = destinationStation;
+		this.acClassFair = acClassFair;
+		this.generalClassFair = generalClassFair;
+	}
+
+	public Double getAcClassFair() {
+		return acClassFair;
+	}
+
+	public void setAcClassFair(Double acClassFair) {
+		this.acClassFair = acClassFair;
+	}
+
+	public Double getGeneralClassFair() {
+		return generalClassFair;
+	}
+
+	public void setGeneralClassFair(Double generalClassFair) {
+		this.generalClassFair = generalClassFair;
 	}
 
 	public int getRouteId() {
