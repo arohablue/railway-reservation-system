@@ -186,7 +186,7 @@ const Signup = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Role</label>
+          <label>Role :</label>
           <select
             name="role"
             id="role"
@@ -194,6 +194,7 @@ const Signup = () => {
               setRole(event.target.value);
             }}
           >
+            <option value="">None</option>
             <option value="Admin">Admin</option>
             <option value="User">User</option>
             <option value="Agent">Agent</option>

@@ -21,7 +21,7 @@ const SearchTrain = () => {
   }, [] )
 
   const getSource = () => {
-    axios.get(url + '/admin/adminpanel/station').then((response) => {
+    axios.get(url + '/admin/adminpanel/getallstation').then((response) => {
       const result = response.data
       if (result.status === 'success') {
         if (result.data.length > 0) {

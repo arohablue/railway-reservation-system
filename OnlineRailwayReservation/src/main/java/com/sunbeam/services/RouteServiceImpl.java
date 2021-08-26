@@ -8,50 +8,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sunbeam.dao.RouteDao;
+import com.sunbeam.dao.StationDao;
 import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.entity.Route;
-
 
 @Transactional
 @Service
 public class RouteServiceImpl implements RouteService {
 
 	@Autowired
-	private RouteDao rDao;
-	
+	private RouteDao routeDao;
+
+	@Autowired
+	private StationDao stationDao;
+
 	@Override
 	public Route findById(int Id) {
 		// TODO Auto-generated method stub
-		return rDao.findById(Id);
+		return routeDao.findById(Id);
 	}
 
 	@Override
 	public List<Route> findAll() {
 		// TODO Auto-generated method stub
-		return rDao.findAll();
+		return routeDao.findAll();
 	}
 
 	@Override
 	public Route save(Route route) {
 		// TODO Auto-generated method stub
-		return rDao.save(route);
+		return routeDao.save(route);
 	}
 
-	//Not working write another
+	// Not working write another
 	@Override
 	public boolean deleteById(int id) {
-		if(rDao.existsById(id)) {
-			rDao.deleteById(id);
+		if (routeDao.existsById(id)) {
+			routeDao.deleteById(id);
 			return true;
 		}
 		return false;
-		
+
 	}
 
 	@Override
-	public Boolean saveRoute(RouteDTO routeDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Route saveRoute(RouteDTO routeDTO) {
+		Route route = RouteDTO.toEntity(routeDTO);
+		if(stationDao.findById(routeDTO.getSourceStation().getStationId()) != null &&  
+		stationDao.findById(routeDTO.getDestinationStation().getStationId()) != null ){
+			route.setSourceStation(stationDao.findById(routeDTO.getSourceStation().getStationId()));
+			route.setDestinationStation(stationDao.findById(routeDTO.getDestinationStation().getStationId()));
+		}
+		save(route);
+		return route;
 	}
 
 	@Override

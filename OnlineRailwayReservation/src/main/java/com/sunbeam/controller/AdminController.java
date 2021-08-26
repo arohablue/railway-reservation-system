@@ -46,8 +46,8 @@ public class AdminController {
 	@Autowired
 	private StationService stationService;
 
-	@Autowired
-	private AdminService adminService;
+	// @Autowired
+	// private AdminService adminService;
 
 	// @GetMapping("/adminpanel/user")
 	// public ResponseEntity<?> findUserAll() {
@@ -114,10 +114,10 @@ public class AdminController {
 		return Response.success(result);
 	}
 
-	@PostMapping("/adminpanel/route")
+	@PostMapping("/adminpanel/addroute")
 	public ResponseEntity<?> saveRoute(RouteDTO routeDto) {
-		Route route = RouteDTO.toEntity(routeDto);
-		route = routeService.save(route);
+
+		Route route = routeService.saveRoute(routeDto);
 		return Response.success(route);
 	}
 
@@ -129,14 +129,13 @@ public class AdminController {
 		return Response.success(train);
 	}
 
-	@PostMapping("/adminpanel/station")
+	@PostMapping("/adminpanel/addstation")
 	public ResponseEntity<?> addStation(StationDTO stationDto) {
-		Station station = StationDTO.toEntity(stationDto);
-		station = stationService.save(station);
+		Station station = stationService.saveStation(stationDto);
 		return Response.success(station);
 	}
 
-	@GetMapping("/adminpanel/allstations")
+	@GetMapping("/adminpanel/getallstation")
 	public ResponseEntity<?> getAllStation(StationDTO stationDto) {
 		List<Station> stationList = stationService.findAll();
 		Stream<StationDTO> result = stationList.stream().map(station -> StationDTO.fromEntity(station));

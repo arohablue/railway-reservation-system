@@ -10,7 +10,7 @@ public interface RouteService {
 	List<Route>findAll();
 	Route save(Route route);
 	boolean deleteById(int Id);
-	Boolean saveRoute(RouteDTO routeDTO);
+	Route saveRoute(RouteDTO routeDTO);
     Boolean updateRoute(RouteDTO routeDTO);
     Boolean deleteRoute(RouteDTO routeDTO);
 }
