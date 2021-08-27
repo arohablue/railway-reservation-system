@@ -80,6 +80,7 @@ const AddRoute = () => {
   };
 
   function handleSourceChange(event) {
+    console.log("change Value " + event.target.value);
     setSourceStation(event.target.value);
   }
 
@@ -99,7 +100,9 @@ const AddRoute = () => {
         >
           <option value="">Select Source</option>;
           {stations.map((station) => {
-            return <option value={station.id}>{station.stationName}</option>;
+            return (
+              <option value={station.stationId}>{station.stationName}</option>
+            );
           })}
         </select>
       </div>
@@ -113,7 +116,9 @@ const AddRoute = () => {
         >
           <option value="">Select Destination</option>;
           {stations.map((station) => {
-            return <option value={station.id}>{station.stationName}</option>;
+            return (
+              <option value={station.stationId}>{station.stationName}</option>
+            );
           })}
         </select>
       </div>
