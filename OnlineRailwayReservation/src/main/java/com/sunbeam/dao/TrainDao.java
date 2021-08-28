@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface TrainDao extends JpaRepository<Train, Integer>{
-	Train findById(int Id);
+	Train findById(Long Id);
 	List<Train>findAll();
 	Train save(Train train);
-	boolean deleteById(int Id);
+	boolean deleteById(Long Id);
 	
 }

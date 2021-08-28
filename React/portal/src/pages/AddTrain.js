@@ -12,6 +12,7 @@ const AddTrain = () => {
   const [departureTime, setDepartureTime] = useState("");
   const [arrivalTime, setArrivalTime] = useState("");
   const [routes, setRoutes] = useState([]);
+  const [trainNumber, setTrainNumber] = useState([]);
 
   const history = useHistory();
 
@@ -53,15 +54,17 @@ const AddTrain = () => {
       const data = {
         trainName: trainName,
         trainType: trainType,
+        trainNumber: trainNumber,
         noOfSeatsGen: noOfSeatsGen,
         noOfSeatsAC: noOfSeatsAC,
         departureTime: departureTime,
         arrivalTime: arrivalTime,
         route: { routeId: routeId },
       };
+      console.log(data);
 
       // send the album info to the API
-      axios.post(url + "/admin/adminpanel/train", data).then((response) => {
+      axios.post(url + "/admin/adminpanel/addtrain", data).then((response) => {
         const result = response.data;
         if (result.status === "success") {
           alert("successfully added new Train");
@@ -92,32 +95,51 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">TrainType</label>
+        <label htmlFor="">Number</label>
         <input
           onChange={(e) => {
-            setTrainType(e.target.value);
+            setTrainNumber(e.target.value);
           }}
-          type="text"
+          type="number"
           className="form-control"
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">ClassGen</label>
+        <label>Type :</label>
+        <select
+          name="type"
+          id="type"
+          onChange={(event) => {
+            setTrainType(event.target.value);
+          }}
+        >
+          <option value="">None</option>
+          <option value="Express">Express</option>
+          <option value="Tejas Express">Tejas Express</option>
+          <option value="Superfast Express">Superfast Express</option>
+          <option value="Passenger">Passenger</option>
+          <option value="Mail">Mail</option>
+          <option value="Intercity Express">Intercity Express</option>
+          <option value="AC Express">AC Express</option>
+        </select>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="">No of Seats in General Class</label>
         <input
           onChange={(e) => {
             setNoOfSeatsGen(e.target.value);
           }}
-          type="text"
+          type="number"
           className="form-control"
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">ClassAC</label>
+        <label htmlFor="">No of Seats in AC Class</label>
         <input
           onChange={(e) => {
             setNoOfSeatsAC(e.target.value);
           }}
-          type="text"
+          type="number"
           className="form-control"
         />
       </div>
@@ -127,7 +149,7 @@ const AddTrain = () => {
           onChange={(e) => {
             setDepartureTime(e.target.value);
           }}
-          type="text"
+          type="date"
           className="form-control"
         />
       </div>
@@ -137,12 +159,12 @@ const AddTrain = () => {
           onChange={(e) => {
             setArrivalTime(e.target.value);
           }}
-          type="text"
+          type="date"
           className="form-control"
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">Destination</label>
+        <label htmlFor="">Route of Train</label>
         <select
           value={routeId}
           onChange={handleRouteChange}
@@ -151,7 +173,7 @@ const AddTrain = () => {
           <option value="">Select Route</option>;
           {routes.map((route) => {
             return (
-              <option value={route.id}>
+              <option value={route.routeId}>
                 {route.sourceStation.stationName}-
                 {route.destinationStation.stationName}
               </option>

@@ -29,22 +29,22 @@ public class Train {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "train_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "train_name")
 	private String trainName;
 
 	@Column(name = "train_number")
-	private String trainNumber;
+	private Integer trainNumber;
 
 	@Column(name = "train_type")
 	private String trainType;
 
 	@Column(name = "no_of_seats_gen")
-	private int noOfSeatsGen;
+	private Integer noOfSeatsGen;
 
 	@Column(name = "no_of_seats_AC")
-	private int noOfSeatsAC;
+	private Integer noOfSeatsAC;
 
 	@DateTimeFormat(pattern = "HH:MM:SS")
 	@Temporal(TemporalType.TIME)
@@ -57,9 +57,9 @@ public class Train {
 	private Date arrivalTime;
 
 	// Parent Relationships
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "route_id")
+	@JsonIgnore
 	private Route route;
 
 	// Child Relationships
@@ -71,11 +71,11 @@ public class Train {
 	@JsonIgnore
 	private List<TrainStatus> trainStatus = new ArrayList<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -87,11 +87,11 @@ public class Train {
 		this.trainName = trainName;
 	}
 
-	public String getTrainNumber() {
+	public Integer getTrainNumber() {
 		return trainNumber;
 	}
 
-	public void setTrainNumber(String trainNumber) {
+	public void setTrainNumber(Integer trainNumber) {
 		this.trainNumber = trainNumber;
 	}
 
@@ -103,19 +103,19 @@ public class Train {
 		this.trainType = trainType;
 	}
 
-	public int getNoOfSeatsGen() {
+	public Integer getNoOfSeatsGen() {
 		return noOfSeatsGen;
 	}
 
-	public void setNoOfSeatsGen(int noOfSeatsGen) {
+	public void setNoOfSeatsGen(Integer noOfSeatsGen) {
 		this.noOfSeatsGen = noOfSeatsGen;
 	}
 
-	public int getNoOfSeatsAC() {
+	public Integer getNoOfSeatsAC() {
 		return noOfSeatsAC;
 	}
 
-	public void setNoOfSeatsAC(int noOfSeatsAC) {
+	public void setNoOfSeatsAC(Integer noOfSeatsAC) {
 		this.noOfSeatsAC = noOfSeatsAC;
 	}
 

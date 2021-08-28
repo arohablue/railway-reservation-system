@@ -7,8 +7,9 @@ import com.sunbeam.entity.Train;
 import org.springframework.beans.BeanUtils;
 
 public class TrainDTO {
-	private int trainId;
+	private Long trainId;
 	private String trainName;
+	private Integer trainNumber;
 	private String trainType;
 	private Date departureTime;
 	private Date arrivalTime;
@@ -19,7 +20,7 @@ public class TrainDTO {
 	public TrainDTO() {
 	}
 
-	public TrainDTO(int trainId, String trainName, String trainType, int noOfSeatsGen, int noOfSeatsAC,
+	public TrainDTO(Long trainId, String trainName, String trainType, Integer noOfSeatsGen, Integer noOfSeatsAC,
 			Date departureTime, Date arrivalTime, RouteDTO route) {
 		this.trainId = trainId;
 		this.trainName = trainName;
@@ -31,11 +32,11 @@ public class TrainDTO {
 		this.route = route;
 	}
 
-	public int getTrainId() {
+	public Long getTrainId() {
 		return trainId;
 	}
 
-	public void setTrainId(int trainId) {
+	public void setTrainId(Long trainId) {
 		this.trainId = trainId;
 	}
 
@@ -45,6 +46,14 @@ public class TrainDTO {
 
 	public void setTrainName(String trainName) {
 		this.trainName = trainName;
+	}
+
+	public Integer getTrainNumber() {
+		return trainNumber;
+	}
+
+	public void setTrainNumber(Integer trainNumber) {
+		this.trainNumber = trainNumber;
 	}
 
 	public String getTrainType() {
@@ -98,7 +107,10 @@ public class TrainDTO {
 	public static TrainDTO fromEntity(Train train) {
 		TrainDTO tdto = new TrainDTO();
 		BeanUtils.copyProperties(train, tdto);
-		tdto.setTrainId(train.getId());
+		if (train.getRoute() != null) {
+			tdto.setRoute(RouteDTO.fromEntity(train.getRoute()));
+			tdto.setTrainId(train.getId());
+		}
 		return tdto;
 	}
 

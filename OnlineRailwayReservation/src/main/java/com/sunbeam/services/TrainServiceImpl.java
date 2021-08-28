@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.sunbeam.dao.TrainDao;
+import com.sunbeam.dao.RouteDao;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.entity.Train;
 
@@ -16,32 +17,39 @@ import org.springframework.stereotype.Service;
 public class TrainServiceImpl implements TrainService {
 
 	@Autowired
-	private TrainDao tDao;
+	private TrainDao trainDao;
+
+	@Autowired
+	private RouteDao routeDao;
 
 	@Override
-	public Train findById(int Id) {
-		return tDao.findById(Id);
+	public Train findById(Long Id) {
+		return trainDao.findById(Id);
 	}
 
 	@Override
 	public List<Train> findAll() {
-		return tDao.findAll();
+		return trainDao.findAll();
 	}
 
 	@Override
 	public Train save(Train train) {
-		return tDao.save(train);
+		return trainDao.save(train);
 	}
 
 	@Override
-	public boolean deleteById(int Id) {
-		return tDao.deleteById(Id);
+	public boolean deleteById(Long Id) {
+		return trainDao.deleteById(Id);
 	}
 
 	@Override
-	public Boolean saveTrain(TrainDTO trainDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Train saveTrain(TrainDTO trainDTO) {
+		Train train = TrainDTO.toEntity(trainDTO);
+		if (trainDTO.getRoute().getRouteId() != null) {
+			train.setRoute(routeDao.findById(trainDTO.getRoute().getRouteId()));
+		}
+		save(train);
+		return train;
 	}
 
 	@Override

@@ -25,23 +25,23 @@ public class TrainStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "train_status_id")
-    private int id;
+    private Long id;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date journeyDate;
 
     @Column(name = "available_seat_gen")
-    private int availableSeatGen;
+    private Integer availableSeatGen;
 
     @Column(name = "booked_seat_gen")
-    private int bookedSeatGen;
+    private Integer bookedSeatGen;
 
     @Column(name = "available_seat_AC")
-    private int availableSeatAC;
+    private Integer availableSeatAC;
 
     @Column(name = "booked_seat_AC")
-    private int bookedSeatAC;
+    private Integer bookedSeatAC;
 
 	// Parent Relationships	
 	@JsonIgnore
@@ -49,11 +49,11 @@ public class TrainStatus {
 	@JoinColumn(name = "train_id")
 	private Train train;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,35 +65,35 @@ public class TrainStatus {
         this.journeyDate = journeyDate;
     }
 
-    public int getAvailableSeatGen() {
+    public Integer getAvailableSeatGen() {
         return availableSeatGen;
     }
 
-    public void setAvailableSeatGen(int availableSeatGen) {
+    public void setAvailableSeatGen(Integer availableSeatGen) {
         this.availableSeatGen = availableSeatGen;
     }
 
-    public int getBookedSeatGen() {
+    public Integer getBookedSeatGen() {
         return bookedSeatGen;
     }
 
-    public void setBookedSeatGen(int bookedSeatGen) {
+    public void setBookedSeatGen(Integer bookedSeatGen) {
         this.bookedSeatGen = bookedSeatGen;
     }
 
-    public int getAvailableSeatAC() {
+    public Integer getAvailableSeatAC() {
         return availableSeatAC;
     }
 
-    public void setAvailableSeatAC(int availableSeatAC) {
+    public void setAvailableSeatAC(Integer availableSeatAC) {
         this.availableSeatAC = availableSeatAC;
     }
 
-    public int getBookedSeatAC() {
+    public Integer getBookedSeatAC() {
         return bookedSeatAC;
     }
 
-    public void setBookedSeatAC(int bookedSeatAC) {
+    public void setBookedSeatAC(Integer bookedSeatAC) {
         this.bookedSeatAC = bookedSeatAC;
     }
 
