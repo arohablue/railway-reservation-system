@@ -94,18 +94,18 @@ public class AdminController {
 		return ResponseEntity.ok(user);
 	}
 
-	@GetMapping("/adminpanel/train")
-	public ResponseEntity<?> findTrainAll() {
+	@GetMapping("/adminpanel/getalltrains")
+	public ResponseEntity<?> getAllTrains() {
 		List<Train> list = trainService.findAll();
 		Stream<TrainDTO> result = list.stream().map(train -> TrainDTO.fromEntity(train));
 		return Response.success(result);
 	}
 
 	@DeleteMapping("/adminpanel/route/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id) {
+	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		boolean success = routeService.deleteById(id);
 		return ResponseEntity.ok(success);
-	}
+	} 
 
 	@GetMapping("/adminpanel/getallroutes")
 	public ResponseEntity<?> getAllRoutes() {
@@ -120,11 +120,9 @@ public class AdminController {
 		return Response.success(route);
 	}
 
-	@PostMapping("/adminpanel/train")
-	public ResponseEntity<?> saveTrain(TrainDTO trainDto) {
-		Train train = TrainDTO.toEntity(trainDto);
-		System.out.println(train.toString());
-		train = trainService.save(train);
+	@PostMapping("/adminpanel/addtrain")
+	public ResponseEntity<?> addTrain(@RequestBody TrainDTO trainDto) {
+		Train train = trainService.saveTrain(trainDto);
 		return Response.success(train);
 	}
 

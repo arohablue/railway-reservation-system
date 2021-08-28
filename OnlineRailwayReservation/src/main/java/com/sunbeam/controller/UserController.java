@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sunbeam.dto.SearchTrainDTO;
 import com.sunbeam.dto.UserDTO;
 import com.sunbeam.entity.User;
 import com.sunbeam.models.ChangePassword;
@@ -27,24 +28,24 @@ import com.sunbeam.services.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
-//Admin will fetch all user so these method will be in admincontroller
-//	@GetMapping("/{email}")
-//	public ResponseEntity<?> findByEmail(@PathVariable("email") String email) {
-//		User user = uService.findByEmail(email);
-//		return ResponseEntity.ok(UserDTO.fromEntity(user));
-//	}
-	
-	//Admin will fetch all user so these method will be in admincontroller
-//	@GetMapping("")
-//	public ResponseEntity<?> findUserAll() {
-//		List<User> list = uService.findAll();
-//		List<UserDTO> result = new ArrayList<UserDTO>();
-//		for (User user : list) 
-//			result.add(UserDTO.fromEntity(user));
-//		return ResponseEntity.ok(result);
-//	}
-	
+
+	// Admin will fetch all user so these method will be in admincontroller
+	// @GetMapping("/{email}")
+	// public ResponseEntity<?> findByEmail(@PathVariable("email") String email) {
+	// User user = uService.findByEmail(email);
+	// return ResponseEntity.ok(UserDTO.fromEntity(user));
+	// }
+
+	// Admin will fetch all user so these method will be in admincontroller
+	// @GetMapping("")
+	// public ResponseEntity<?> findUserAll() {
+	// List<User> list = uService.findAll();
+	// List<UserDTO> result = new ArrayList<UserDTO>();
+	// for (User user : list)
+	// result.add(UserDTO.fromEntity(user));
+	// return ResponseEntity.ok(result);
+	// }
+
 	@PostMapping("/signup")
 	public ResponseEntity<?> save(UserDTO userDto) {
 		User user = UserDTO.toEntity(userDto);
@@ -52,38 +53,43 @@ public class UserController {
 		user = userService.save(user);
 		return ResponseEntity.ok(user);
 	}
-	
-	//trial n error
-//	@PostMapping("/signin")
-//	public ResponseEntity<?> auth(@RequestParam String email,@RequestParam String password) {
-//		User user = uService.findByEmail(email);
-//		if (user.getPassword().equals(password)) {
-//			System.out.println("login ho gya");
-//		}
-//		return ResponseEntity.ok(user);
-//	}	
 
+	// trial n error
+	// @PostMapping("/signin")
+	// public ResponseEntity<?> auth(@RequestParam String email,@RequestParam String
+	// password) {
+	// User user = uService.findByEmail(email);
+	// if (user.getPassword().equals(password)) {
+	// System.out.println("login ho gya");
+	// }
+	// return ResponseEntity.ok(user);
+	// }
 
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> authenticate(Credentials cred) { 
+	public ResponseEntity<?> authenticate(Credentials cred) {
 		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
-		if(user != null)
-			System.out.println("login validate");  
-		return ResponseEntity.ok(user); 
+		if (user != null)
+			System.out.println("login validate");
+		return ResponseEntity.ok(user);
 	}
-	
+
 	@PostMapping("/changepassword")
-	public ResponseEntity<?> update(ChangePassword cred){
+	public ResponseEntity<?> update(ChangePassword cred) {
 		User user = userService.findByEmail(cred.getEmail());
-		if(user.getEmail().equals(cred.getEmail())) {
-			
+		if (user.getEmail().equals(cred.getEmail())) {
+
 			user.setPassword(cred.getPassword());
 			userService.save(user);
-			
+
 			return ResponseEntity.ok(user);
 		}
 		return null;
 	}
-	
-	
+
+	@PostMapping("/authenticate")
+	public ResponseEntity<?> searchTrain(@RequestBody SearchTrainDTO searchTrainDTO) {
+
+		return null;
+	}
+
 }
