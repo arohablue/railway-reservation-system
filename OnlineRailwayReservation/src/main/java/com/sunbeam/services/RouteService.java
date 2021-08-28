@@ -6,13 +6,13 @@ import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.entity.Route;
 
 public interface RouteService {
-	Route findById(int Id);
+	Route findById(Long Id);
 
 	List<Route> findAll();
 
 	Route save(Route route);	
 
-	boolean deleteById(int Id);
+	boolean deleteById(Long Id);
 
 	Route saveRoute(RouteDTO routeDTO);
 

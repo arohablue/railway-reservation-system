@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,7 +23,10 @@ public class Route {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "train_route_id")
-	private int id;
+	private Long id;
+
+	@Column(name = "route_name")
+	private String routeName;
 
 	@Column(name = "ac_fair")
 	private Double acClassFair = 0.0;
@@ -37,12 +39,14 @@ public class Route {
 	@JsonIgnore
 	private List<Train> trains = new ArrayList<>();
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "source_station_id")
+	@JsonIgnore
 	private Station sourceStation;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "destination_station_id")
+	@JsonIgnore
 	private Station destinationStation;
 
 	@Override
@@ -52,14 +56,21 @@ public class Route {
 				+ ", trains=" + trains + "]";
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public String getRouteName() {
+		return routeName;
+	}
+
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
+	}
 
 	public Double getAcClassFair() {
 		return acClassFair;

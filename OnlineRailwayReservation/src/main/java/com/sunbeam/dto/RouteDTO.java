@@ -5,7 +5,7 @@ import com.sunbeam.entity.Route;
 import org.springframework.beans.BeanUtils;
 
 public class RouteDTO {
-	private int routeId;
+	private Long routeId;
 	private StationDTO sourceStation;
 	private StationDTO destinationStation;
 	private Double acClassFair;
@@ -14,7 +14,7 @@ public class RouteDTO {
 	public RouteDTO() {
 	}
 
-	public RouteDTO(int routeId, StationDTO sourceStation, StationDTO destinationStation, Double acClassFair,
+	public RouteDTO(Long routeId, StationDTO sourceStation, StationDTO destinationStation, Double acClassFair,
 			Double generalClassFair) {
 		this.routeId = routeId;
 		this.sourceStation = sourceStation;
@@ -39,11 +39,11 @@ public class RouteDTO {
 		this.generalClassFair = generalClassFair;
 	}
 
-	public int getRouteId() {
+	public Long getRouteId() {
 		return routeId;
 	}
 
-	public void setRouteId(int routeId) {
+	public void setRouteId(Long routeId) {
 		this.routeId = routeId;
 	}
 

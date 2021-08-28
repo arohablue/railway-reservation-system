@@ -23,7 +23,7 @@ public class RouteServiceImpl implements RouteService {
 	private StationDao stationDao;
 
 	@Override
-	public Route findById(int Id) {
+	public Route findById(Long Id) {
 		// TODO Auto-generated method stub
 		return routeDao.findById(Id);
 	}
@@ -42,8 +42,8 @@ public class RouteServiceImpl implements RouteService {
 
 	// Not working write another
 	@Override
-	public boolean deleteById(int id) {
-		if (routeDao.existsById(id)) {
+	public boolean deleteById(Long id) {
+		if (routeDao.findById(id) != null) {
 			routeDao.deleteById(id);
 			return true;
 		}

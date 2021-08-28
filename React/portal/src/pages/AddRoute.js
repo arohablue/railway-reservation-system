@@ -6,6 +6,8 @@ import { url } from "../common/constants";
 const AddRoute = () => {
   const [sourceStation, setSourceStation] = useState("");
   const [destinationStation, setDestinationStation] = useState("");
+  const [genFair, setGenFair] = useState("");
+  const [acFair, setACfair] = useState("");
 
   const [stations, setStations] = useState([]);
 
@@ -55,10 +57,16 @@ const AddRoute = () => {
       alert("enter Source");
     } else if (destinationStation.length === 0) {
       alert("enter destination");
+    } else if (genFair.length === 0) {
+      alert("enter Gen Fair");
+    } else if (acFair.length === 0) {
+      alert("enter AC fair");
     } else {
       //const data = new FormData();
       console.log(stations);
       const data = {
+        acClassFair: acFair,
+        generalClassFair: genFair,
         sourceStation: { stationId: sourceStation },
         destinationStation: { stationId: destinationStation },
       };
@@ -121,6 +129,26 @@ const AddRoute = () => {
             );
           })}
         </select>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="">General Fair</label>
+        <input
+          onChange={(e) => {
+            setGenFair(e.target.value);
+          }}
+          type="number"
+          className="form-control"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="">AC Fair</label>
+        <input
+          onChange={(e) => {
+            setACfair(e.target.value);
+          }}
+          type="number"
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
         <button onClick={addRoute} className="btn btn-success">
