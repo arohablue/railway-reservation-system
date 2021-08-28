@@ -22,7 +22,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "email")
 	private String email;
@@ -31,7 +31,7 @@ public class User {
 	private String password;
 
 	@Column(name = "age")
-	private int age;
+	private Integer age;
 
 	@Column(name = "gender")
 	private String gender;
@@ -48,7 +48,7 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -57,7 +57,7 @@ public class User {
 	@JsonIgnore
 	private List<PNRTable> pnrTables = new ArrayList<>();
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

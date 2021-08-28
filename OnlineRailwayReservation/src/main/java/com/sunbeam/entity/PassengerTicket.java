@@ -28,7 +28,7 @@ public class PassengerTicket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "passenger_ticket_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "pnr")
 	private String pnr;
@@ -61,11 +61,11 @@ public class PassengerTicket {
 	@JoinColumn(name = "pnr_id")
 	private PNRTable pnrTable;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -85,11 +85,11 @@ public class PassengerTicket {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

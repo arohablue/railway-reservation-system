@@ -24,7 +24,7 @@ public class PNRTable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pnr_table_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "pnr")
 	private String pnr;
@@ -42,11 +42,11 @@ public class PNRTable {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable")
 	private List<PassengerTicket> passengerTickets = new ArrayList<>();
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -81,6 +81,5 @@ public class PNRTable {
 	public void setPassengerTickets(List<PassengerTicket> passengerTickets) {
 		this.passengerTickets = passengerTickets;
 	}
-	
 
 }
