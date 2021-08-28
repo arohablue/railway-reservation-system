@@ -7,8 +7,8 @@ import com.sunbeam.entity.Station;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StationDao extends JpaRepository<Station, Integer> {
-	Station findById(int Id);
+	Station findById(Long Id);
 	List<Station>findAll();
 	Station save(Station station);
-	boolean deleteById(int Id);
+	boolean deleteById(Long Id);
 }

@@ -6,10 +6,10 @@ import com.sunbeam.dto.StationDTO;
 import com.sunbeam.entity.Station;
 
 public interface StationService {
-	Station findById(int Id);
+	Station findById(Long Id);
 	List<Station>findAll();
 	Station save(Station station);
-	boolean deleteById(int Id);
+	boolean deleteById(Long Id);
 	Station saveStation(StationDTO stationDTO);
     Boolean updateStation(StationDTO stationDTO);
     Boolean deleteStation(StationDTO stationDTO);

@@ -5,22 +5,22 @@ import com.sunbeam.entity.Station;
 import org.springframework.beans.BeanUtils;
 
 public class StationDTO {
-	private int stationId;
+	private Long stationId;
 	private String stationName;
 
 	public StationDTO() {
 	}
 
-	public StationDTO(int stationId, String stationName) {
+	public StationDTO(Long stationId, String stationName) {
 		this.stationId = stationId;
 		this.stationName = stationName;
 	}
 
-	public int getStationId() {
+	public Long getStationId() {
 		return stationId;
 	}
 
-	public void setStationId(int stationId) {
+	public void setStationId(Long stationId) {
 		this.stationId = stationId;
 	}
 

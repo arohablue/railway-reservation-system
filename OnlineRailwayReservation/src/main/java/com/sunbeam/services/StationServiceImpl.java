@@ -19,7 +19,7 @@ public class StationServiceImpl implements StationService {
 	private StationDao sDao;
 
 	@Override
-	public Station findById(int Id) {
+	public Station findById(Long Id) {
 		// TODO Auto-generated method stub
 		return sDao.findById(Id);
 	}
@@ -38,7 +38,7 @@ public class StationServiceImpl implements StationService {
 
 	// Not working write another
 	@Override
-	public boolean deleteById(int Id) {
+	public boolean deleteById(Long Id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

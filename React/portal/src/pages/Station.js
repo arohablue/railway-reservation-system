@@ -13,7 +13,7 @@ const Station = () => {
   }, []);
 
   const getStations = () => {
-    axios.get(url + "/admin/adminpanel/allstations").then((response) => {
+    axios.get(url + "/admin/adminpanel/getallstation").then((response) => {
       const result = response.data;
       //
       // setUsers(result.data)
