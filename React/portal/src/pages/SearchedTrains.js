@@ -18,26 +18,9 @@ const SearchedTrains = ({ trains }) => {
     setTrainsList(trains);
   }, []);
 
-  const getTrains = () => {
-    axios.get(url + "/admin/adminpanel/getalltrains").then((response) => {
-      const result = response.data;
-      console.log("Trains:" + result.data);
-      if (result.status === "success") {
-      } else {
-        alert("error while loading list of trains");
-      }
-    });
-  };
-
   return (
     <div className="form-control">
-      <h1 className="page-title">Trains</h1>
-
-      {
-        <Link to="/add-train">
-          <a className="btn btn-success">Add Train</a>
-        </Link>
-      }
+      <h1 className="page-title">Book Train</h1>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -55,11 +38,15 @@ const SearchedTrains = ({ trains }) => {
           </tr>
         </thead>
         <tbody>
-          {trains.length !== 0 &&
+          {
+            console.log("trains" + trains.data)
+
+            /* {trains.length !== 0 &&
             trains !== undefined &&
             trains.map((train) => {
               return <TrainRow train={train} />;
-            })}
+            })} */
+          }
         </tbody>
       </table>
     </div>

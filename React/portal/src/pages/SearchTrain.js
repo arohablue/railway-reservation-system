@@ -8,7 +8,7 @@ import DatePicker from "react-date-picker";
 
 const SearchTrain = () => {
   const [source, setSource] = useState([]);
-  const [trainsSearched, setTrainsSerched] = useState([]);
+  const [trainsSearched, setTrainsSearched] = useState([]);
   const [sourceStations, setSourceStations] = useState([]);
   const [destinationStations, setDestinationStations] = useState([]);
   const [destination, setDestination] = useState([]);
@@ -17,7 +17,7 @@ const SearchTrain = () => {
   // const [tclass, setTclass] = useState([])
 
   useEffect(() => {
-    setTrainsSerched(true);
+    setTrainsSearched(false);
     getSourcesStations();
     getDestinationStations();
   }, []);
@@ -51,31 +51,39 @@ const SearchTrain = () => {
 
   const searchTrain = () => {
     if (source.length === 0) {
-      alert("enter Source name");
+      alert("Enter From Station");
     } else {
       if (destination.length === 0) {
-        alert("enter Destination name");
+        alert("enter To Station");
       } else {
         if (date.length === 0) {
           alert("select Date");
         } else if (source === destination) {
-          alert("source and destination cannot be same");
+          alert("From and To cannot be same");
         } else {
-          const data = {};
+          const data = {
+            fromStation: {
+              stationId: source,
+            },
+            toStation: {
+              stationId: destination,
+            },
+            journeyDate: date,
+            coachClass: "AC",
+          };
 
           // send the album info to the API
-          axios
-            .post(url + "/admin/adminpanel/addstation", data)
-            .then((response) => {
-              const result = response.data;
-              if (result.status === "success") {
-                setTrainsList();
-                history.push("/searchtrains");
-              } else {
-                console.log(result.error);
-                alert("error while searching Train Station");
-              }
-            });
+          axios.post(url + "/user/searchtrain", data).then((response) => {
+            const result = response.data;
+            console.log("trains:" + response.data);
+            if (result.status === "success") {
+              setTrainsList(result.data);
+              setTrainsSearched(true);
+            } else {
+              console.log(result.error);
+              alert("error while searching Train Station");
+            }
+          });
         }
       }
     }
@@ -98,8 +106,7 @@ const SearchTrain = () => {
   return (
     <div>
       {trainsSearched ? (
-        // <SearchedTrains trains={trainsList} />
-        ""
+        <SearchedTrains trains={trainsList} />
       ) : (
         <div>
           {" "}
@@ -162,12 +169,8 @@ const SearchTrain = () => {
           </div>
           <div className="mb-3">
             <button onClick={searchTrain} className="btn btn-success">
-              Add
+              Search
             </button>
-
-            <Link to="/trainDetails">
-              <a className="btn btn-warning">Back</a>
-            </Link>
           </div>
         </div>
       )}
