@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
 	private Boolean checkSeatAvailbility(Train train, SearchTrainDTO searchTrainDTO) {
 		TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDate(train, searchTrainDTO.getJourneyDate());
-		if (trainStatus.getAvailableSeatGen() > 0) {
+		if ( trainStatus != null && trainStatus.getAvailableSeatGen() > 0) {
 			return true;
 		}
 		return false;
