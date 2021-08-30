@@ -94,10 +94,13 @@ public class UserController {
 		return Response.success(result);
 	}
 
-	
-	@PostMapping("/booktrain")
-	public ResponseEntity<?> bookTrain(@RequestBody TicketDTO ticketDTO) {
+	@PostMapping("/bookticket")
+	public ResponseEntity<?> bookTicket(@RequestBody TicketDTO ticketDTO) {
 		TicketDTO result = userService.bookTicket(ticketDTO);
-		return Response.success(result);
+
+		if (result != null) {
+			return Response.success(result);
+		}
+		return Response.error("Something went Wrong");
 	}
 }

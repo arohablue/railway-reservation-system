@@ -11,18 +11,16 @@ public class TicketDTO {
     private UserDTO user;
     private String pnr;
     private Date bookingDate;
-    private String trainBookingDate;
+    private Date reservationDate;
     private String status;
 
-    public TicketDTO() {
-    }
-    public TicketDTO(TrainDTO train, UserDTO user, String pnr, Date bookingDate, String trainBookingDate,
-            String status) {
+    
+    public TicketDTO(TrainDTO train, UserDTO user, String pnr, Date bookingDate, Date reservationDate, String status) {
         this.train = train;
         this.user = user;
         this.pnr = pnr;
         this.bookingDate = bookingDate;
-        this.trainBookingDate = trainBookingDate;
+        this.reservationDate = reservationDate;
         this.status = status;
     }
     public TrainDTO getTrain() {
@@ -49,11 +47,11 @@ public class TicketDTO {
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }
-    public String getTrainBookingDate() {
-        return trainBookingDate;
+    public Date getReservationDate() {
+        return reservationDate;
     }
-    public void setTrainBookingDate(String trainBookingDate) {
-        this.trainBookingDate = trainBookingDate;
+    public void setReservationDate(Date reservationDate) {
+        this.reservationDate = reservationDate;
     }
     public String getStatus() {
         return status;
@@ -61,6 +59,8 @@ public class TicketDTO {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    
 }
 
 

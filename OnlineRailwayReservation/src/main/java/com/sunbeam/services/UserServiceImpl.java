@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
+import com.sunbeam.dao.PNRTableDao;
+import com.sunbeam.dao.PassengerTicketDao;
 import com.sunbeam.dao.StationDao;
 import com.sunbeam.dao.TrainDao;
 import com.sunbeam.dao.TrainStatusDao;
@@ -14,6 +16,8 @@ import com.sunbeam.dao.UserDao;
 import com.sunbeam.dto.SearchTrainDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
+import com.sunbeam.entity.PNRTable;
+import com.sunbeam.entity.PassengerTicket;
 import com.sunbeam.entity.Train;
 import com.sunbeam.entity.TrainStatus;
 import com.sunbeam.entity.User;
@@ -33,6 +37,12 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private StationDao stationDao;
+
+	@Autowired
+	private PNRTableDao pnrTableDao;
+
+	@Autowired
+	private PassengerTicketDao passengerTicketDao;
 
 	@Autowired
 	private TrainStatusDao trainStatusDao;
@@ -115,7 +125,34 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public TicketDTO bookTicket(TicketDTO ticketDTO) {
+		PassengerTicket passengerTicket = new PassengerTicket();
+		if (uDao.findById(ticketDTO.getUser().getUserId()) != null
+				&& trainDao.findById(ticketDTO.getTrain().getTrainId()) != null) {
+			User user = uDao.findById(ticketDTO.getUser().getUserId());
+			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
 
+			passengerTicket.setAge(ticketDTO.getUser().getAge());
+			passengerTicket.setGender(ticketDTO.getUser().getGender());
+			passengerTicket.setName(ticketDTO.getUser().getName());
+			passengerTicket.setBookingStatus("PENDING");
+			passengerTicket.setDate(ticketDTO.getReservationDate());
+			passengerTicket.setTrain(train);
+
+			// Create and save PNR table
+			PNRTable pnrTable = new PNRTable();
+			pnrTable.setEmail(ticketDTO.getUser().getEmail());
+			pnrTable.setUser(user);
+			long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+			pnrTable.setPnr(String.valueOf(number));
+			pnrTableDao.save(pnrTable);
+
+			// associate pnr table
+			passengerTicket.setPnrTable(pnrTable);
+			passengerTicket.setPnr(String.valueOf(number));
+
+			// save ticket
+			passengerTicketDao.save(passengerTicket);
+		}
 		return null;
 	}
 

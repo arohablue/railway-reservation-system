@@ -11,7 +11,16 @@ import org.springframework.beans.BeanUtils;
 public class UserDTO {
 	private Long userId;
 	private String email;
+	private String name;
 	private String password;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	private Integer age;
 	private String gender;
 	private String mobile;

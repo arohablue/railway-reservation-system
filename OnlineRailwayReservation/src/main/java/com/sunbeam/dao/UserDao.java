@@ -8,8 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 	User findByEmail(String email);
-	List<User>findAll();
+
+	List<User> findAll();
+
 	User save(User user);
+
+	User findById(Long userId);
+
 	boolean deleteByEmail(String email);
-	
+
 }
