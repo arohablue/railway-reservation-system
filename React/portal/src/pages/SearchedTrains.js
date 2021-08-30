@@ -1,22 +1,17 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { url } from "../common/constants";
 import TrainRow from "../components/TrainRow";
 
 const SearchedTrains = ({ trains }) => {
+  console.log(
+    "🚀 ~ file: SearchedTrains.js ~ line 8 ~ SearchedTrains ~ trains",
+    trains
+  );
   // maintain the state
-  const [trainsList, setTrainsList] = useState([]);
 
   // do something automatically
   // []:
   // - accepts a variable and keeps watching the change
   // - when the variable state changes, the function (1st param) gets called
   // - keep the second param empty to execute something when the component gets loaded
-  useEffect(() => {
-    console.log(`Train Component got loaded`);
-    setTrainsList(trains);
-  }, []);
 
   return (
     <div className="form-control">
@@ -35,18 +30,15 @@ const SearchedTrains = ({ trains }) => {
             <th>Destination Station</th>
             <th>General Fair</th>
             <th>Ac Fair</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {
-            console.log("trains" + trains.data)
-
-            /* {trains.length !== 0 &&
+          {trains.length !== 0 &&
             trains !== undefined &&
             trains.map((train) => {
               return <TrainRow train={train} />;
-            })} */
-          }
+            })}
         </tbody>
       </table>
     </div>

@@ -13,8 +13,7 @@ const SearchTrain = () => {
   const [destinationStations, setDestinationStations] = useState([]);
   const [destination, setDestination] = useState([]);
   const [date, setDate] = useState(new Date());
-  const [trainsList, setTrainsList] = useState(new Date());
-  // const [tclass, setTclass] = useState([])
+  const [trainsList, setTrainsList] = useState([]);
 
   useEffect(() => {
     setTrainsSearched(false);

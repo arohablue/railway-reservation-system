@@ -3,6 +3,13 @@ import { useHistory } from "react-router-dom";
 const TrainRow = ({ train }) => {
   const history = useHistory();
 
+  const bookTicket = () => {
+    history.push({
+      pathname: "/ticketform",
+      state: { trainId: train.trainId },
+    });
+  };
+
   return (
     <tr>
       <td>{train.trainNumber}</td>
@@ -17,26 +24,8 @@ const TrainRow = ({ train }) => {
       <td>₹{train.route.acClassFair}</td>
       <td>₹{train.route.generalClassFair}</td>
       <td>
-        <button
-          onClick={() => {
-            // /add-songs-to-album -> path of the component
-            // {album: album}      -> data needed to be passed to the component
-            history.push("/train", { train: train });
-          }}
-          className="btn btn-warning btn-sm"
-        >
-          Edit
-        </button>
-        {/* <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  */}
-        <button
-          onClick={() => {
-            // /add-songs-to-album -> path of the component
-            // {album: album}      -> data needed to be passed to the component
-            history.push("/train", { train: train });
-          }}
-          className="btn btn-danger btn-sm "
-        >
-          Delete
+        <button onClick={() => bookTicket()} className="btn btn-info btn-sm ">
+          Book
         </button>
       </td>
     </tr>

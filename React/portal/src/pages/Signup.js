@@ -105,7 +105,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="form-control">
+    <div className="mt-3 mb-3">
       <div className="container">
         <h1>Sign up</h1>
         <div className="mb-3">
@@ -203,10 +203,10 @@ const Signup = () => {
         <div className="mb-3">
           <button onClick={signupUser} className="btn btn-success">
             Signup
-          </button>{" "}
-          <Link className="nav-link" to="/signin">
+          </button>
+          {/* <Link className="nav-link" to="/signin">
             already have an account
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

@@ -2,22 +2,22 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { url } from "../common/constants";
-import RouteRow from "./../components/RouteRow";
+import RouteRow from "../components/RouteRow";
 
-const Routess = () => {
-  const [routess, setRoutess] = useState([]);
+const Routes = () => {
+  const [routes, setRoutes] = useState([]);
 
   useEffect(() => {
     console.log(`Route Component got loaded`);
-    getRoutess();
+    getRoutes();
   }, []);
 
-  const getRoutess = () => {
+  const getRoutes = () => {
     axios.get(url + "/admin/adminpanel/getallroutes").then((response) => {
       const result = response.data;
       console.log("Route:" + result.data);
       if (result.status === "success") {
-        setRoutess(result.data);
+        setRoutes(result.data);
       } else {
         alert("error while loading list of Route");
       }
@@ -28,8 +28,8 @@ const Routess = () => {
     <div className="form-control">
       <h1 className="page-title">Routes</h1>
 
-      <Link to="/add-route">
-        <a className="btn btn-success">Add Route</a>
+      <Link to="/add-route" className="btn btn-success">
+        Add Route
       </Link>
       <table className="table table-striped">
         <thead>
@@ -43,7 +43,7 @@ const Routess = () => {
           </tr>
         </thead>
         <tbody>
-          {routess.map((route) => {
+          {routes.map((route) => {
             return <RouteRow route={route} />;
           })}
         </tbody>
@@ -52,4 +52,4 @@ const Routess = () => {
   );
 };
 
-export default Routess;
+export default Routes;

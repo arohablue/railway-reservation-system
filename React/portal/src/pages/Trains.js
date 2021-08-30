@@ -36,7 +36,7 @@ const Trains = () => {
 
       {
         <Link to="/add-train">
-          <a className="btn btn-success">Add Train</a>
+          <button className="btn btn-success">Add Train</button>
         </Link>
       }
       <table className="table table-striped">

@@ -44,7 +44,7 @@ const AddRoute = () => {
   //         // select the first artist from the list
   //         // select the default artist
   //         // setRoute(result.data[0].id)
-  //         setRoutess(result.data)
+  //         setRoutes(result.data)
   //       }
   //     } else {
   //       alert('error while loading list of routes')
