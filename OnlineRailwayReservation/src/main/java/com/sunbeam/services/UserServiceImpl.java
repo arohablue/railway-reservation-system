@@ -1,5 +1,6 @@
 package com.sunbeam.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import com.sunbeam.entity.PassengerTicket;
 import com.sunbeam.entity.Train;
 import com.sunbeam.entity.TrainStatus;
 import com.sunbeam.entity.User;
+import com.sunbeam.helpers.DateAndTimeHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private TrainStatusDao trainStatusDao;
+
+	DateAndTimeHelper dateAndTimeHelper;
 
 	@Override
 	public User findByEmail(String email) {
@@ -116,11 +120,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private Boolean checkSeatAvailbility(Train train, SearchTrainDTO searchTrainDTO) {
-		TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDate(train, searchTrainDTO.getJourneyDate());
-		if ( trainStatus != null && trainStatus.getAvailableSeatGen() > 0) {
-			return true;
+		try {
+			Date startDate = dateAndTimeHelper.getStartDate(searchTrainDTO.getJourneyDate());
+			Date endDate = dateAndTimeHelper.getEndDate(searchTrainDTO.getJourneyDate());
+
+			TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDateBetween(train, startDate, endDate);
+			if (trainStatus != null && trainStatus.getAvailableSeatGen() > 0) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
 		}
-		return false;
+		
 	}
 
 	@Override
@@ -131,7 +146,7 @@ public class UserServiceImpl implements UserService {
 			User user = uDao.findById(ticketDTO.getUser().getUserId());
 			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
 
-			System.out.println("Age is "+ ticketDTO.getUser().getAge());
+			System.out.println("Age is " + ticketDTO.getUser().getAge());
 			passengerTicket.setAge(ticketDTO.getUser().getAge());
 			passengerTicket.setGender(ticketDTO.getUser().getGender());
 			passengerTicket.setName(ticketDTO.getUser().getName());
@@ -162,7 +177,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public TicketDTO checkPnrStatus(TicketDTO ticketDTO) {
-		PassengerTicket passengerTicket =  passengerTicketDao.findByPnr(ticketDTO.getPnr());
+		PassengerTicket passengerTicket = passengerTicketDao.findByPnr(ticketDTO.getPnr());
 		return TicketDTO.fromEntity(passengerTicket);
 	}
 

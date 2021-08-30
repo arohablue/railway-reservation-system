@@ -43,8 +43,8 @@ public class PassengerTicket {
 	private String gender;
 
 	@Column(name = "reservation_date")
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd'T'HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	@Column(name = "booking_date")

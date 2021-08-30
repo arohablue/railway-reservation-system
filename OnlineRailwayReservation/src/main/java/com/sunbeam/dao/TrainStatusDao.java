@@ -13,6 +13,8 @@ public interface TrainStatusDao extends JpaRepository<TrainStatus, Integer> {
 
 	TrainStatus findByTrainAndJourneyDate(Train train, Date journeyDate);
 
+	TrainStatus findByTrainAndJourneyDateBetween(Train train, Date startDate, Date endDate);
+
 	List<TrainStatus> findAll();
 
 	TrainStatus save(TrainStatus trainStatus);
