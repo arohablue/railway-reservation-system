@@ -10,11 +10,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PassengerTicketDao extends JpaRepository<PassengerTicket, Integer> {
 	PassengerTicket findById(Long Id);
 
+	PassengerTicket findByPnr(String pnr);
+
 	List<PassengerTicket> findAll();
 
 	PassengerTicket save(PassengerTicket passengerTicket);
 
-	boolean deleteById(Long Id);	
-
-	PassengerTicket findByPnr(String pnr);
+	boolean deleteById(Long Id);
 }

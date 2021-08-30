@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
 	private Boolean checkSeatAvailbility(Train train, SearchTrainDTO searchTrainDTO) {
 		TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDate(train, searchTrainDTO.getJourneyDate());
-		if (trainStatus.getAvailableSeatGen() > 0) {
+		if ( trainStatus != null && trainStatus.getAvailableSeatGen() > 0) {
 			return true;
 		}
 		return false;
@@ -131,6 +131,7 @@ public class UserServiceImpl implements UserService {
 			User user = uDao.findById(ticketDTO.getUser().getUserId());
 			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
 
+			System.out.println("Age is "+ ticketDTO.getUser().getAge());
 			passengerTicket.setAge(ticketDTO.getUser().getAge());
 			passengerTicket.setGender(ticketDTO.getUser().getGender());
 			passengerTicket.setName(ticketDTO.getUser().getName());
@@ -156,6 +157,12 @@ public class UserServiceImpl implements UserService {
 			return TicketDTO.fromEntity(passengerTicket);
 		}
 		return null;
+	}
+
+	@Override
+	public TicketDTO checkPnrStatus(TicketDTO ticketDTO) {
+		PassengerTicket passengerTicket =  passengerTicketDao.findByPnr(ticketDTO.getPnr());
+		return TicketDTO.fromEntity(passengerTicket);
 	}
 
 	// @Override
