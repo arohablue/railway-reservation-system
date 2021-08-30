@@ -16,4 +16,6 @@ public interface PNRTableDao extends JpaRepository<PNRTable, Integer> {
 	PNRTable save(PNRTable pnrTable);
 
 	boolean deleteById(Long Id);
+
+	PNRTable findByPnr(String pnr);
 }

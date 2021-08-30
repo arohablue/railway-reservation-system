@@ -47,6 +47,11 @@ public class PassengerTicket {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
+	@Column(name = "booking_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date bookingDate;
+
 	@Column(name = "booking_status")
 	private String bookingStatus;
 
@@ -60,6 +65,18 @@ public class PassengerTicket {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pnr_id")
 	private PNRTable pnrTable;
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 
 	public Long getId() {
 		return id;

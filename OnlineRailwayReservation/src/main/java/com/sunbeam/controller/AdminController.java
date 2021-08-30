@@ -5,14 +5,19 @@ import java.util.stream.Stream;
 
 import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.dto.StationDTO;
+import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.PNRTable;
+import com.sunbeam.entity.PassengerTicket;
 import com.sunbeam.entity.Route;
 import com.sunbeam.entity.Station;
 import com.sunbeam.entity.Train;
 import com.sunbeam.entity.User;
 import com.sunbeam.models.Credentials;
 import com.sunbeam.models.Response;
+import com.sunbeam.services.AdminService;
+import com.sunbeam.services.PassengerTicketService;
 import com.sunbeam.services.RouteService;
 import com.sunbeam.services.StationService;
 import com.sunbeam.services.TrainService;
@@ -41,10 +46,16 @@ public class AdminController {
 	private TrainService trainService;
 
 	@Autowired
+	private AdminService adminService;
+
+	@Autowired
 	private RouteService routeService;
 
 	@Autowired
 	private StationService stationService;
+
+	@Autowired
+	private PassengerTicketService passengerTicketService;
 
 	// @Autowired
 	// private AdminService adminService;
@@ -105,7 +116,7 @@ public class AdminController {
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		boolean success = routeService.deleteById(id);
 		return ResponseEntity.ok(success);
-	} 
+	}
 
 	@GetMapping("/adminpanel/getallroutes")
 	public ResponseEntity<?> getAllRoutes() {
@@ -137,5 +148,24 @@ public class AdminController {
 		List<Station> stationList = stationService.findAll();
 		Stream<StationDTO> result = stationList.stream().map(station -> StationDTO.fromEntity(station));
 		return Response.success(result);
+	}
+
+	
+	@GetMapping("/adminpanel/getalltickets")
+	public ResponseEntity<?> getAllTickets() {
+		List<PassengerTicket> ticketsList = passengerTicketService.findAll();
+		Stream<TicketDTO> result = ticketsList.stream().map(ticket -> TicketDTO.fromEntity(ticket));
+		return Response.success(result);
+	}
+
+	@PostMapping("/adminpanel/updateticketstatus")
+	public ResponseEntity<?> updateTicketStatus(@RequestBody TicketDTO ticketDTO) {
+		Boolean result = adminService.updateTicketStatus(ticketDTO);
+
+		if (result) {
+			return Response.success(result);
+		}
+		return Response.error("Something went wrong");
+
 	}
 }
