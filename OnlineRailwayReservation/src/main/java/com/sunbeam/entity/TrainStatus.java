@@ -27,8 +27,8 @@ public class TrainStatus {
     @Column(name = "train_status_id")
     private Long id;
 
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd'T'HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date journeyDate;
 
     @Column(name = "available_seat_gen")
