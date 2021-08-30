@@ -32,8 +32,8 @@ const Signin = () => {
         //const url = 'http://localhost:8080'
         const user = response.data;
         console.log("user: ", JSON.stringify(user));
-        localStorage.setItem("user", JSON.stringify(user));
         if (user !== "") {
+          localStorage.setItem("user", JSON.stringify(user));
           window.location.replace("/");
         } else {
           console.log(user.error);

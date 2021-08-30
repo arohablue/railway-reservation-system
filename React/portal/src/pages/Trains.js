@@ -47,8 +47,8 @@ const Trains = () => {
             <th>Type</th>
             <th>Seats Gen</th>
             <th>Seats AC</th>
-            <th>Departure Date</th>
-            <th>Arrival Date</th>
+            <th>Departure at</th>
+            <th>Arrival at</th>
             <th>Source Station</th>
             <th>Destination Station</th>
             <th>General Fair</th>

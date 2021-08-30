@@ -36,6 +36,7 @@ const AddTrain = () => {
   };
 
   const addTrain = () => {
+    console.log("add train");
     if (trainName.length === 0) {
       alert("enter Train Name");
     } else if (trainType.length === 0) {
@@ -149,7 +150,7 @@ const AddTrain = () => {
           onChange={(e) => {
             setDepartureTime(e.target.value);
           }}
-          type="date"
+          type="datetime-local"
           className="form-control"
         />
       </div>
@@ -159,7 +160,7 @@ const AddTrain = () => {
           onChange={(e) => {
             setArrivalTime(e.target.value);
           }}
-          type="date"
+          type="datetime-local"
           className="form-control"
         />
       </div>

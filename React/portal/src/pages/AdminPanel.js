@@ -14,9 +14,6 @@ const AdminPanel = () => {
       <BrowserRouter>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Admin Panel Home
-            </a>
             <button
               className="navbar-toggler"
               type="button"
@@ -29,12 +26,12 @@ const AdminPanel = () => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav">
-                <li className="nav-item">
+              <ul className="navbar-nav d-flex flex column">
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="/home">
                     Admin Panel
                   </Link>
-                </li>
+                </li> */}
 
                 <li className="nav-item">
                   <Link className="nav-link" to="/station">
@@ -67,6 +64,7 @@ const AdminPanel = () => {
         </nav>
         <div className="container">
           <Switch>
+            <Route path="/adminpanel" component={Station} />
             <Route path="/station" component={Station} />
             <Route path="/routes" component={Routes} />
             <Route path="/train" component={Trains} />

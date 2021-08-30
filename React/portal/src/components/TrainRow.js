@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const TrainRow = ({ train }) => {
   const history = useHistory();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const bookTicket = () => {
     history.push({
@@ -9,6 +11,21 @@ const TrainRow = ({ train }) => {
       state: { trainId: train.trainId },
     });
   };
+
+  useEffect(() => {
+    const userObject = localStorage.getItem("user");
+
+    if (userObject !== null && userObject !== undefined) {
+      const user = JSON.parse(userObject);
+      console.log(
+        "🚀 ~ file: App.js ~ line 26 ~ useEffect ~ user.role.toLowerCase",
+        user
+      );
+      if (user.role.toLowerCase() === "admin") {
+        setIsAdmin(true);
+      }
+    }
+  });
 
   return (
     <tr>
@@ -23,11 +40,13 @@ const TrainRow = ({ train }) => {
       <td>{train.route.destinationStation.stationName}</td>
       <td>₹{train.route.acClassFair}</td>
       <td>₹{train.route.generalClassFair}</td>
-      <td>
-        <button onClick={() => bookTicket()} className="btn btn-info btn-sm ">
-          Book
-        </button>
-      </td>
+      {!isAdmin && (
+        <td>
+          <button onClick={() => bookTicket()} className="btn btn-info btn-sm ">
+            Book
+          </button>
+        </td>
+      )}
     </tr>
   );
 };

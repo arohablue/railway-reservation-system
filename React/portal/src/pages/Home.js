@@ -9,11 +9,13 @@ const Home = () => {
   const [pnr, setPnr] = useState(null);
 
   const searchPNR = () => {
-    axios.get(url + `/user/searchpnr/${pnr}`).then((response) => {
-      const pnrDetails = response.data;
+    axios
+      .post(url + `/user/checkpnr`, { pnr: pnr.toString() })
+      .then((response) => {
+        const ticketDetails = response.data;
 
-      history.push({ pathname: "ticketdetails", state: { pnrDetails } });
-    });
+        history.push({ pathname: "ticketdetails", state: { ticketDetails } });
+      });
   };
 
   return (
