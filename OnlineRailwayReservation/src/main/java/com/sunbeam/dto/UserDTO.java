@@ -19,23 +19,18 @@ public class UserDTO {
 	private String state;
 	private String city;
 	private String role;
+	private String adminKey;
+
+	public String getAdminKey() {
+		return adminKey;
+	}
+
+	public void setAdminKey(String adminKey) {
+		this.adminKey = adminKey;
+	}
 
 	public UserDTO() {
 
-	}
-
-	public UserDTO(Long userId, String email, String password, int age, String gender, String mobile, String state,
-			String city, String role) {
-		super();
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.age = age;
-		this.gender = gender;
-		this.mobile = mobile;
-		this.state = state;
-		this.city = city;
-		this.role = role;
 	}
 
 	public String getName() {
@@ -118,10 +113,26 @@ public class UserDTO {
 		this.role = role;
 	}
 
+	public UserDTO(Long userId, String email, String name, String password, Integer age, String gender, String mobile,
+			String state, String city, String role, String adminKey) {
+		this.userId = userId;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.age = age;
+		this.gender = gender;
+		this.mobile = mobile;
+		this.state = state;
+		this.city = city;
+		this.role = role;
+		this.adminKey = adminKey;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + userId + ", email=" + email + ", password=" + password + ", age=" + age + ", gender="
-				+ gender + ", mobile=" + mobile + ", state=" + state + ", city=" + city + ", role=" + role + "]";
+		return "UserDTO [adminKey=" + adminKey + ", age=" + age + ", city=" + city + ", email=" + email + ", gender="
+				+ gender + ", mobile=" + mobile + ", name=" + name + ", password=" + password + ", role=" + role
+				+ ", state=" + state + ", userId=" + userId + "]";
 	}
 
 	public static UserDTO fromEntity(User user) {

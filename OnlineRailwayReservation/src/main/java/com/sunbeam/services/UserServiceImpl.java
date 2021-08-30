@@ -65,7 +65,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(User user) {
-		return uDao.save(user);
+		if(!user.getRole().equals("") && user.getRole() != null && user.getRole().equals("Admin")){
+			if(!user.getRole().equals("") && user.getRole() != null && user.getAdminKey().equals("Admin1234")){
+				return uDao.save(user);
+			}
+			else{
+				return null;
+			}
+		} else if (!user.getRole().equals("") && user.getRole() != null){
+			return uDao.save(user);
+		} else {
+			return null;
+		}
+		
 	}
 
 	@Override
