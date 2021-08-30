@@ -5,9 +5,11 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.sunbeam.dao.TrainDao;
+import com.sunbeam.dao.TrainStatusDao;
 import com.sunbeam.dao.RouteDao;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.entity.Train;
+import com.sunbeam.entity.TrainStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class TrainServiceImpl implements TrainService {
 
 	@Autowired
 	private RouteDao routeDao;
+
+	@Autowired
+	private TrainStatusDao trainStatusDao;
 
 	@Override
 	public Train findById(Long Id) {
@@ -48,7 +53,13 @@ public class TrainServiceImpl implements TrainService {
 		if (trainDTO.getRoute().getRouteId() != null) {
 			train.setRoute(routeDao.findById(trainDTO.getRoute().getRouteId()));
 		}
+		TrainStatus trainStatus = new TrainStatus();
 		save(train);
+		trainStatus.setTrain(train);
+		trainStatus.setAvailableSeatAC(trainDTO.getNoOfSeatsAC());
+		trainStatus.setAvailableSeatGen(trainDTO.getNoOfSeatsGen());
+		trainStatus.setJourneyDate(trainDTO.getDepartureTime());
+		trainStatusDao.save(trainStatus);
 		return train;
 	}
 

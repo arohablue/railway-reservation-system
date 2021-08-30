@@ -3,6 +3,7 @@ package com.sunbeam.controller;
 import java.util.stream.Stream;
 
 import com.sunbeam.dto.SearchTrainDTO;
+import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.dto.UserDTO;
 import com.sunbeam.entity.User;
@@ -90,6 +91,13 @@ public class UserController {
 	@PostMapping("/searchtrain")
 	public ResponseEntity<?> searchTrain(@RequestBody SearchTrainDTO searchTrainDTO) {
 		Stream<TrainDTO> result = userService.searchTrain(searchTrainDTO);
+		return Response.success(result);
+	}
+
+	
+	@PostMapping("/booktrain")
+	public ResponseEntity<?> bookTrain(@RequestBody TicketDTO ticketDTO) {
+		TicketDTO result = userService.bookTicket(ticketDTO);
 		return Response.success(result);
 	}
 }
