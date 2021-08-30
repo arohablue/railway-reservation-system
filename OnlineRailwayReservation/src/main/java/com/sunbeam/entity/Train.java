@@ -46,13 +46,13 @@ public class Train {
 	@Column(name = "no_of_seats_AC")
 	private Integer noOfSeatsAC;
 
-	@DateTimeFormat(pattern = "HH:MM:SS")
-	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "departure_time")
 	private Date departureTime;
 
-	@DateTimeFormat(pattern = "HH:MM:SS")
-	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "arrival_time")
 	private Date arrivalTime;
 
