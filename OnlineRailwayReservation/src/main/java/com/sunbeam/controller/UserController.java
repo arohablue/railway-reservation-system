@@ -103,4 +103,14 @@ public class UserController {
 		}
 		return Response.error("Something went Wrong");
 	}
+
+	@PostMapping("/checkpnr")
+	public ResponseEntity<?> checkPnr(@RequestBody TicketDTO ticketDTO) {
+		TicketDTO result = userService.checkPnrStatus(ticketDTO);
+
+		if (result != null) {
+			return Response.success(result);
+		}
+		return Response.error("Something went Wrong");
+	}
 }
