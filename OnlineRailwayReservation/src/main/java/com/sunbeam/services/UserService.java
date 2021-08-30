@@ -18,4 +18,5 @@ public interface UserService {
 	User findById(int id);
 	Stream<TrainDTO> searchTrain(SearchTrainDTO searchTrainDTO);
 	TicketDTO bookTicket(TicketDTO ticketDTO);
+	TicketDTO checkPnrStatus(TicketDTO ticketDTO);
 }
