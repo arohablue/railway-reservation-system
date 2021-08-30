@@ -150,7 +150,7 @@ const AddTrain = () => {
           onChange={(e) => {
             setDepartureTime(e.target.value);
           }}
-          type="date"
+          type="datetime-local"
           className="form-control"
         />
       </div>
@@ -160,7 +160,7 @@ const AddTrain = () => {
           onChange={(e) => {
             setArrivalTime(e.target.value);
           }}
-          type="date"
+          type="datetime-local"
           className="form-control"
         />
       </div>

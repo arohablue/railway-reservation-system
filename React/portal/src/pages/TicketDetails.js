@@ -16,23 +16,23 @@ export default function TicketDetails() {
     <div className="form-control">
       <h1 className="page-title">Ticket Details</h1>
       <div>
-        <span>Ticket Number</span>
+        <span>Ticket Number: </span>
         <span>{ticketDetails.train.trainNumber}</span>
       </div>
       <div>
-        <span>PNR number</span>
+        <span>PNR number: </span>
         <span>{ticketDetails.pnr}</span>
       </div>
       <div>
-        <span>PNR status</span>
+        <span>PNR status: </span>
         <span>{ticketDetails.status}</span>
       </div>
       <div>
-        <span>Reservation Date</span>
+        <span>Reservation Date: </span>
         <span>{ticketDetails.reservationDate}</span>
       </div>
       <div>
-        <span>Email</span>
+        <span>Email: </span>
         <span>{ticketDetails.user.email}</span>
       </div>
     </div>

@@ -5,17 +5,17 @@ import TicketListRow from "../components/TicketListRow";
 
 export default function Tickets() {
   const [ticketList, setTicketList] = useState([
-    {
-      pnr: "33",
-      status: "booked",
-      bookingDate: "2021-03-04",
-      reservationDate: "2021-04-03",
-      train: {
-        trainNumber: "234",
-        noOfSeatsAC: "3",
-        noOfSeatsGen: "12",
-      },
-    },
+    // {
+    //   pnr: "33",
+    //   status: "booked",
+    //   bookingDate: "2021-03-04",
+    //   reservationDate: "2021-04-03",
+    //   train: {
+    //     trainNumber: "234",
+    //     noOfSeatsAC: "3",
+    //     noOfSeatsGen: "12",
+    //   },
+    // },
   ]);
   console.log(
     "🚀 ~ file: Tickets.js ~ line 8 ~ Tickets ~ ticketList",
@@ -23,9 +23,10 @@ export default function Tickets() {
   );
 
   useEffect(() => {
-    axios.get(url + "admin/adminpanel/getalltickets").then((response) => {
-      console.log(response.data);
-      setTicketList(response.data);
+    console.log("Getting tickets");
+    axios.get(url + "/admin/adminpanel/getalltickets").then((response) => {
+      console.log(response.data.data);
+      setTicketList(response.data.data);
     });
   }, []);
 
