@@ -43,7 +43,7 @@ public class PassengerTicket {
 	private String gender;
 
 	@Column(name = "reservation_date")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date date;
 

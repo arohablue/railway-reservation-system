@@ -27,7 +27,7 @@ public class TrainStatus {
     @Column(name = "train_status_id")
     private Long id;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date journeyDate;
 
