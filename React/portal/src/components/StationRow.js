@@ -1,9 +1,13 @@
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { url } from "../common/constants";
-import axios from "axios";
+import { useState, useEffect } from "react";
 
 const StationRow = ({ station }) => {
   const history = useHistory();
+  const [deleted, setDeleted] = useState("");
+
+  useEffect(() => {}, [deleted]);
 
   const deleteStation = () => {
     axios
@@ -12,7 +16,9 @@ const StationRow = ({ station }) => {
         const result = response.data;
         if (result.status === "success") {
           alert("Station Deleted");
-          history.push("/station");
+          history.push({
+            pathname: "/",
+          });
         } else {
           alert("error while deleting Station");
         }

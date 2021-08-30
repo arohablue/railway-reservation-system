@@ -6,22 +6,24 @@ const RouteRow = ({ route }) => {
   const history = useHistory();
 
   const deleteRoute = () => {
-    axios.delete(url + "/admin//adminpanel/route/", route.routeId).then((response) => {
-      const result = response.data;
-      if (result.status === "success") {
-        alert("Route Deleted");
-      } else {
-        alert("error while deleting Route");
-      }
-    });
+    axios
+      .delete(url + "/admin//adminpanel/route/" + route.routeId)
+      .then((response) => {
+        const result = response.data;
+        if (result.status === "success") {
+          alert("Route Deleted");
+        } else {
+          alert("error while deleting Route");
+        }
+      });
   };
   return (
     <tr>
       <td>{route.routeId}</td>
       <td>{route.sourceStation.stationName}</td>
       <td>{route.destinationStation.stationName}</td>
-      <td>{route.acClassFair}</td>
       <td>{route.generalClassFair}</td>
+      <td>{route.acClassFair}</td>
       <td>
         {/* <button
           onClick={() => {

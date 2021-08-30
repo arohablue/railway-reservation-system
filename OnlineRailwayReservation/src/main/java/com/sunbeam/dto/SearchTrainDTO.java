@@ -13,6 +13,8 @@ public class SearchTrainDTO {
 	private String coachClass;
 
 	
+	public SearchTrainDTO() {
+	}
 	public SearchTrainDTO(StationDTO fromStation, StationDTO toStation, Date journeyDate, String coachClass) {
 		this.fromStation = fromStation;
 		this.toStation = toStation;

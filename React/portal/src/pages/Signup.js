@@ -15,6 +15,7 @@ const Signup = () => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [role, setRole] = useState("");
+  const [authCode, setAuthCode] = useState("");
   const history = useHistory();
 
   const signupUser = () => {
@@ -45,7 +46,13 @@ const Signup = () => {
       alert("Enter city");
     } else if (role.length === 0) {
       alert("Enter role");
+    } else if (
+      (role === "Admin" || role === "Agent") &&
+      authCode.length === 0
+    ) {
+      alert("Enter Auth code");
     } else {
+      console.log("Here");
       const data = new FormData();
       console.log(data);
       console.log(email);
@@ -65,25 +72,21 @@ const Signup = () => {
       data.append("state", state);
       data.append("city", city);
       data.append("role", role);
+      data.append("adminKey", authCode);
       console.log(data);
 
       axios.post(url + "/user/signup", data).then((response) => {
         //const url = 'http://localhost:8080'
         const result = response.data;
-        alert("User created successfully");
-        console.log("hello");
 
-        //if(result.status == 'success'){
-        //   alert('Data Added Sucesssfully')
+        if (result.status == "success") {
+          alert("User created successfully");
 
-        history.push("/signin"); //similar to redirect
-
-        // }
-        // else{
-        //     console.log(result.error)
-        //     alert('Error While Adding Data')
-
-        // }
+          history.push("/signin"); //similar to redirect
+        } else {
+          console.log(result.error);
+          alert("Error While Creating User: " + result.error);
+        }
       });
       // axios({
       //   method: 'post',
@@ -108,105 +111,126 @@ const Signup = () => {
     <div className="mt-3 mb-3">
       <div className="container">
         <h1>Sign up</h1>
-        <div className="mb-3">
-          <label>Email</label>
-          <input
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-            placeholder="enter email"
-            className="form-control"
-            type="email"
-          />
+        <div class="row">
+          <div className="mb-3 col-md-6">
+            <label>Email</label>
+            <input
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              placeholder="enter email"
+              className="form-control"
+              type="email"
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label>Password</label>
+            <input
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              placeholder="enter password"
+              className="form-control"
+              type="password"
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            placeholder="enter password"
-            className="form-control"
-            type="password"
-          />
+        <div class="row">
+          <div className="mb-3 col-md-6">
+            <label>Age</label>
+            <input
+              onChange={(event) => {
+                setAge(event.target.value);
+              }}
+              placeholder="enter age"
+              className="form-control"
+              type="number"
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label>Gender</label>
+            <input
+              onChange={(event) => {
+                setGender(event.target.value);
+              }}
+              placeholder="enter gender"
+              className="form-control"
+              type="text"
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <label>Age</label>
-          <input
-            onChange={(event) => {
-              setAge(event.target.value);
-            }}
-            placeholder="enter age"
-            className="form-control"
-            type="number"
-          />
+        <div class="row">
+          <div className="mb-3 col-md-6">
+            <label>Mobile</label>
+            <input
+              onChange={(event) => {
+                setMobile(event.target.value);
+              }}
+              placeholder="enter mobile"
+              className="form-control"
+              type="text"
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label>State</label>
+            <input
+              onChange={(event) => {
+                setState(event.target.value);
+              }}
+              placeholder="enter state"
+              className="form-control"
+              type="text"
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <label>Gender</label>
-          <input
-            onChange={(event) => {
-              setGender(event.target.value);
-            }}
-            placeholder="enter gender"
-            className="form-control"
-            type="text"
-          />
+        <div class="row">
+          <div className="mb-3 col-md-6">
+            <label>City</label>
+            <input
+              onChange={(event) => {
+                setCity(event.target.value);
+              }}
+              placeholder="enter city"
+              className="form-control"
+              type="text"
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label>Auth Code</label>
+            <input
+              onChange={(event) => {
+                setAuthCode(event.target.value);
+              }}
+              placeholder="enter Auth code"
+              className="form-control"
+              type="text"
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <label>Mobile</label>
-          <input
-            onChange={(event) => {
-              setMobile(event.target.value);
-            }}
-            placeholder="enter mobile"
-            className="form-control"
-            type="text"
-          />
-        </div>
-        <div className="mb-3">
-          <label>State</label>
-          <input
-            onChange={(event) => {
-              setState(event.target.value);
-            }}
-            placeholder="enter state"
-            className="form-control"
-            type="text"
-          />
-        </div>
-        <div className="mb-3">
-          <label>City</label>
-          <input
-            onChange={(event) => {
-              setCity(event.target.value);
-            }}
-            placeholder="enter city"
-            className="form-control"
-            type="text"
-          />
-        </div>
-        <div className="mb-3">
-          <label>Role :</label>
-          <select
-            name="role"
-            id="role"
-            onChange={(event) => {
-              setRole(event.target.value);
-            }}
-          >
-            <option value="">None</option>
-            <option value="Admin">Admin</option>
-            <option value="User">User</option>
-            <option value="Agent">Agent</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <button onClick={signupUser} className="btn btn-success">
-            Signup
-          </button>
-          {/* <Link className="nav-link" to="/signin">
+        <div class="row">
+          <div className="mb-3 col-md-6">
+            <label>Role :</label>
+            <select
+              name="role"
+              id="role"
+              onChange={(event) => {
+                setRole(event.target.value);
+              }}
+            >
+              <option value="">None</option>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+              <option value="Agent">Agent</option>
+            </select>
+          </div>
+          <div className="mb-3 col-md-6">
+            <button onClick={signupUser} className="btn btn-success">
+              Signup
+            </button>
+            {/* <Link className="nav-link" to="/signin">
             already have an account
           </Link> */}
+          </div>
         </div>
       </div>
     </div>

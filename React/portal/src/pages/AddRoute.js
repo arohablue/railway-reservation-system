@@ -61,6 +61,8 @@ const AddRoute = () => {
       alert("enter Gen Fair");
     } else if (acFair.length === 0) {
       alert("enter AC fair");
+    } else if (sourceStation === destinationStation) {
+      alert("Source and Destination cannot be same");
     } else {
       //const data = new FormData();
       console.log(stations);
@@ -99,7 +101,7 @@ const AddRoute = () => {
   return (
     <div>
       <h1 className="page-title">Add Route</h1>
-      <div className="mb-3">
+      <div className="mb-3 col-md-4">
         <label htmlFor="">Source</label>
         <select
           value={sourceStation}
@@ -115,7 +117,7 @@ const AddRoute = () => {
         </select>
       </div>
 
-      <div className="mb-3">
+      <div className="mb-3 col-md-4">
         <label htmlFor="">Destination</label>
         <select
           value={destinationStation}
@@ -130,7 +132,7 @@ const AddRoute = () => {
           })}
         </select>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 col-md-4">
         <label htmlFor="">General Fair</label>
         <input
           onChange={(e) => {
@@ -140,7 +142,7 @@ const AddRoute = () => {
           className="form-control"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-3 col-md-4">
         <label htmlFor="">AC Fair</label>
         <input
           onChange={(e) => {
@@ -150,7 +152,7 @@ const AddRoute = () => {
           className="form-control"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-3 col-md-4">
         <button onClick={addRoute} className="btn btn-success">
           Add
         </button>

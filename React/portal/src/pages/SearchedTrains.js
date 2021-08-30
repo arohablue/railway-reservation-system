@@ -34,11 +34,15 @@ const SearchedTrains = ({ trains }) => {
           </tr>
         </thead>
         <tbody>
-          {trains.length !== 0 &&
+          {trains.length === 0 ? (
+            <h1>No Trains</h1>
+          ) : (
+            trains.length !== 0 &&
             trains !== undefined &&
             trains.map((train) => {
               return <TrainRow train={train} />;
-            })}
+            })
+          )}
         </tbody>
       </table>
     </div>

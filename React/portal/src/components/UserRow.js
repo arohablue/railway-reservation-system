@@ -6,14 +6,16 @@ const UserRow = ({ user }) => {
   const history = useHistory();
 
   const deleteUser = () => {
-    axios.delete(url + "/admin/adminpanel/user/", user.userId).then((response) => {
-      const result = response.data;
-      if (result.status === "success") {
-        alert("User Deleted");
-      } else {
-        alert("error while loading list of Train");
-      }
-    });
+    axios
+      .delete(url + "/admin/adminpanel/user/" + user.userId)
+      .then((response) => {
+        const result = response.data;
+        if (result.status === "success") {
+          alert("User Deleted");
+        } else {
+          alert("error while loading list of Train");
+        }
+      });
   };
 
   return (

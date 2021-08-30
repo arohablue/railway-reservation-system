@@ -110,7 +110,7 @@ const SearchTrain = () => {
         <div>
           {" "}
           <h2 className="page-title">Search Train</h2>
-          <div className="mb-3">
+          <div className="mb-3 col-md-4">
             <label htmlFor="">From</label>
             <select
               value={source}
@@ -129,7 +129,7 @@ const SearchTrain = () => {
               })}
             </select>
           </div>
-          <div className="mb-3">
+          <div className="mb-3 col-md-4">
             <label htmlFor="">To</label>
 
             <select
@@ -166,11 +166,11 @@ const SearchTrain = () => {
           })}
         </select>
       </div> */}
-          <div className="mb-3">
+          <div className="mb-3 col-md-3">
             <label htmlFor="">Date</label>
             <DatePicker onChange={setDate} value={date} />
           </div>
-          <div className="mb-3">
+          <div className="mb-3 col-md-6">
             <button onClick={searchTrain} className="btn btn-success">
               Search
             </button>

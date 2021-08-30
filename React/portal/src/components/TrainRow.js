@@ -30,14 +30,16 @@ const TrainRow = ({ train }) => {
   });
 
   const deleteTrain = () => {
-    axios.delete(url + "/admin/adminpanel/train/", train.trainId).then((response) => {
-      const result = response.data;
-      if (result.status === "success") {
-        alert("Train Deleted");
-      } else {
-        alert("error while loading list of Train");
-      }
-    });
+    axios
+      .delete(url + "/admin/adminpanel/train/" + train.trainId)
+      .then((response) => {
+        const result = response.data;
+        if (result.status === "success") {
+          alert("Train Deleted");
+        } else {
+          alert("error while loading list of Train");
+        }
+      });
   };
 
   return (

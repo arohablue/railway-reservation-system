@@ -47,7 +47,7 @@ const Signin = () => {
     <div className="">
       <h1>Sign in</h1>
 
-      <div className="mb-3">
+      <div className="mb-3 col-md-3">
         <label>Email</label>
         <input
           onChange={(event) => {
@@ -58,7 +58,7 @@ const Signin = () => {
           type="email"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-3 col-md-3">
         <label>Password</label>
         <input
           onChange={(event) => {

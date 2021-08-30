@@ -2,6 +2,7 @@ package com.sunbeam.controller;
 
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.dto.StationDTO;
@@ -72,8 +73,10 @@ public class AdminController {
 
 	@GetMapping("/adminpanel/user")
 	public ResponseEntity<?> findUserAll() {
-		List<User> list = userService.findAll();
-		Stream<UserDTO> result = list.stream().map(user -> UserDTO.fromEntity(user));
+		List<User> listOfusers = userService.findAll();
+		List<User> userFiltered = listOfusers.stream().filter(user -> !user.getRole().equals("Admin"))
+				.collect(Collectors.toList());
+		Stream<UserDTO> result = userFiltered.stream().map(user -> UserDTO.fromEntity(user));
 		return Response.success(result);
 	}
 
@@ -166,24 +169,24 @@ public class AdminController {
 	@DeleteMapping("/adminpanel/route/{id}")
 	public ResponseEntity<?> deleteRoute(@PathVariable("id") Long id) {
 		boolean success = routeService.deleteById(id);
-		return ResponseEntity.ok(success);
+		return Response.success(success);
 	}
 
 	@DeleteMapping("/adminpanel/station/{id}")
 	public ResponseEntity<?> deleteStation(@PathVariable("id") Long id) {
 		boolean success = stationService.deleteById(id);
-		return ResponseEntity.ok(success);
+		return Response.success(success);
 	}
 
 	@DeleteMapping("/adminpanel/train/{id}")
 	public ResponseEntity<?> deleteTrain(@PathVariable("id") Long id) {
 		boolean success = trainService.deleteById(id);
-		return ResponseEntity.ok(success);
+		return Response.success(success);
 	}
 
 	@DeleteMapping("/adminpanel/user/{id}")
 	public ResponseEntity<?> user(@PathVariable("id") Long id) {
 		boolean success = userService.deleteById(id);
-		return ResponseEntity.ok(success);
+		return Response.success(success);
 	}
 }

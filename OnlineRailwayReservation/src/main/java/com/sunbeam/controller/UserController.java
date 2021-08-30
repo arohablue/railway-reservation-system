@@ -52,14 +52,13 @@ public class UserController {
 	public ResponseEntity<?> save(UserDTO userDto) {
 		User user = UserDTO.toEntity(userDto);
 		System.out.println(user.toString());
-		
-		if(userService.save(user) != null){
+
+		if (userService.save(user) != null) {
 			user = userService.save(user);
-			return ResponseEntity.ok(user);
-		}else {
-			return Response.error("Something went Wrong");
+			return Response.success(user);
+		} else {
+			return Response.error("Something went Wrong / Check Auth code");
 		}
-		
 	}
 
 	// trial n error

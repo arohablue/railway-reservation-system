@@ -39,12 +39,12 @@ public class Route {
 	@JsonIgnore
 	private List<Train> trains = new ArrayList<>();
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "source_station_id")
 	@JsonIgnore
 	private Station sourceStation;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "destination_station_id")
 	@JsonIgnore
 	private Station destinationStation;
