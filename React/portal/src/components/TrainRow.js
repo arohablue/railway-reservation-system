@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { url } from "../common/constants";
+import axios from "axios";
 
 const TrainRow = ({ train }) => {
   const history = useHistory();
@@ -27,6 +29,17 @@ const TrainRow = ({ train }) => {
     }
   });
 
+  const deleteTrain = () => {
+    axios.delete(url + "/admin/adminpanel/train/", train.trainId).then((response) => {
+      const result = response.data;
+      if (result.status === "success") {
+        alert("Train Deleted");
+      } else {
+        alert("error while loading list of Train");
+      }
+    });
+  };
+
   return (
     <tr>
       <td>{train.trainNumber}</td>
@@ -40,7 +53,16 @@ const TrainRow = ({ train }) => {
       <td>{train.route.destinationStation.stationName}</td>
       <td>₹{train.route.acClassFair}</td>
       <td>₹{train.route.generalClassFair}</td>
-      {!isAdmin && (
+      {isAdmin ? (
+        <button
+          onClick={() => {
+            deleteTrain();
+          }}
+          className="btn btn-danger btn-sm"
+        >
+          Delete
+        </button>
+      ) : (
         <td>
           <button onClick={() => bookTicket()} className="btn btn-info btn-sm ">
             Book

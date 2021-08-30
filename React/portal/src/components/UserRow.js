@@ -1,7 +1,20 @@
+import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { url } from "../common/constants";
 
 const UserRow = ({ user }) => {
   const history = useHistory();
+
+  const deleteUser = () => {
+    axios.delete(url + "/admin/adminpanel/user/", user.userId).then((response) => {
+      const result = response.data;
+      if (result.status === "success") {
+        alert("User Deleted");
+      } else {
+        alert("error while loading list of Train");
+      }
+    });
+  };
 
   return (
     <tr>
@@ -17,9 +30,7 @@ const UserRow = ({ user }) => {
       <td>
         <button
           onClick={() => {
-            // /add-songs-to-album -> path of the component
-            // {album: album}      -> data needed to be passed to the component
-            history.push("/signin", { user: user });
+            deleteUser();
           }}
           className="btn btn-danger btn-sm"
         >

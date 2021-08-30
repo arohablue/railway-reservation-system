@@ -8,7 +8,6 @@ import com.sunbeam.dto.StationDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.dto.UserDTO;
-import com.sunbeam.entity.PNRTable;
 import com.sunbeam.entity.PassengerTicket;
 import com.sunbeam.entity.Route;
 import com.sunbeam.entity.Station;
@@ -33,9 +32,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/admin")
 @RestController
 public class AdminController {
@@ -144,7 +145,6 @@ public class AdminController {
 		return Response.success(result);
 	}
 
-	
 	@GetMapping("/adminpanel/getalltickets")
 	public ResponseEntity<?> getAllTickets() {
 		List<PassengerTicket> ticketsList = passengerTicketService.findAll();

@@ -1,7 +1,23 @@
 import { useHistory } from "react-router-dom";
+import { url } from "../common/constants";
+import axios from "axios";
 
 const StationRow = ({ station }) => {
   const history = useHistory();
+
+  const deleteStation = () => {
+    axios
+      .delete(url + "/admin/adminpanel/station/" + station.stationId)
+      .then((response) => {
+        const result = response.data;
+        if (result.status === "success") {
+          alert("Station Deleted");
+          history.push("/station");
+        } else {
+          alert("error while deleting Station");
+        }
+      });
+  };
 
   return (
     <tr>
@@ -9,20 +25,7 @@ const StationRow = ({ station }) => {
       <td>
         <button
           onClick={() => {
-            // /add-songs-to-album -> path of the component
-            // {album: album}      -> data needed to be passed to the component
-            history.push("/signin", { station: station });
-          }}
-          className="btn btn-warning btn-sm"
-        >
-          Edit
-        </button>
-        {/* <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  */}
-        <button
-          onClick={() => {
-            // /add-songs-to-album -> path of the component
-            // {album: album}      -> data needed to be passed to the component
-            history.push("/signin", { station: station });
+            deleteStation();
           }}
           className="btn btn-danger btn-sm "
         >
