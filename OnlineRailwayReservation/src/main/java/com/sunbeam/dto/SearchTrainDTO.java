@@ -10,14 +10,14 @@ public class SearchTrainDTO {
 	private StationDTO fromStation;
 	private StationDTO toStation;
 	private Date journeyDate;
-	private String coachcClass;
+	private String coachClass;
 
 	
-	public SearchTrainDTO(StationDTO fromStation, StationDTO toStation, Date journeyDate, String coachcClass) {
+	public SearchTrainDTO(StationDTO fromStation, StationDTO toStation, Date journeyDate, String coachClass) {
 		this.fromStation = fromStation;
 		this.toStation = toStation;
 		this.journeyDate = journeyDate;
-		this.coachcClass = coachcClass;
+		this.coachClass = coachClass;
 	}
 	public StationDTO getFromStation() {
 		return fromStation;
@@ -37,11 +37,11 @@ public class SearchTrainDTO {
 	public void setJourneyDate(Date journeyDate) {
 		this.journeyDate = journeyDate;
 	}
-	public String getCoachcClass() {
-		return coachcClass;
+	public String getCoachClass() {
+		return coachClass;
 	}
-	public void setCoachcClass(String coachcClass) {
-		this.coachcClass = coachcClass;
+	public void setCoachClass(String coachClass) {
+		this.coachClass = coachClass;
 	}
 	
 }

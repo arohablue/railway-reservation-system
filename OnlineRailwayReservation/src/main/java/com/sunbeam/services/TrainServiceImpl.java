@@ -64,4 +64,10 @@ public class TrainServiceImpl implements TrainService {
 		return null;
 	}
 
+	@Override
+	public Boolean searchTrain(TrainDTO trainDTO) {
+		
+		return null;
+	}
+
 }

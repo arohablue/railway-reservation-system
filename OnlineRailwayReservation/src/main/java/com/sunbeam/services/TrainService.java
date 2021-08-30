@@ -13,4 +13,5 @@ public interface TrainService {
 	Train saveTrain(TrainDTO trainDTO);
     Boolean updateTrain(TrainDTO trainDTO);
     Boolean deleteTrain(TrainDTO trainDTO);
+    Boolean searchTrain(TrainDTO trainDTO);
 }

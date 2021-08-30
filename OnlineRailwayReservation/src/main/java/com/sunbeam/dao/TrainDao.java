@@ -8,10 +8,14 @@ import com.sunbeam.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface TrainDao extends JpaRepository<Train, Integer>{
+public interface TrainDao extends JpaRepository<Train, Integer> {
 	Train findById(Long Id);
-	List<Train>findAll();
+
+	List<Train> findAll();
+
 	Train save(Train train);
+
 	boolean deleteById(Long Id);
-	
+
+	List<Train> findByTrainNumber(Integer trainNumber);
 }
