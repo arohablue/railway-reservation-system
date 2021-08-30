@@ -13,14 +13,6 @@ public class UserDTO {
 	private String email;
 	private String name;
 	private String password;
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	private Integer age;
 	private String gender;
 	private String mobile;
@@ -44,6 +36,14 @@ public class UserDTO {
 		this.state = state;
 		this.city = city;
 		this.role = role;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getUserId() {
