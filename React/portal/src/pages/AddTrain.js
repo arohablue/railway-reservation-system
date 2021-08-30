@@ -36,6 +36,7 @@ const AddTrain = () => {
   };
 
   const addTrain = () => {
+    console.log("add train");
     if (trainName.length === 0) {
       alert("enter Train Name");
     } else if (trainType.length === 0) {

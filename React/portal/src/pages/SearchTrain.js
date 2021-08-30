@@ -7,11 +7,11 @@ import SearchedTrains from "./SearchedTrains";
 import DatePicker from "react-date-picker";
 
 const SearchTrain = () => {
-  const [source, setSource] = useState([]);
+  const [source, setSource] = useState("");
   const [trainsSearched, setTrainsSearched] = useState([]);
   const [sourceStations, setSourceStations] = useState([]);
   const [destinationStations, setDestinationStations] = useState([]);
-  const [destination, setDestination] = useState([]);
+  const [destination, setDestination] = useState("");
   const [date, setDate] = useState(new Date());
   const [trainsList, setTrainsList] = useState([]);
 
@@ -113,11 +113,13 @@ const SearchTrain = () => {
           <div className="mb-3">
             <label htmlFor="">From</label>
             <select
+              value={source}
               onChange={(e) => {
                 setSource(e.target.value);
               }}
               className="form-control"
             >
+              <option value="">Select station</option>
               {sourceStations.map((station) => {
                 return (
                   <option value={station.stationId}>
@@ -131,11 +133,13 @@ const SearchTrain = () => {
             <label htmlFor="">To</label>
 
             <select
+              value={destination}
               onChange={(e) => {
                 setDestination(e.target.value);
               }}
               className="form-control"
             >
+              <option value="">Select station</option>
               {destinationStations.map((station) => {
                 return (
                   <option value={station.stationId}>

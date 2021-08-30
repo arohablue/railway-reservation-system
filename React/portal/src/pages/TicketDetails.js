@@ -3,13 +3,21 @@ import { useLocation, useHistory } from "react-router-dom";
 
 export default function TicketDetails() {
   const location = useLocation();
-  const ticketDetails = location.state.ticketDetails;
+  console.log(
+    "🚀 ~ file: TicketDetails.js ~ line 6 ~ TicketDetails ~ location",
+    location
+  );
+  const ticketDetails = location.state.ticketDetails.data;
+  console.log(
+    "🚀 ~ file: TicketDetails.js ~ line 7 ~ TicketDetails ~ ticketDetails",
+    ticketDetails
+  );
   return (
     <div className="form-control">
       <h1 className="page-title">Ticket Details</h1>
       <div>
         <span>Ticket Number</span>
-        <span>{ticketDetails.trainNumber}</span>
+        <span>{ticketDetails.train.trainNumber}</span>
       </div>
       <div>
         <span>PNR number</span>

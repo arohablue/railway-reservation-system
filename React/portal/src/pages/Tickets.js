@@ -25,7 +25,7 @@ export default function Tickets() {
   useEffect(() => {
     axios.get(url + "admin/adminpanel/getalltickets").then((response) => {
       console.log(response.data);
-      //   setTicketList(response.data);
+      setTicketList(response.data);
     });
   }, []);
 
