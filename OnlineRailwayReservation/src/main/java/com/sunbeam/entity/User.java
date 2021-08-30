@@ -48,6 +48,17 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
+	public String getAdminKey() {
+		return adminKey;
+	}
+
+	public void setAdminKey(String adminKey) {
+		this.adminKey = adminKey;
+	}
+
+	@Column(name = "admin_key")
+	private String adminKey;
+
 	public Long getId() {
 		return id;
 	}
