@@ -44,9 +44,12 @@ public class PassengerTicketServiceImpl implements PassengerTicketService {
     }
 
     @Override
-    public boolean deleteById(Long Id) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean deleteById(Long id) {
+        passengerTicketDao.deleteById(id);
+		if (passengerTicketDao.findById(id) == null) {
+			return true;
+		}
+		return false;
     }
 
     @Override

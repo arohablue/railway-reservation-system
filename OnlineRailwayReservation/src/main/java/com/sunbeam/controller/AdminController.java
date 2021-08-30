@@ -112,12 +112,6 @@ public class AdminController {
 		return Response.success(result);
 	}
 
-	@DeleteMapping("/adminpanel/route/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-		boolean success = routeService.deleteById(id);
-		return ResponseEntity.ok(success);
-	}
-
 	@GetMapping("/adminpanel/getallroutes")
 	public ResponseEntity<?> getAllRoutes() {
 		List<Route> list = routeService.findAll();
@@ -167,5 +161,29 @@ public class AdminController {
 		}
 		return Response.error("Something went wrong");
 
+	}
+
+	@DeleteMapping("/adminpanel/route/{id}")
+	public ResponseEntity<?> deleteRoute(@PathVariable("id") Long id) {
+		boolean success = routeService.deleteById(id);
+		return ResponseEntity.ok(success);
+	}
+
+	@DeleteMapping("/adminpanel/station/{id}")
+	public ResponseEntity<?> deleteStation(@PathVariable("id") Long id) {
+		boolean success = stationService.deleteById(id);
+		return ResponseEntity.ok(success);
+	}
+
+	@DeleteMapping("/adminpanel/train/{id}")
+	public ResponseEntity<?> deleteTrain(@PathVariable("id") Long id) {
+		boolean success = trainService.deleteById(id);
+		return ResponseEntity.ok(success);
+	}
+
+	@DeleteMapping("/adminpanel/user/{id}")
+	public ResponseEntity<?> user(@PathVariable("id") Long id) {
+		boolean success = userService.deleteById(id);
+		return ResponseEntity.ok(success);
 	}
 }

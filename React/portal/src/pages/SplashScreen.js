@@ -22,7 +22,7 @@ export default function SplashScreen() {
 
   return (
     <div className="spinner">
-      <BounceLoader size={60} color={"#ffffff"} loading={true}></BounceLoader>
+      <BounceLoader size={60} color={"#000000"} loading={true}></BounceLoader>
     </div>
   );
 }

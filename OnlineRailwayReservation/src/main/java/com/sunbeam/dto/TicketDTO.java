@@ -88,6 +88,7 @@ public class TicketDTO {
             user.setName(passengerTicket.getName());
             ticketDTO.setReservationDate(passengerTicket.getDate());
             ticketDTO.setBookingDate(passengerTicket.getBookingDate());
+            ticketDTO.setStatus(passengerTicket.getBookingStatus());
             ticketDTO.setUser(user);
             ticketDTO.setTrain(TrainDTO.fromEntity(passengerTicket.getTrain()));
         }

@@ -15,6 +15,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
 	User findById(Long userId);
 
-	boolean deleteByEmail(String email);
+	void deleteById(Long id);
 
 }

@@ -39,7 +39,7 @@ public class PNRTable {
 	private User user;
 
 	// Child Relationships
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable", orphanRemoval = true)
 	private List<PassengerTicket> passengerTickets = new ArrayList<>();
 
 	public Long getId() {

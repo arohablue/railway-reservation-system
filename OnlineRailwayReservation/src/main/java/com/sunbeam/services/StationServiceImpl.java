@@ -51,8 +51,11 @@ public class StationServiceImpl implements StationService {
 
 	// Not working write another
 	@Override
-	public boolean deleteById(Long Id) {
-		// TODO Auto-generated method stub
+	public boolean deleteById(Long id) {
+		stationDao.deleteById(id);
+		if (stationDao.findById(id) == null) {
+			return true;
+		}
 		return false;
 	}
 

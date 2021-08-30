@@ -17,5 +17,5 @@ public interface TrainStatusDao extends JpaRepository<TrainStatus, Integer> {
 
 	TrainStatus save(TrainStatus trainStatus);
 
-	boolean deleteById(Long Id);
+	void deleteById(Long Id);
 }

@@ -53,7 +53,7 @@ public class User {
 	}
 
 	// Child Relationships
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
 	@JsonIgnore
 	private List<PNRTable> pnrTables = new ArrayList<>();
 

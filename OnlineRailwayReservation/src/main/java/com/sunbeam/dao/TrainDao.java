@@ -15,7 +15,7 @@ public interface TrainDao extends JpaRepository<Train, Integer> {
 
 	Train save(Train train);
 
-	boolean deleteById(Long Id);
+	void deleteById(Long id);
 
 	List<Train> findByTrainNumber(Integer trainNumber);
 }

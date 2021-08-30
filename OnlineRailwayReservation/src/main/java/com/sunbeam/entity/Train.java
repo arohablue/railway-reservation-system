@@ -63,7 +63,7 @@ public class Train {
 	private Route route;
 
 	// Child Relationships
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "train")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "train", orphanRemoval = true)
 	@JsonIgnore
 	private List<PassengerTicket> passengerTickets= new ArrayList<>();
 

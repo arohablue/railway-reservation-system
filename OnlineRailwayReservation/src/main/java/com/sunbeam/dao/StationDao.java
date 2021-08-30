@@ -10,5 +10,5 @@ public interface StationDao extends JpaRepository<Station, Integer> {
 	Station findById(Long Id);
 	List<Station>findAll();
 	Station save(Station station);
-	boolean deleteById(Long Id);
+	void deleteById(Long Id);
 }

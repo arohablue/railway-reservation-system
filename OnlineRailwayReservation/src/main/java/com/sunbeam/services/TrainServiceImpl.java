@@ -43,8 +43,12 @@ public class TrainServiceImpl implements TrainService {
 	}
 
 	@Override
-	public boolean deleteById(Long Id) {
-		return trainDao.deleteById(Id);
+	public boolean deleteById(Long id) {
+		trainDao.deleteById(id);
+		if (trainDao.findById(id) == null) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -70,14 +74,14 @@ public class TrainServiceImpl implements TrainService {
 	}
 
 	@Override
-	public Boolean deleteTrain(TrainDTO trainDTO) {
-		// TODO Auto-generated method stub
+	public Boolean searchTrain(TrainDTO trainDTO) {
+
 		return null;
 	}
 
 	@Override
-	public Boolean searchTrain(TrainDTO trainDTO) {
-		
+	public Boolean deleteTrain(TrainDTO trainDTO) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

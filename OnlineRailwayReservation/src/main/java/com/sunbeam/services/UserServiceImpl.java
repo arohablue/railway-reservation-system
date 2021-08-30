@@ -96,9 +96,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean deleteById(int id) {
-		if (uDao.existsById(id)) {
-			uDao.deleteById(id);
+	public Boolean deleteById(Long id) {
+		uDao.deleteById(id);
+		if (uDao.findById(id) == null) {
 			return true;
 		}
 		return false;
@@ -135,8 +135,9 @@ public class UserServiceImpl implements UserService {
 			passengerTicket.setAge(ticketDTO.getUser().getAge());
 			passengerTicket.setGender(ticketDTO.getUser().getGender());
 			passengerTicket.setName(ticketDTO.getUser().getName());
-			passengerTicket.setBookingStatus("PENDING");
+			passengerTicket.setBookingStatus("BOOKED");
 			passengerTicket.setDate(ticketDTO.getReservationDate());
+			passengerTicket.setBookingDate(ticketDTO.getBookingDate());
 			passengerTicket.setTrain(train);
 
 			// Create and save PNR table
