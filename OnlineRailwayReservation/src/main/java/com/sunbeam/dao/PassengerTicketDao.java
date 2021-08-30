@@ -14,5 +14,5 @@ public interface PassengerTicketDao extends JpaRepository<PassengerTicket, Integ
 
 	PassengerTicket save(PassengerTicket passengerTicket);
 
-	boolean deleteById(Long Id);
+	boolean deleteById(Long Id);	
 }

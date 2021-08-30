@@ -152,6 +152,8 @@ public class UserServiceImpl implements UserService {
 
 			// save ticket
 			passengerTicketDao.save(passengerTicket);
+
+			return TicketDTO.fromEntity(passengerTicket);
 		}
 		return null;
 	}
