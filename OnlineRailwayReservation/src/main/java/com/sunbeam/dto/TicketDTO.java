@@ -2,8 +2,8 @@ package com.sunbeam.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sunbeam.entity.PassengerTicket;
-import com.sunbeam.entity.Train;
 
 import org.springframework.beans.BeanUtils;
 
@@ -11,7 +11,9 @@ public class TicketDTO {
     private TrainDTO train;
     private UserDTO user;
     private String pnr;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date bookingDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date reservationDate;
     private String status;
 

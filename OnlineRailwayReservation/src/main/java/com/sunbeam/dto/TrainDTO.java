@@ -2,6 +2,7 @@ package com.sunbeam.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sunbeam.entity.Train;
 
 import org.springframework.beans.BeanUtils;
@@ -11,7 +12,9 @@ public class TrainDTO {
 	private String trainName;
 	private Integer trainNumber;
 	private String trainType;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date departureTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date arrivalTime;
 	private RouteDTO route;
 	private Integer noOfSeatsGen;
