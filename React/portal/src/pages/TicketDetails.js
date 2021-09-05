@@ -29,7 +29,7 @@ export default function TicketDetails() {
         <span>{ticketDetails.status}</span>
       </div>
       <div>
-        <span className="grey-text">Reservation Date: </span>
+        <span className="grey-text">Journey Date: </span>
         <span>{ticketDetails.reservationDate}</span>
       </div>
       <div>

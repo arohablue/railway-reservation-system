@@ -7,6 +7,7 @@ import AddRoute from "./AddRoute";
 import AddTrain from "./AddTrain";
 import AddStation from "./AddStation";
 import Tickets from "./Tickets";
+import Revenue from "./Revenue";
 
 const AdminPanel = () => {
   return (
@@ -58,6 +59,11 @@ const AdminPanel = () => {
                     Tickets
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/revenue">
+                    Revenue
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -73,6 +79,7 @@ const AdminPanel = () => {
             <Route path="/add-route" component={AddRoute} />
             <Route path="/add-train" component={AddTrain} />
             <Route path="/add-station" component={AddStation} />
+            <Route path="/revenue" component={Revenue} />
           </Switch>
         </div>
       </BrowserRouter>

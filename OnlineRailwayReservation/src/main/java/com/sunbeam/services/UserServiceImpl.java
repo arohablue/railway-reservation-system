@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.transaction.Transactional;
 
 import com.sunbeam.dao.PNRTableDao;
@@ -65,19 +66,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(User user) {
-		if(!user.getRole().equals("") && user.getRole() != null && user.getRole().equals("Admin")){
-			if(!user.getRole().equals("") && user.getRole() != null && user.getAdminKey().equals("Admin1234")){
+		if (!user.getRole().equals("") && user.getRole() != null && user.getRole().equals("Admin")) {
+			if (!user.getRole().equals("") && user.getRole() != null && user.getAdminKey().equals("Admin1234")) {
 				return uDao.save(user);
-			}
-			else{
+			} else {
 				return null;
 			}
-		} else if (!user.getRole().equals("") && user.getRole() != null){
+		} else if (!user.getRole().equals("") && user.getRole() != null) {
 			return uDao.save(user);
 		} else {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class UserServiceImpl implements UserService {
 			TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDateBetween(train, startDate, endDate);
 			if (trainStatus != null && trainStatus.getAvailableSeatGen() > 0) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		} catch (Exception e) {
@@ -147,7 +147,7 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class UserServiceImpl implements UserService {
 			passengerTicket.setAge(ticketDTO.getUser().getAge());
 			passengerTicket.setGender(ticketDTO.getUser().getGender());
 			passengerTicket.setName(ticketDTO.getUser().getName());
-			passengerTicket.setBookingStatus("BOOKED");
+			passengerTicket.setBookingStatus("CONFIRMED");
 			passengerTicket.setDate(ticketDTO.getReservationDate());
 			passengerTicket.setBookingDate(ticketDTO.getBookingDate());
 			passengerTicket.setTrain(train);
@@ -179,9 +179,11 @@ public class UserServiceImpl implements UserService {
 			passengerTicket.setPnrTable(pnrTable);
 			passengerTicket.setPnr(String.valueOf(number));
 
-			// save ticket
-			passengerTicketDao.save(passengerTicket);
-
+			if (udpateSeats(ticketDTO)) {
+				
+				// save ticket
+				passengerTicketDao.save(passengerTicket);
+			}
 			return TicketDTO.fromEntity(passengerTicket);
 		}
 		return null;
@@ -191,6 +193,32 @@ public class UserServiceImpl implements UserService {
 	public TicketDTO checkPnrStatus(TicketDTO ticketDTO) {
 		PassengerTicket passengerTicket = passengerTicketDao.findByPnr(ticketDTO.getPnr());
 		return TicketDTO.fromEntity(passengerTicket);
+	}
+
+	private boolean udpateSeats(TicketDTO ticketDTO) {
+		try {
+
+			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
+			Date startDate = dateAndTimeHelper.getStartDate(ticketDTO.getTrain().getDepartureTime());
+			Date endDate = dateAndTimeHelper.getEndDate(ticketDTO.getTrain().getArrivalTime());
+
+			TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDateBetween(train, startDate, endDate);
+			if (trainStatus != null && trainStatus.getAvailableSeatGen() > 0 && trainStatus.getAvailableSeatAC() > 0) {
+				if (ticketDTO.getClass().equals("AC")) {
+					trainStatus.setAvailableSeatAC(trainStatus.getAvailableSeatAC() - 1);
+					return true;
+				} else {
+					trainStatus.setAvailableSeatGen(trainStatus.getAvailableSeatGen() - 1);
+					return true;
+				}
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	// @Override

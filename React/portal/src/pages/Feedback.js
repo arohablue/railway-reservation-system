@@ -25,7 +25,7 @@ export default function Feedback() {
         suggestion: suggestion,
       };
 
-      axios.post(url + "/sendfeedback", data).then((response) => {
+      axios.post(url + "/user/sendfeedback", data).then((response) => {
         const data = response.data;
         console.log("user: ", JSON.stringify(data));
         history.push("/thankyou");

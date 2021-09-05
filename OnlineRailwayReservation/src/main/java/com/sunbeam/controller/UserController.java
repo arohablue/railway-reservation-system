@@ -2,10 +2,13 @@ package com.sunbeam.controller;
 
 import java.util.stream.Stream;
 
+import com.sunbeam.dao.FeedbackDao;
+import com.sunbeam.dto.FeedbackDTO;
 import com.sunbeam.dto.SearchTrainDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
 import com.sunbeam.dto.UserDTO;
+import com.sunbeam.entity.Feedback;
 import com.sunbeam.entity.User;
 import com.sunbeam.models.ChangePassword;
 import com.sunbeam.models.Credentials;
@@ -30,6 +33,9 @@ public class UserController {
 
 	@Autowired
 	private TrainService trainService;
+
+	@Autowired
+	private FeedbackDao feedbackDao;
 
 	// Admin will fetch all user so these method will be in admincontroller
 	// @GetMapping("/{email}")
@@ -77,6 +83,15 @@ public class UserController {
 		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
 		if (user != null)
 			System.out.println("login validate");
+		UserDTO userDto = new UserDTO();
+		userDto.setAge(user.getAge());
+		userDto.setEmail(user.getEmail());
+		userDto.setCity(user.getCity());
+		userDto.setGender(user.getGender());
+		userDto.setUserId(user.getId());
+		userDto.setMobile(user.getMobile());
+		userDto.setRole(user.getRole());
+		userDto.setState(user.getState());
 		return ResponseEntity.ok(user);
 	}
 
@@ -117,5 +132,25 @@ public class UserController {
 			return Response.success(result);
 		}
 		return Response.error("Something went Wrong");
+	}
+
+	@PostMapping("/sendfeedback")
+	public ResponseEntity<?> sendFeedback(@RequestBody FeedbackDTO feedbackDTO) {
+		Feedback feedback = new Feedback();
+		feedback.setEmail(feedbackDTO.getEmail());
+		feedback.setFeedback(feedbackDTO.getSuggestion());
+		feedback.setName(feedbackDTO.getName());
+		feedbackDao.save(feedback);
+		return Response.success("feedback Saved");
+	}
+
+	@PostMapping("/sendotp")
+	public ResponseEntity<?> sendOTP(@RequestBody UserDTO userDTO) {
+		return Response.success("OTP Sent");
+	}
+
+	@PostMapping("/verifyotp")
+	public ResponseEntity<?> verifyOTP(@RequestBody UserDTO userDTO) {
+		return Response.success("OTP Verified");
 	}
 }
