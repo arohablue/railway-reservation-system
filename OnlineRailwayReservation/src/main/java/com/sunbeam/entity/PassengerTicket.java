@@ -42,6 +42,9 @@ public class PassengerTicket {
 	@Column(name = "gender")
 	private String gender;
 
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "reservation_date")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd'T'HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -69,6 +72,16 @@ public class PassengerTicket {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 
 	public Date getBookingDate() {
 		return bookingDate;

@@ -153,4 +153,9 @@ public class UserController {
 	public ResponseEntity<?> verifyOTP(@RequestBody UserDTO userDTO) {
 		return Response.success("OTP Verified");
 	}
+
+	@PostMapping("/cancelticket")
+	public ResponseEntity<?> cancelTicket(@RequestBody TicketDTO ticketDTO) {
+		return Response.success("OTP Verified");
+	}
 }

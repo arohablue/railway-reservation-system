@@ -88,6 +88,7 @@ public class TicketDTO {
             user.setAge(passengerTicket.getAge());
             user.setGender(passengerTicket.getGender());
             user.setName(passengerTicket.getName());
+            user.setEmail(passengerTicket.getEmail());
             ticketDTO.setReservationDate(passengerTicket.getDate());
             ticketDTO.setBookingDate(passengerTicket.getBookingDate());
             ticketDTO.setStatus(passengerTicket.getBookingStatus());

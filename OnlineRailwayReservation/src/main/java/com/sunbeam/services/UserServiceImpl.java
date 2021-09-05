@@ -163,6 +163,7 @@ public class UserServiceImpl implements UserService {
 			passengerTicket.setGender(ticketDTO.getUser().getGender());
 			passengerTicket.setName(ticketDTO.getUser().getName());
 			passengerTicket.setBookingStatus("CONFIRMED");
+			passengerTicket.setEmail(ticketDTO.getUser().getEmail());
 			passengerTicket.setDate(ticketDTO.getReservationDate());
 			passengerTicket.setBookingDate(ticketDTO.getBookingDate());
 			passengerTicket.setTrain(train);
@@ -180,7 +181,7 @@ public class UserServiceImpl implements UserService {
 			passengerTicket.setPnr(String.valueOf(number));
 
 			if (udpateSeats(ticketDTO)) {
-				
+
 				// save ticket
 				passengerTicketDao.save(passengerTicket);
 			}
