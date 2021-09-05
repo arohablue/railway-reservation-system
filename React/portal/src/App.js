@@ -11,6 +11,8 @@ import SearchTrain from "./pages/SearchTrain";
 import SplashScreen from "./pages/SplashScreen";
 import TicketForm from "./pages/TicketForm";
 import TicketDetails from "./pages/TicketDetails";
+import Feedback from "./pages/Feedback";
+import Thankyou from "./pages/Thankyou";
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -118,10 +120,12 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/adminsignin" component={AdminSignin} />
             <Route path="/adminpanel" component={AdminPanel} />
-            <Route path="/Change" component={ChangePassword} />
+            <Route path="/forgotpassword" component={ChangePassword} />
             <Route path="/searchtrain" component={SearchTrain} />
             <Route path="/ticketform" component={TicketForm} />
             <Route path="/ticketdetails" component={TicketDetails} />
+            <Route path="/feedback" component={Feedback} />
+            <Route path="/thankyou" component={Thankyou} />
             <Route path="/" component={SplashScreen} />
           </Switch>
         </div>

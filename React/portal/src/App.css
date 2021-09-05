@@ -55,3 +55,7 @@ body {
 .grey-text {
   color: grey;
 }
+
+.text-1 {
+  font-size: smaller;
+}

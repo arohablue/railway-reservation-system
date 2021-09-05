@@ -78,10 +78,10 @@ const Signin = () => {
         </Link>
         <Link className="nav-link" to="/adminsignin">
           Admin Signin
+        </Link>*/}
+        <Link className="nav-link" to="/forgotpassword">
+          Forgot password ?
         </Link>
-        <Link className="nav-link" to="/change">
-          forgot password ?
-        </Link> */}
       </div>
     </div>
   );

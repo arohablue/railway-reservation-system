@@ -3,6 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 
 export default function TicketDetails() {
   const location = useLocation();
+  const history = useHistory();
   console.log(
     "🚀 ~ file: TicketDetails.js ~ line 6 ~ TicketDetails ~ location",
     location
@@ -35,6 +36,13 @@ export default function TicketDetails() {
         <span className="grey-text">Email: </span>
         <span>{ticketDetails.user.email}</span>
       </div>
+      <div className="mt-3 text-1">Help us improve</div>
+      <button
+        className="btn btn-info text-1"
+        onClick={() => history.push("/feedback")}
+      >
+        Give feedback
+      </button>
     </div>
   );
 }
