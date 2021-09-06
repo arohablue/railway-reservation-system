@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService {
 					passengerTicket.setName(passenger.getName());
 					passengerTicket.setBookingStatus("CONFIRMED");
 					passengerTicket.setEmail(passenger.getEmail());
-					passengerTicket.setDate(ticketDTO.getReservationDate());
+					passengerTicket.setDate(train.getDepartureTime());
 					passengerTicket.setBookingDate(ticketDTO.getBookingDate());
 					passengerTicket.setTrain(train);
 					passengerTickets.add(passengerTicket);

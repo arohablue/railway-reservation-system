@@ -156,7 +156,7 @@ public class UserController {
 
 	@PostMapping("/cancelticket")
 	public ResponseEntity<?> cancelTicket(@RequestBody TicketDTO ticketDTO) {
-		Boolean result  = userService.cancelTicket(ticketDTO.getPnr());
-		return Response.success("Ticket cancelled :" + result);
+		Boolean result = userService.cancelTicket(ticketDTO.getPnr());
+		return Response.success("Cancel Ticket :" + result);
 	}
 }

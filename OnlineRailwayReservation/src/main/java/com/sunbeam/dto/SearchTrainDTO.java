@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class SearchTrainDTO {
 	private StationDTO fromStation;
 	private StationDTO toStation;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date journeyDate;
 	private String coachClass;
 

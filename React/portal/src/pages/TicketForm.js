@@ -11,15 +11,16 @@ export default function TicketForm() {
   const [age, setAge] = useState();
   const [email, setEmail] = useState();
   const [gender, setGender] = useState("male");
-  const [reservationDate, setReservationDate] = useState();
 
   const bookTicket = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let hh = String(today.getHours() + 1).padStart(2, "0");
+    let MM = String(today.getMinutes() + 1).padStart(2, "0");
     let yyyy = today.getFullYear();
 
-    today = yyyy + "-" + mm + "-" + dd;
+    today = yyyy + "-" + mm + "-" + dd + " " + hh + ":" + MM;
     const requestData = {
       train: {
         trainId: location.state.trainId,
@@ -29,10 +30,10 @@ export default function TicketForm() {
         age: age,
         name: name,
         gender: gender,
-        email : email
+        email: email,
       },
       bookingDate: today,
-      reservationDate: reservationDate,
+      reservationDate: today,
     };
 
     axios.post(url + "/user/bookticket", requestData).then((response) => {
@@ -67,11 +68,11 @@ export default function TicketForm() {
           }}
           placeholder="Enter Age"
           className="form-control"
-          type="text"
+          type="number"
         />
       </div>
       <div className="mb-3">
-        <label>Gender</label>
+        <label>Email</label>
         <input
           onChange={(event) => {
             setEmail(event.target.value);
@@ -82,7 +83,7 @@ export default function TicketForm() {
         />
       </div>
       <div className="mb-3">
-        <label>Email</label>
+        <label>Gender</label>
         <div>
           <select
             value={gender}
@@ -93,17 +94,6 @@ export default function TicketForm() {
             <option value="other">Other</option>
           </select>
         </div>
-      </div>
-      <div className="mb-3">
-        <label>Reservation Date</label>
-        <input
-          onChange={(event) => {
-            setReservationDate(event.target.value);
-          }}
-          placeholder="Select reservation date"
-          className="form-control"
-          type="date"
-        />
       </div>
       <button onClick={() => bookTicket()} className="btn btn-info">
         Book Ticket
