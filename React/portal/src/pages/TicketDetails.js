@@ -1,5 +1,7 @@
 import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import axios from "axios";
+import { url } from "../common/constants";
 
 export default function TicketDetails() {
   const location = useLocation();
@@ -13,6 +15,19 @@ export default function TicketDetails() {
     "🚀 ~ file: TicketDetails.js ~ line 7 ~ TicketDetails ~ ticketDetails",
     ticketDetails
   );
+
+  const cancelTicket = () => {
+    axios
+      .post(url + "/user/cancelticket", { pnr: ticketDetails.pnr })
+      .then((response) => {
+        console.log(response.data.data);
+        if (response.data.status === "success") {
+          alert("Ticket cancellation success");
+          history.push("/searchtrain");
+        }
+      });
+  };
+
   return (
     <div className="form-control">
       <h1 className="page-title">Ticket Details</h1>
@@ -54,8 +69,17 @@ export default function TicketDetails() {
           <span>{ticketDetails.user.email}</span>
         </div>
       </div>
-
-      <div className="mt-3 text-1">Help us improve</div>
+      {ticketDetails.status !== "CANCELLED" && (
+        <button
+          className="btn btn-danger text-1"
+          onClick={() => cancelTicket()}
+        >
+          Cancel Ticket
+        </button>
+      )}
+      <div className="mt-3 text-1 grey-text">
+        Help us improve our portal's user experience
+      </div>
       <button
         className="btn btn-info text-1"
         onClick={() => history.push("/feedback")}
