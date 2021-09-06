@@ -15,8 +15,8 @@ export default function Revenue() {
     console.log("Getting Revenue");
     axios.get(url + "/admin/adminpanel/getrevenue").then((response) => {
       console.log(response.data.data);
-      setACRevenue(response.data.data.acRevenue);
-      setGenRevenue(response.data.data.genRevenue);
+      //setACRevenue(response.data.data.acRevenue);
+      //setGenRevenue(response.data.data.genRevenue);
     });
   }, []);
 
