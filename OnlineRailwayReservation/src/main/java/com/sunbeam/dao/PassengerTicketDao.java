@@ -14,6 +14,8 @@ public interface PassengerTicketDao extends JpaRepository<PassengerTicket, Integ
 
 	List<PassengerTicket> findAll();
 
+	List<PassengerTicket> findAllByPnr(String pnr);
+
 	PassengerTicket save(PassengerTicket passengerTicket);
 
 	void deleteById(Long Id);

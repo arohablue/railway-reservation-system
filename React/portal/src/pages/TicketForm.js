@@ -9,6 +9,7 @@ export default function TicketForm() {
 
   const [name, setName] = useState();
   const [age, setAge] = useState();
+  const [email, setEmail] = useState();
   const [gender, setGender] = useState("male");
   const [reservationDate, setReservationDate] = useState();
 
@@ -28,6 +29,7 @@ export default function TicketForm() {
         age: age,
         name: name,
         gender: gender,
+        email : email
       },
       bookingDate: today,
       reservationDate: reservationDate,
@@ -70,6 +72,17 @@ export default function TicketForm() {
       </div>
       <div className="mb-3">
         <label>Gender</label>
+        <input
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+          placeholder="Enter Email"
+          className="form-control"
+          type="email"
+        />
+      </div>
+      <div className="mb-3">
+        <label>Email</label>
         <div>
           <select
             value={gender}

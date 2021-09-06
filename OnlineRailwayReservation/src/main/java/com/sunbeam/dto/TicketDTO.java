@@ -1,6 +1,7 @@
 package com.sunbeam.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sunbeam.entity.PassengerTicket;
@@ -16,18 +17,33 @@ public class TicketDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date reservationDate;
     private String status;
+    private List<UserDTO> passengers;
 
     public TicketDTO() {
     }
+    
 
-    public TicketDTO(TrainDTO train, UserDTO user, String pnr, Date bookingDate, Date reservationDate, String status) {
+    public TicketDTO(TrainDTO train, UserDTO user, String pnr, Date bookingDate, Date reservationDate, String status,
+            List<UserDTO> passengers) {
         this.train = train;
         this.user = user;
         this.pnr = pnr;
         this.bookingDate = bookingDate;
         this.reservationDate = reservationDate;
         this.status = status;
+        this.passengers = passengers;
     }
+
+
+    public List<UserDTO> getPassengers() {
+        return passengers;
+    }
+
+
+    public void setPassengers(List<UserDTO> passengers) {
+        this.passengers = passengers;
+    }
+
 
     public TrainDTO getTrain() {
         return train;

@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import com.sunbeam.dao.PNRTableDao;
 import com.sunbeam.dao.PassengerTicketDao;
 import com.sunbeam.dao.TrainDao;
+import com.sunbeam.dto.RevenueDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.UserDTO;
 import com.sunbeam.entity.PassengerTicket;
@@ -51,6 +52,12 @@ public class AdminServiceImpl implements AdminService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public RevenueDTO getRevenue() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

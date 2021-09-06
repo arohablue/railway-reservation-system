@@ -19,4 +19,5 @@ public interface UserService {
 	Stream<TrainDTO> searchTrain(SearchTrainDTO searchTrainDTO);
 	TicketDTO bookTicket(TicketDTO ticketDTO);
 	TicketDTO checkPnrStatus(TicketDTO ticketDTO);
+	Boolean cancelTicket(String pnr);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
+import com.sunbeam.dto.RevenueDTO;
 import com.sunbeam.dto.RouteDTO;
 import com.sunbeam.dto.StationDTO;
 import com.sunbeam.dto.TicketDTO;
@@ -152,6 +153,12 @@ public class AdminController {
 	public ResponseEntity<?> getAllTickets() {
 		List<PassengerTicket> ticketsList = passengerTicketService.findAll();
 		Stream<TicketDTO> result = ticketsList.stream().map(ticket -> TicketDTO.fromEntity(ticket));
+		return Response.success(result);
+	}
+
+	@GetMapping("/adminpanel/getrevenue")
+	public ResponseEntity<?> getRevenue() {
+		RevenueDTO result = adminService.getRevenue();
 		return Response.success(result);
 	}
 

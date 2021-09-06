@@ -156,6 +156,7 @@ public class UserController {
 
 	@PostMapping("/cancelticket")
 	public ResponseEntity<?> cancelTicket(@RequestBody TicketDTO ticketDTO) {
-		return Response.success("OTP Verified");
+		Boolean result  = userService.cancelTicket(ticketDTO.getPnr());
+		return Response.success("Ticket cancelled :" + result);
 	}
 }

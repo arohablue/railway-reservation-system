@@ -32,6 +32,9 @@ public class PNRTable {
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "pnr_status")
+	private String pnrStatus;
+
 	// Parent Relationships
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -41,6 +44,15 @@ public class PNRTable {
 	// Child Relationships
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable", orphanRemoval = true)
 	private List<PassengerTicket> passengerTickets = new ArrayList<>();
+	
+	
+	public String getPnrStatus() {
+		return pnrStatus;
+	}
+
+	public void setPnrStatus(String pnrStatus) {
+		this.pnrStatus = pnrStatus;
+	}
 
 	public Long getId() {
 		return id;

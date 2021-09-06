@@ -1,5 +1,6 @@
 package com.sunbeam.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import com.sunbeam.dao.UserDao;
 import com.sunbeam.dto.SearchTrainDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
+import com.sunbeam.dto.UserDTO;
 import com.sunbeam.entity.PNRTable;
 import com.sunbeam.entity.PassengerTicket;
 import com.sunbeam.entity.Train;
@@ -152,40 +154,61 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public TicketDTO bookTicket(TicketDTO ticketDTO) {
-		PassengerTicket passengerTicket = new PassengerTicket();
+		List<PassengerTicket> passengerTickets = new ArrayList<>();
 		if (uDao.findById(ticketDTO.getUser().getUserId()) != null
 				&& trainDao.findById(ticketDTO.getTrain().getTrainId()) != null) {
 			User user = uDao.findById(ticketDTO.getUser().getUserId());
-			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
 
-			System.out.println("Age is " + ticketDTO.getUser().getAge());
-			passengerTicket.setAge(ticketDTO.getUser().getAge());
-			passengerTicket.setGender(ticketDTO.getUser().getGender());
-			passengerTicket.setName(ticketDTO.getUser().getName());
-			passengerTicket.setBookingStatus("CONFIRMED");
-			passengerTicket.setEmail(ticketDTO.getUser().getEmail());
-			passengerTicket.setDate(ticketDTO.getReservationDate());
-			passengerTicket.setBookingDate(ticketDTO.getBookingDate());
-			passengerTicket.setTrain(train);
+			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
+			if (user != null && train != null) {
+				for (UserDTO passenger : ticketDTO.getPassengers()) {
+					PassengerTicket passengerTicket = new PassengerTicket();
+					passengerTicket.setAge(passenger.getAge());
+					passengerTicket.setGender(passenger.getGender());
+					passengerTicket.setName(passenger.getName());
+					passengerTicket.setBookingStatus("CONFIRMED");
+					passengerTicket.setEmail(passenger.getEmail());
+					passengerTicket.setDate(ticketDTO.getReservationDate());
+					passengerTicket.setBookingDate(ticketDTO.getBookingDate());
+					passengerTicket.setTrain(train);
+					passengerTickets.add(passengerTicket);
+				}
+			}
 
 			// Create and save PNR table
 			PNRTable pnrTable = new PNRTable();
 			pnrTable.setEmail(ticketDTO.getUser().getEmail());
 			pnrTable.setUser(user);
+			pnrTable.setPnrStatus("CONFIRMED");
 			long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
 			pnrTable.setPnr(String.valueOf(number));
 			pnrTableDao.save(pnrTable);
 
-			// associate pnr table
-			passengerTicket.setPnrTable(pnrTable);
-			passengerTicket.setPnr(String.valueOf(number));
+			// associate pnr
+			for (PassengerTicket passengerTicket : passengerTickets) {
+				passengerTicket.setPnrTable(pnrTable);
+				passengerTicket.setPnr(String.valueOf(number));
+			}
 
 			if (udpateSeats(ticketDTO)) {
 
 				// save ticket
-				passengerTicketDao.save(passengerTicket);
+				passengerTicketDao.saveAll(passengerTickets);
 			}
-			return TicketDTO.fromEntity(passengerTicket);
+
+			List<UserDTO> passengers = new ArrayList();
+			for (PassengerTicket passengerTicket : passengerTickets) {
+				UserDTO userDTO = new UserDTO();
+				userDTO.setAge(passengerTicket.getAge());
+				userDTO.setEmail(passengerTicket.getEmail());
+				userDTO.setGender(passengerTicket.getGender());
+				userDTO.setName(passengerTicket.getName());
+				passengers.add(userDTO);
+			}
+
+			ticketDTO.setPassengers(passengers);
+			ticketDTO.setPnr(String.valueOf(number));
+			return ticketDTO;
 		}
 		return null;
 	}
@@ -220,6 +243,32 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public Boolean cancelTicket(String pnr) {
+		PNRTable pnrTable = pnrTableDao.findByPnr(pnr);
+		Train train = new Train();
+		Integer noOfSeatsAC = 0;
+		Integer noOfSeatGen = 0;
+		if (pnrTable != null) {
+			pnrTable.setPnrStatus("CANCELLED");
+			List<PassengerTicket> passengers = passengerTicketDao.findAllByPnr(pnr);
+			for (PassengerTicket passengerTicket : passengers) {
+				passengerTicket.setBookingStatus("CANCELLED");
+				train = passengerTicket.getTrain();
+				if (passengerTicket.getClass().equals("AC")) {
+					noOfSeatsAC++;
+				} else {
+					noOfSeatGen++;
+				}
+			}
+			train = trainDao.findById(passengers.get(0).getTrain().getId());
+			train.setNoOfSeatsAC(train.getNoOfSeatsAC() - noOfSeatsAC);
+			train.setNoOfSeatsAC(train.getNoOfSeatsGen() - noOfSeatGen);
+			return true;
+		}
+		return false;
 	}
 
 	// @Override
