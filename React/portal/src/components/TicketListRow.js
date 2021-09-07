@@ -13,9 +13,9 @@ export default function TicketListRow({ ticket }) {
       <td>{ticket.status}</td>
       <td>{ticket.bookingDate}</td>
       <td>{ticket.reservationDate}</td>
-      <td>{ticket.train.noOfSeatsAC}</td>
-      <td>{ticket.train.noOfSeatsGen}</td>
-      <td>
+      {/* <td>{ticket.train.noOfSeatsAC}</td>
+      <td>{ticket.train.noOfSeatsGen}</td> */}
+      {/* <td>
         <select
           value={status}
           onChange={(event) => setStatus(event.target.value)}
@@ -23,7 +23,7 @@ export default function TicketListRow({ ticket }) {
           <option value="CONFIRMED">CONFIRMED</option>
           <option value="CANCELLED">CANCELLED</option>
         </select>
-      </td>
+      </td> */}
     </tr>
   );
 }

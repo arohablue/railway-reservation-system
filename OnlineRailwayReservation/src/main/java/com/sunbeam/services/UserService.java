@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.sunbeam.dto.SearchTrainDTO;
 import com.sunbeam.dto.TicketDTO;
 import com.sunbeam.dto.TrainDTO;
+import com.sunbeam.dto.UserDTO;
 import com.sunbeam.entity.User;
 
 public interface UserService {
@@ -20,4 +21,6 @@ public interface UserService {
 	TicketDTO bookTicket(TicketDTO ticketDTO);
 	TicketDTO checkPnrStatus(TicketDTO ticketDTO);
 	Boolean cancelTicket(String pnr);
+	Boolean sendOTP(UserDTO user);	
+	Boolean verifyOTP(UserDTO user);	
 }

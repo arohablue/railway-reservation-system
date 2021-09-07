@@ -25,6 +25,7 @@ import com.sunbeam.entity.Train;
 import com.sunbeam.entity.TrainStatus;
 import com.sunbeam.entity.User;
 import com.sunbeam.helpers.DateAndTimeHelper;
+import com.sunbeam.helpers.SendEmail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private StationDao stationDao;
+
+	@Autowired
+	private SendEmail sendEmail;
 
 	@Autowired
 	private PNRTableDao pnrTableDao;
@@ -244,7 +248,7 @@ public class UserServiceImpl implements UserService {
 		ticket.setPassengers(passengers);
 
 		// Stream<TicketDTO> result = passengerTickets.stream()
-		// 		.map(passengerTicket -> TicketDTO.fromEntity(passengerTicket));
+		// .map(passengerTicket -> TicketDTO.fromEntity(passengerTicket));
 
 		return ticket;
 	}
@@ -296,6 +300,33 @@ public class UserServiceImpl implements UserService {
 			train = trainDao.findById(passengers.get(0).getTrain().getId());
 			train.setNoOfSeatsAC(train.getNoOfSeatsAC() - noOfSeatsAC);
 			train.setNoOfSeatsAC(train.getNoOfSeatsGen() - noOfSeatGen);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean sendOTP(UserDTO userDTO) {
+		String email = userDTO.getEmail();
+		User user = uDao.findByEmail(userDTO.getEmail());
+		if (user != null) {
+			String otp = generateOTP();
+			user.setOtp(otp);
+			sendEmail.sendOTP(email, otp);
+			return true;
+		}
+		return false;
+	}
+
+	private String generateOTP() {
+		long number = (long) Math.floor(Math.random() * 9_000_0L) + 1_000_0L;
+		return Long.toString(number);
+	}
+
+	@Override
+	public Boolean verifyOTP(UserDTO userDTO) {
+		User user = uDao.findByEmail(userDTO.getEmail());
+		if (user != null && userDTO.getOtp().equals(user.getOtp())) {
 			return true;
 		}
 		return false;

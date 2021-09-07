@@ -1,4 +1,4 @@
-import axios from "axios";  
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { url } from "../common/constants";
 import TicketListRow from "../components/TicketListRow";
@@ -45,9 +45,9 @@ export default function Tickets() {
             <th>PNR status</th>
             <th>Booking Date</th>
             <th>Reservation Date</th>
-            <th>AC seats</th>
-            <th>Normal seats</th>
-            <th>Actions</th>
+            {/* <th>AC seats</th>
+            <th>GEN seats</th> */}
+            {/* <th>Actions</th> */}
           </tr>
         </thead>
         <tbody>

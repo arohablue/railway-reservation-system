@@ -48,6 +48,21 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
+	@Column(name = "otp")
+	private String otp;
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+
 	public String getAdminKey() {
 		return adminKey;
 	}

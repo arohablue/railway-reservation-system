@@ -4,12 +4,12 @@ import { url } from "../common/constants";
 import { Bar } from "react-chartjs-2";
 
 export default function Revenue() {
-  const [totalRevenue, setTotalRevenue] = useState("");
+  const [totalRevenue, setTotalRevenue] = useState("0");
   const [acRevenue, setACRevenue] = useState([
-    1200, 1900, 300, 500, 200, 300, 1200, 1900, 300, 500, 200, 300,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   const [genRevenue, setGenRevenue] = useState([
-    200, 300, 2000, 500, 100, 400, 200, 300, 2000, 500, 100, 400,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function Revenue() {
       <div className="header">
         <h1 className="title">Total Revenue : ₹{totalRevenue}</h1>
       </div>
-      <div className="revenue-background">
+      <div className="white-background">
         <Bar data={data} options={options} />
       </div>
     </>

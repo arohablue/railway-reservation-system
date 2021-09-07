@@ -148,12 +148,20 @@ public class UserController {
 
 	@PostMapping("/sendotp")
 	public ResponseEntity<?> sendOTP(@RequestBody UserDTO userDTO) {
-		return Response.success("OTP Sent");
+		Boolean result = userService.sendOTP(userDTO);
+		if (result) {
+			return Response.success("OTP Sent");
+		}
+		return Response.error("Failed");
 	}
 
 	@PostMapping("/verifyotp")
 	public ResponseEntity<?> verifyOTP(@RequestBody UserDTO userDTO) {
-		return Response.success("OTP Verified");
+		Boolean result = userService.verifyOTP(userDTO);
+		if (result) {
+			return Response.success("OTP Verifed");
+		}
+		return Response.error("Failed");
 	}
 
 	@PostMapping("/cancelticket")

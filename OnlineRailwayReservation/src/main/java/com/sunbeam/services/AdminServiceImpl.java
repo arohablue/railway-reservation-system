@@ -73,21 +73,24 @@ public class AdminServiceImpl implements AdminService {
         Arrays.fill(genRevenue, 0.0);
         List<PNRTable> pnrTables = pnrTableDao.findAllByPnrStatus("CONFIRMED");
         for (PNRTable pnrTable : pnrTables) {
-            Train train = trainDao.findById(pnrTable.getPassengerTickets().get(0).getTrain().getId());
 
-            Date date = train.getDepartureTime(); // the date instance
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            int index = calendar.get(Calendar.MONTH);
-            for (PassengerTicket ticket : pnrTable.getPassengerTickets()) {
-                if (ticket.getBookingClass().equals("AC")) {
-                    acRevenue[index] = acRevenue[index]
-                            + pnrTable.getPassengerTickets().size() * train.getRoute().getAcClassFair();
-                    totalRevenue += train.getRoute().getAcClassFair() * pnrTable.getPassengerTickets().size();
-                } else {
-                    genRevenue[index] = genRevenue[index]
-                            + pnrTable.getPassengerTickets().size() * train.getRoute().getGeneralClassFair();
-                    totalRevenue += train.getRoute().getGeneralClassFair() * pnrTable.getPassengerTickets().size();
+            if (pnrTable.getPassengerTickets().size() > 0) {
+                Train train = trainDao.findById(pnrTable.getPassengerTickets().get(0).getTrain().getId());
+
+                Date date = train.getDepartureTime(); // the date instance
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                int index = calendar.get(Calendar.MONTH);
+                for (PassengerTicket ticket : pnrTable.getPassengerTickets()) {
+                    if (ticket.getBookingClass().equals("AC")) {
+                        acRevenue[index] = acRevenue[index]
+                                + pnrTable.getPassengerTickets().size() * train.getRoute().getAcClassFair();
+                        totalRevenue += train.getRoute().getAcClassFair() * pnrTable.getPassengerTickets().size();
+                    } else {
+                        genRevenue[index] = genRevenue[index]
+                                + pnrTable.getPassengerTickets().size() * train.getRoute().getGeneralClassFair();
+                        totalRevenue += train.getRoute().getGeneralClassFair() * pnrTable.getPassengerTickets().size();
+                    }
                 }
             }
         }

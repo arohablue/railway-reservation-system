@@ -35,19 +35,19 @@ export default function TicketDetails() {
       <h1 className="page-title">Ticket Details</h1>
       <div class="row">
         <h4 className="page-title">Train Info</h4>
-        <div className="mb-3 col-md-2">
+        <div className="mb-3 col-md-3">
           <span className="grey-text">Train Number: </span>
           <span>{ticketDetails.train.trainNumber}</span>
         </div>
-        <div className="mb-3 col-md-2">
+        <div className="mb-3 col-md-3">
           <span className="grey-text">PNR number: </span>
           <span>{ticketDetails.pnr}</span>
         </div>
-        <div className="mb-3 col-md-2">
+        <div className="mb-3 col-md-3">
           <span className="grey-text">PNR status: </span>
           <span>{ticketDetails.status}</span>
         </div>
-        <div className="mb-3 col-md-2">
+        <div className="mb-3 col-md-3">
           <span className="grey-text">Journey Date: </span>
           <span>{ticketDetails.reservationDate}</span>
         </div>

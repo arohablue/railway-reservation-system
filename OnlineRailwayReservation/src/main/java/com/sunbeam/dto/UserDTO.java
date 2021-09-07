@@ -20,6 +20,17 @@ public class UserDTO {
 	private String city;
 	private String role;
 	private String adminKey;
+	private String otp;
+
+	
+
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
 
 	public String getAdminKey() {
 		return adminKey;
