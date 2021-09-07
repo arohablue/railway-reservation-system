@@ -16,7 +16,5 @@ public interface RouteDao extends JpaRepository<Route, Integer> {
 
 	Route save(Route route);
 
-	@Modifying
-	@Query("delete from Route r where r.id=:Id")
 	void deleteById(Long Id);
 }
