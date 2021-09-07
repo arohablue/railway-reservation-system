@@ -22,7 +22,7 @@ const ChangePassword = () => {
       const data = {
         email: email,
       };
-      axios.post(url + "/email/sendotp", data).then((response) => {
+      axios.post(url + "/user/sendotp", data).then((response) => {
         const result = response.data;
         alert("successful");
 
@@ -46,7 +46,7 @@ const ChangePassword = () => {
         otp: otp,
       };
 
-      axios.post(url + "/email/verifyotp", data).then((response) => {
+      axios.post(url + "/user/verifyotp", data).then((response) => {
         const result = response.data;
         alert("successful");
 

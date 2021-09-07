@@ -98,14 +98,14 @@ public class UserController {
 	}
 
 	@PostMapping("/changepassword")
-	public ResponseEntity<?> update(ChangePassword cred) {
+	public ResponseEntity<?> update(@RequestBody ChangePassword cred) {
 		User user = userService.findByEmail(cred.getEmail());
 		if (user.getEmail().equals(cred.getEmail())) {
 
 			user.setPassword(cred.getPassword());
 			userService.save(user);
 
-			return ResponseEntity.ok(user);
+			return Response.success(user);
 		}
 		return null;
 	}
