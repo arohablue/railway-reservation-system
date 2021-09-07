@@ -42,10 +42,9 @@ public class PNRTable {
 	private User user;
 
 	// Child Relationships
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "pnrTable", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "pnrTable", orphanRemoval = true)
 	private List<PassengerTicket> passengerTickets = new ArrayList<>();
-	
-	
+
 	public String getPnrStatus() {
 		return pnrStatus;
 	}

@@ -17,6 +17,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "train_route")
 public class Route {
@@ -35,16 +38,16 @@ public class Route {
 	private Double generalClassFair = 0.0;
 
 	// Child Relationships
-	@OneToMany(mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Train> trains = new ArrayList<>();
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "source_station_id")
 	@JsonIgnore
 	private Station sourceStation;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "destination_station_id")
 	@JsonIgnore
 	private Station destinationStation;

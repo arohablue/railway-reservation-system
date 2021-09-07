@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TrainStatusDao extends JpaRepository<TrainStatus, Integer> {
 	TrainStatus findById(Long Id);
 
+	TrainStatus findByTrain(Train train);
+
 	TrainStatus findByTrainAndJourneyDate(Train train, Date journeyDate);
 
 	TrainStatus findByTrainAndJourneyDateBetween(Train train, Date startDate, Date endDate);

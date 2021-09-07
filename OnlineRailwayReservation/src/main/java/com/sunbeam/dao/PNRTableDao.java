@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PNRTableDao extends JpaRepository<PNRTable, Integer> {
 	PNRTable findById(Long Id);
 
-	List<PNRTable> findAll();
+	List<PNRTable> findAllByPnrStatus(String status);
 
 	PNRTable save(PNRTable pnrTable);
 

@@ -81,17 +81,19 @@ public class UserController {
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> authenticate(Credentials cred) {
 		User user = userService.authenticate(cred.getEmail(), cred.getPassword());
-		if (user != null)
+		if (user != null) {
 			System.out.println("login validate");
-		UserDTO userDto = new UserDTO();
-		userDto.setAge(user.getAge());
-		userDto.setEmail(user.getEmail());
-		userDto.setCity(user.getCity());
-		userDto.setGender(user.getGender());
-		userDto.setUserId(user.getId());
-		userDto.setMobile(user.getMobile());
-		userDto.setRole(user.getRole());
-		userDto.setState(user.getState());
+			UserDTO userDto = new UserDTO();
+			userDto.setAge(user.getAge());
+			userDto.setEmail(user.getEmail());
+			userDto.setCity(user.getCity());
+			userDto.setGender(user.getGender());
+			userDto.setUserId(user.getId());
+			userDto.setMobile(user.getMobile());
+			userDto.setRole(user.getRole());
+			userDto.setState(user.getState());
+			return ResponseEntity.ok(user);
+		}
 		return ResponseEntity.ok(user);
 	}
 

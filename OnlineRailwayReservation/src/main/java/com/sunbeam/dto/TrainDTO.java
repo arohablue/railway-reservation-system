@@ -3,9 +3,12 @@ package com.sunbeam.dto;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sunbeam.dao.TrainStatusDao;
 import com.sunbeam.entity.Train;
+import com.sunbeam.entity.TrainStatus;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TrainDTO {
 	private Long trainId;
@@ -115,6 +118,7 @@ public class TrainDTO {
 			tdto.setTrainId(train.getId());
 		}
 		return tdto;
+		
 	}
 
 	public static Train toEntity(TrainDTO tdto) {

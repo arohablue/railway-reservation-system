@@ -20,9 +20,8 @@ export default function TicketListRow({ ticket }) {
           value={status}
           onChange={(event) => setStatus(event.target.value)}
         >
-          <option value="booked">Booked</option>
-          <option value="waiting">Waiting</option>
-          <option value="rejected">Rejected</option>
+          <option value="CONFIRMED">CONFIRMED</option>
+          <option value="CANCELLED">CANCELLED</option>
         </select>
       </td>
     </tr>

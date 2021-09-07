@@ -1,7 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import { url } from "../common/constants";
+import PassengerRow from "../components/PassengerRow";
 
 export default function TicketDetails() {
   const location = useLocation();
@@ -20,7 +22,7 @@ export default function TicketDetails() {
     axios
       .post(url + "/user/cancelticket", { pnr: ticketDetails.pnr })
       .then((response) => {
-        console.log(response.data.data);
+        console.log("Data" + response.data.data);
         if (response.data.status === "success") {
           alert("Ticket cancellation success");
           history.push("/searchtrain");
@@ -32,9 +34,9 @@ export default function TicketDetails() {
     <div className="form-control">
       <h1 className="page-title">Ticket Details</h1>
       <div class="row">
-        <h4 className="page-title">Ticket Info</h4>
+        <h4 className="page-title">Train Info</h4>
         <div className="mb-3 col-md-2">
-          <span className="grey-text">Ticket Number: </span>
+          <span className="grey-text">Train Number: </span>
           <span>{ticketDetails.train.trainNumber}</span>
         </div>
         <div className="mb-3 col-md-2">
@@ -50,25 +52,10 @@ export default function TicketDetails() {
           <span>{ticketDetails.reservationDate}</span>
         </div>
       </div>
-      <div class="row">
-        <h4 className="page-title">User Info</h4>
-        <div className="mb-3 col-md-2">
-          <span className="grey-text">Name: </span>
-          <span>{ticketDetails.user.name}</span>
-        </div>
-        <div className="mb-3 col-md-2">
-          <span className="grey-text">Age: </span>
-          <span>{ticketDetails.user.age}</span>
-        </div>
-        <div className="mb-3 col-md-2">
-          <span className="grey-text">Gender: </span>
-          <span>{ticketDetails.user.gender}</span>
-        </div>
-        <div className="mb-3 col-md-2">
-          <span className="grey-text">Email: </span>
-          <span>{ticketDetails.user.email}</span>
-        </div>
-      </div>
+      <h4 className="page-title">User Info</h4>
+      {ticketDetails.passengers.map((passenger) => {
+        return <PassengerRow passenger={passenger} />;
+      })}
       {ticketDetails.status !== "CANCELLED" && (
         <button
           className="btn btn-danger text-1"

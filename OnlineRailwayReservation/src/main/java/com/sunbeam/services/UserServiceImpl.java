@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.transaction.Transactional;
 
 import com.sunbeam.dao.PNRTableDao;
@@ -130,6 +129,12 @@ public class UserServiceImpl implements UserService {
 				&& train.getRoute().getDestinationStation().getId().equals(searchTrainDTO.getToStation().getStationId())
 				&& checkSeatAvailbility(train, searchTrainDTO)).collect(Collectors.toList());
 
+		for (Train train2 : trainsFiltered) {
+			TrainStatus TrainStatus = trainStatusDao.findByTrain(train2);
+			train2.setNoOfSeatsAC(TrainStatus.getAvailableSeatAC());
+			train2.setNoOfSeatsGen(TrainStatus.getAvailableSeatGen());
+		}
+
 		return trainsFiltered.stream().map(train -> TrainDTO.fromEntity(train));
 	}
 
@@ -170,6 +175,7 @@ public class UserServiceImpl implements UserService {
 					passengerTicket.setEmail(passenger.getEmail());
 					passengerTicket.setDate(train.getDepartureTime());
 					passengerTicket.setBookingDate(ticketDTO.getBookingDate());
+					passengerTicket.setBookingClass(ticketDTO.getBookingClass());
 					passengerTicket.setTrain(train);
 					passengerTickets.add(passengerTicket);
 				}
@@ -177,7 +183,7 @@ public class UserServiceImpl implements UserService {
 
 			// Create and save PNR table
 			PNRTable pnrTable = new PNRTable();
-			pnrTable.setEmail(ticketDTO.getUser().getEmail());
+			pnrTable.setEmail(user.getEmail());
 			pnrTable.setUser(user);
 			pnrTable.setPnrStatus("CONFIRMED");
 			long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
@@ -215,26 +221,50 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public TicketDTO checkPnrStatus(TicketDTO ticketDTO) {
-		PassengerTicket passengerTicket = passengerTicketDao.findByPnr(ticketDTO.getPnr());
-		return TicketDTO.fromEntity(passengerTicket);
+		List<PassengerTicket> passengerTickets = passengerTicketDao.findByPnr(ticketDTO.getPnr());
+
+		TicketDTO ticket = new TicketDTO();
+		List<UserDTO> passengers = new ArrayList<>();
+
+		for (PassengerTicket passengerTicket : passengerTickets) {
+			UserDTO passenger = new UserDTO();
+			ticket.setPnr(passengerTicket.getPnr());
+			ticket.setBookingDate(passengerTicket.getBookingDate());
+			ticket.setReservationDate(passengerTicket.getTrain().getDepartureTime());
+			ticket.setTrain(TrainDTO.fromEntity(passengerTicket.getTrain()));
+			ticket.setBookingClass(passengerTicket.getBookingClass());
+			ticket.setStatus(passengerTicket.getBookingStatus());
+			passenger.setName(passengerTicket.getName());
+			passenger.setAge(passengerTicket.getAge());
+			passenger.setEmail(passengerTicket.getEmail());
+			passenger.setGender(passengerTicket.getGender());
+			passengers.add(passenger);
+		}
+
+		ticket.setPassengers(passengers);
+
+		// Stream<TicketDTO> result = passengerTickets.stream()
+		// 		.map(passengerTicket -> TicketDTO.fromEntity(passengerTicket));
+
+		return ticket;
 	}
 
 	private boolean udpateSeats(TicketDTO ticketDTO) {
 		try {
 
 			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
-			Date startDate = dateAndTimeHelper.getStartDate(ticketDTO.getTrain().getDepartureTime());
-			Date endDate = dateAndTimeHelper.getEndDate(ticketDTO.getTrain().getArrivalTime());
+			Date startDate = dateAndTimeHelper.getStartDate(train.getDepartureTime());
+			Date endDate = dateAndTimeHelper.getEndDate(train.getArrivalTime());
 
 			TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDateBetween(train, startDate, endDate);
 			if (trainStatus != null && trainStatus.getAvailableSeatGen() > 0 && trainStatus.getAvailableSeatAC() > 0) {
-				if (ticketDTO.getClass().equals("AC")) {
+				if (ticketDTO.getBookingClass().equals("AC")) {
 					trainStatus.setAvailableSeatAC(trainStatus.getAvailableSeatAC() - 1);
-					return true;
 				} else {
 					trainStatus.setAvailableSeatGen(trainStatus.getAvailableSeatGen() - 1);
-					return true;
 				}
+				trainStatusDao.save(trainStatus);
+				return true;
 			} else {
 				return false;
 			}
@@ -257,7 +287,7 @@ public class UserServiceImpl implements UserService {
 			for (PassengerTicket passengerTicket : passengers) {
 				passengerTicket.setBookingStatus("CANCELLED");
 				train = passengerTicket.getTrain();
-				if (passengerTicket.getClass().equals("AC")) {
+				if (passengerTicket.getBookingClass().equals("AC")) {
 					noOfSeatsAC++;
 				} else {
 					noOfSeatGen++;

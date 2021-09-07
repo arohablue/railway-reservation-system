@@ -25,24 +25,24 @@ public class Station {
 	@Column(name = "station_name")
 	private String stationName;
 
-	// Parent Relationships
-	@JsonIgnore
-	@OneToOne(mappedBy = "sourceStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Route routeSource;
+	// // Parent Relationships
+	// @JsonIgnore
+	// @OneToOne(mappedBy = "sourceStation", fetch = FetchType.LAZY, cascade =
+	// CascadeType.ALL, orphanRemoval = true)
+	// private Route routeSource;
 
-	@JsonIgnore
-	@OneToOne(mappedBy = "destinationStation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Route routeDestination;
+	// @JsonIgnore
+	// @OneToOne(mappedBy = "destinationStation", fetch = FetchType.LAZY, cascade =
+	// CascadeType.ALL, orphanRemoval = true)
+	// private Route routeDestination;
 
 	public Long getId() {
 		return id;
 	}
 
-	public Station(Long id, String stationName, Route routeSource, Route routeDestination) {
+	public Station(Long id, String stationName) {
 		this.id = id;
 		this.stationName = stationName;
-		this.routeSource = routeSource;
-		this.routeDestination = routeDestination;
 	}
 
 	public Station() {
@@ -60,20 +60,20 @@ public class Station {
 		this.stationName = stationName;
 	}
 
-	public Route getRouteSource() {
-		return routeSource;
-	}
+	// public Route getRouteSource() {
+	// return routeSource;
+	// }
 
-	public void setRouteSource(Route routeSource) {
-		this.routeSource = routeSource;
-	}
+	// public void setRouteSource(Route routeSource) {
+	// this.routeSource = routeSource;
+	// }
 
-	public Route getRouteDestination() {
-		return routeDestination;
-	}
+	// public Route getRouteDestination() {
+	// return routeDestination;
+	// }
 
-	public void setRouteDestination(Route routeDestination) {
-		this.routeDestination = routeDestination;
-	}
+	// public void setRouteDestination(Route routeDestination) {
+	// this.routeDestination = routeDestination;
+	// }
 
 }

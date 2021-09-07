@@ -13,8 +13,10 @@ const Home = () => {
       .post(url + `/user/checkpnr`, { pnr: pnr.toString() })
       .then((response) => {
         const ticketDetails = response.data;
-
-        history.push({ pathname: "ticketdetails", state: { ticketDetails } });
+        console.log(ticketDetails);
+        if (ticketDetails.status === "success") {
+          history.push({ pathname: "ticketdetails", state: { ticketDetails } });
+        }
       });
   };
 

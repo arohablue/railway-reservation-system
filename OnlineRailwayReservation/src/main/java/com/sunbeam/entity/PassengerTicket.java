@@ -45,6 +45,9 @@ public class PassengerTicket {
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "booking_class")
+	private String bookingClass;
+
 	@Column(name = "reservation_date")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd'T'HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -60,7 +63,7 @@ public class PassengerTicket {
 
 	// Parent Relationships
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "train_id")
 	private Train train;
 
@@ -69,6 +72,14 @@ public class PassengerTicket {
 	@JoinColumn(name = "pnr_id")
 	private PNRTable pnrTable;
 
+	public String getBookingClass() {
+		return bookingClass;
+	}
+
+	public void setBookingClass(String bookingClass) {
+		this.bookingClass = bookingClass;
+	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -76,12 +87,10 @@ public class PassengerTicket {
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 
 	public Date getBookingDate() {
 		return bookingDate;

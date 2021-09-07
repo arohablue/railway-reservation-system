@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { url } from "../common/constants";
 
@@ -52,14 +52,35 @@ const AddTrain = () => {
     } else if (routeId.length === 0) {
       alert("enter Route");
     } else {
+      // Date dated = departureTime;
+      // let dd = String(dated.getDate()).padStart(2, "0");
+      // let mm = String(dated.getMonth() + 1).padStart(2, "0");
+      // let hh = String(dated.getHours() + 1).padStart(2, "0");
+      // let MM = String(dated.getMinutes() + 1).padStart(2, "0");
+      // let yyyy = dated.getFullYear();
+
+      // Date datea = departureTime;
+      // let dd1 = String(datea.getDate()).padStart(2, "0");
+      // let mm1 = String(datea.getMonth() + 1).padStart(2, "0");
+      // let hh1 = String(datea.getHours() + 1).padStart(2, "0");
+      // let MM1 = String(datea.getMinutes() + 1).padStart(2, "0");
+      // let yyyy1 = datea.getFullYear();
+
+      // let departureDate = yyyy1 + "-" + mm1 + "-" + dd1 + " " + hh1 + ":" + MM1;
+      // let arrivalDate = yyyy + "-" + mm + "-" + dd + " " + hh + ":" + MM;
+
+      let departureDate = departureTime.split("T").join(" ");
+      let arrivalDate = arrivalTime.split("T").join(" ");
+
+      console.log();
       const data = {
         trainName: trainName,
         trainType: trainType,
         trainNumber: trainNumber,
         noOfSeatsGen: noOfSeatsGen,
         noOfSeatsAC: noOfSeatsAC,
-        departureTime: departureTime,
-        arrivalTime: arrivalTime,
+        departureTime: departureDate,
+        arrivalTime: arrivalDate,
         route: { routeId: routeId },
       };
       console.log(data);

@@ -17,33 +17,39 @@ public class TicketDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date reservationDate;
     private String status;
+    private String bookingClass;
     private List<UserDTO> passengers;
 
     public TicketDTO() {
     }
-    
 
     public TicketDTO(TrainDTO train, UserDTO user, String pnr, Date bookingDate, Date reservationDate, String status,
-            List<UserDTO> passengers) {
+            String bookingClass, List<UserDTO> passengers) {
         this.train = train;
         this.user = user;
         this.pnr = pnr;
         this.bookingDate = bookingDate;
         this.reservationDate = reservationDate;
         this.status = status;
+        this.bookingClass = bookingClass;
         this.passengers = passengers;
     }
 
+    public String getBookingClass() {
+        return bookingClass;
+    }
+
+    public void setBookingClass(String bookingClass) {
+        this.bookingClass = bookingClass;
+    }
 
     public List<UserDTO> getPassengers() {
         return passengers;
     }
 
-
     public void setPassengers(List<UserDTO> passengers) {
         this.passengers = passengers;
     }
-
 
     public TrainDTO getTrain() {
         return train;
@@ -107,6 +113,7 @@ public class TicketDTO {
             user.setEmail(passengerTicket.getEmail());
             ticketDTO.setReservationDate(passengerTicket.getDate());
             ticketDTO.setBookingDate(passengerTicket.getBookingDate());
+            ticketDTO.setBookingClass(passengerTicket.getBookingClass());
             ticketDTO.setStatus(passengerTicket.getBookingStatus());
             ticketDTO.setUser(user);
             ticketDTO.setTrain(TrainDTO.fromEntity(passengerTicket.getTrain()));

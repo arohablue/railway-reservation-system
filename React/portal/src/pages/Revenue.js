@@ -4,6 +4,7 @@ import { url } from "../common/constants";
 import { Bar } from "react-chartjs-2";
 
 export default function Revenue() {
+  const [totalRevenue, setTotalRevenue] = useState("");
   const [acRevenue, setACRevenue] = useState([
     1200, 1900, 300, 500, 200, 300, 1200, 1900, 300, 500, 200, 300,
   ]);
@@ -15,8 +16,9 @@ export default function Revenue() {
     console.log("Getting Revenue");
     axios.get(url + "/admin/adminpanel/getrevenue").then((response) => {
       console.log(response.data.data);
-      //setACRevenue(response.data.data.acRevenue);
-      //setGenRevenue(response.data.data.genRevenue);
+      setACRevenue(response.data.data.acRevenue);
+      setGenRevenue(response.data.data.genRevenue);
+      setTotalRevenue(response.data.data.totalRevenue);
     });
   }, []);
 
@@ -39,12 +41,12 @@ export default function Revenue() {
       {
         label: "AC Revenue",
         data: acRevenue,
-        backgroundColor: "rgb(252, 3, 3)",
+        backgroundColor: "#ff6361",
       },
       {
         label: "Gen Revenue",
         data: genRevenue,
-        backgroundColor: "rgb(54, 162, 235)",
+        backgroundColor: "#003f5c",
       },
     ],
   };
@@ -64,9 +66,11 @@ export default function Revenue() {
   return (
     <>
       <div className="header">
-        <h1 className="title">Revenue</h1>
+        <h1 className="title">Total Revenue : ₹{totalRevenue}</h1>
       </div>
-      <Bar data={data} options={options} />
+      <div className="revenue-background">
+        <Bar data={data} options={options} />
+      </div>
     </>
   );
 }

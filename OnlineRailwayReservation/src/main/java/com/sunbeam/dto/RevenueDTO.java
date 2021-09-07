@@ -3,40 +3,40 @@ package com.sunbeam.dto;
 import java.util.List;
 
 public class RevenueDTO {
-    private List<Integer> acRevenue;
-    private List<Integer> genRevenue;
-    private String totalRevenue;
+    private Double acRevenue[];
+    private Double genRevenue[];
+    private Double totalRevenue;
 
     public RevenueDTO() {
     }
 
-    public RevenueDTO(List<Integer> acRevenue, List<Integer> genRevenue, String totalRevenue) {
+    public RevenueDTO(Double[] acRevenue, Double[] genRevenue, Double totalRevenue) {
         this.acRevenue = acRevenue;
         this.genRevenue = genRevenue;
         this.totalRevenue = totalRevenue;
     }
 
-    public List<Integer> getAcRevenue() {
+    public Double[] getAcRevenue() {
         return acRevenue;
     }
 
-    public void setAcRevenue(List<Integer> acRevenue) {
+    public void setAcRevenue(Double[] acRevenue) {
         this.acRevenue = acRevenue;
     }
 
-    public List<Integer> getGenRevenue() {
+    public Double[] getGenRevenue() {
         return genRevenue;
     }
 
-    public void setGenRevenue(List<Integer> genRevenue) {
+    public void setGenRevenue(Double[] genRevenue) {
         this.genRevenue = genRevenue;
     }
 
-    public String getTotalRevenue() {
+    public Double getTotalRevenue() {
         return totalRevenue;
     }
 
-    public void setTotalRevenue(String totalRevenue) {
+    public void setTotalRevenue(Double totalRevenue) {
         this.totalRevenue = totalRevenue;
     }
 
