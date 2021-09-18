@@ -107,7 +107,7 @@ const SearchTrain = () => {
       {trainsSearched ? (
         <SearchedTrains trains={trainsList} />
       ) : (
-        <div>
+        <div className="">
           {" "}
           <h2 className="page-title">Search Train</h2>
           <div className="mb-3 col-md-4">
@@ -174,6 +174,9 @@ const SearchTrain = () => {
             <button onClick={searchTrain} className="btn btn-success">
               Search
             </button>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1560607985-ba7df7f6faf6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=926&q=80" />
           </div>
         </div>
       )}

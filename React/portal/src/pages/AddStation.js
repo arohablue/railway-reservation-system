@@ -34,7 +34,7 @@ const AddStation = () => {
   return (
     <div>
       <h1 className="page-title">Add Station</h1>
-      <div className="mb-3">
+      <div className="mb-3 add-train-wrapper">
         <label htmlFor="">Station Name</label>
         <input
           onChange={(e) => {
@@ -43,15 +43,12 @@ const AddStation = () => {
           type="text"
           className="form-control"
         />
-      </div>
-
-      <div className="mb-3">
-        <button onClick={addStationToDB} className="btn btn-success">
+        <button onClick={addStationToDB} className="btn btn-success mt-2">
           Add
         </button>
 
         <Link to="/station">
-          <a className="btn btn-warning">Back</a>
+          <a className="btn btn-warning mt-2">Back</a>
         </Link>
       </div>
     </div>

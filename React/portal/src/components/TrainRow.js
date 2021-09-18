@@ -55,22 +55,22 @@ const TrainRow = ({ train }) => {
       <td>{train.route.destinationStation.stationName}</td>
       <td>₹{train.route.acClassFair}</td>
       <td>₹{train.route.generalClassFair}</td>
-      {isAdmin ? (
-        <button
-          onClick={() => {
-            deleteTrain();
-          }}
-          className="btn btn-danger btn-sm"
-        >
-          Delete
-        </button>
-      ) : (
-        <td>
+      <td>
+        {isAdmin ? (
+          <button
+            onClick={() => {
+              deleteTrain();
+            }}
+            className="btn btn-danger btn-sm"
+          >
+            Delete
+          </button>
+        ) : (
           <button onClick={() => bookTicket()} className="btn btn-info btn-sm ">
             Book
           </button>
-        </td>
-      )}
+        )}
+      </td>
     </tr>
   );
 };

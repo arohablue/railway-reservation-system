@@ -104,7 +104,7 @@ const AddTrain = () => {
   }
 
   return (
-    <div>
+    <div className="add-train-wrapper">
       <h1 className="page-title">Add Train</h1>
       <div className="mb-3">
         <label htmlFor="">Name</label>

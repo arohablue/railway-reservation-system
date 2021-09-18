@@ -9,15 +9,28 @@ const Home = () => {
   const [pnr, setPnr] = useState(null);
 
   const searchPNR = () => {
-    axios
-      .post(url + `/user/checkpnr`, { pnr: pnr.toString() })
-      .then((response) => {
-        const ticketDetails = response.data;
-        console.log(ticketDetails);
-        if (ticketDetails.status === "success") {
-          history.push({ pathname: "ticketdetails", state: { ticketDetails } });
-        }
-      });
+    console.log("🚀 ~ file: Home.js ~ line 13 ~ searchPNR ~ pnr", pnr);
+    if (pnr !== null && pnr !== "") {
+      axios
+        .post(url + `/user/checkpnr`, { pnr: pnr.toString() })
+        .then((response) => {
+          const ticketDetails = response.data;
+          console.log(ticketDetails);
+          if (
+            ticketDetails.status === "success" &&
+            ticketDetails.data.pnr !== null
+          ) {
+            history.push({
+              pathname: "ticketdetails",
+              state: { ticketDetails },
+            });
+          } else {
+            alert(`No ticket found with PNR ${pnr}`);
+          }
+        });
+    } else {
+      alert("Enter a PNR to search status!");
+    }
   };
 
   return (
@@ -31,12 +44,7 @@ const Home = () => {
             setPnr(e.target.value);
           }}
         />
-        <button
-          className="btn btn-secondary mx-2"
-          onClick={() => {
-            searchPNR();
-          }}
-        >
+        <button className="btn btn-secondary mx-2" onClick={searchPNR}>
           Search
         </button>
       </div>

@@ -37,6 +37,7 @@ const Station = () => {
         <thead>
           <tr>
             <th>Station Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

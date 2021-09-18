@@ -101,7 +101,7 @@ const AddRoute = () => {
   return (
     <div>
       <h1 className="page-title">Add Route</h1>
-      <div className="mb-3 col-md-4">
+      <div className="mb-3 add-train-wrapper">
         <label htmlFor="">Source</label>
         <select
           value={sourceStation}
@@ -117,7 +117,7 @@ const AddRoute = () => {
         </select>
       </div>
 
-      <div className="mb-3 col-md-4">
+      <div className="mb-3 add-train-wrapper">
         <label htmlFor="">Destination</label>
         <select
           value={destinationStation}
@@ -132,7 +132,7 @@ const AddRoute = () => {
           })}
         </select>
       </div>
-      <div className="mb-3 col-md-4">
+      <div className="mb-3 add-train-wrapper">
         <label htmlFor="">General Fair</label>
         <input
           onChange={(e) => {
@@ -142,7 +142,7 @@ const AddRoute = () => {
           className="form-control"
         />
       </div>
-      <div className="mb-3 col-md-4">
+      <div className="mb-3 add-train-wrapper">
         <label htmlFor="">AC Fair</label>
         <input
           onChange={(e) => {
@@ -152,12 +152,12 @@ const AddRoute = () => {
           className="form-control"
         />
       </div>
-      <div className="mb-3 col-md-4">
+      <div className="mb-3 add-train-wrapper">
         <button onClick={addRoute} className="btn btn-success">
           Add
         </button>
 
-        <Link to="/route">
+        <Link to="/routes">
           <a className="btn btn-warning">Back</a>
         </Link>
       </div>

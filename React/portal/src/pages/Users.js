@@ -49,6 +49,7 @@ const Users = () => {
             <th>State</th>
             <th>City</th>
             <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

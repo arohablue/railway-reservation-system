@@ -7,21 +7,21 @@ export default function TicketForm() {
   const location = useLocation();
   const history = useHistory();
 
-  const [name, setName] = useState();
-  const [age, setAge] = useState();
-  const [email, setEmail] = useState();
+  const [name, setName] = useState(null);
+  const [age, setAge] = useState(null);
+  const [email, setEmail] = useState(null);
   const [gender, setGender] = useState("male");
-  const [name1, setName1] = useState();
-  const [age1, setAge1] = useState();
-  const [email1, setEmail1] = useState();
+  const [name1, setName1] = useState(null);
+  const [age1, setAge1] = useState(null);
+  const [email1, setEmail1] = useState(null);
   const [gender1, setGender1] = useState("male");
-  const [name2, setName2] = useState();
-  const [age2, setAge2] = useState();
-  const [email2, setEmail2] = useState();
+  const [name2, setName2] = useState(null);
+  const [age2, setAge2] = useState(null);
+  const [email2, setEmail2] = useState(null);
   const [gender2, setGender2] = useState("male");
-  const [name3, setName3] = useState();
-  const [age3, setAge3] = useState();
-  const [email3, setEmail3] = useState();
+  const [name3, setName3] = useState(null);
+  const [age3, setAge3] = useState(null);
+  const [email3, setEmail3] = useState(null);
   const [gender3, setGender3] = useState("male");
   const [bookingClass, setBookingClass] = useState("AC");
 
@@ -72,14 +72,22 @@ export default function TicketForm() {
       reservationDate: today,
     };
 
-    axios.post(url + "/user/bookticket", requestData).then((response) => {
-      const ticketDetails = response.data;
-      console.log(
-        "🚀 ~ file: TicketForm.js ~ line 28 ~ axios.post ~ ticketDetails",
-        ticketDetails
-      );
-      history.push({ pathname: "/ticketdetails", state: { ticketDetails } });
-    });
+    if (
+      requestData.passengers[0].name !== null &&
+      requestData.passengers[0].age !== null &&
+      requestData.passengers[0].email !== null
+    ) {
+      axios.post(url + "/user/bookticket", requestData).then((response) => {
+        const ticketDetails = response.data;
+        console.log(
+          "🚀 ~ file: TicketForm.js ~ line 28 ~ axios.post ~ ticketDetails",
+          ticketDetails
+        );
+        history.push({ pathname: "/ticketdetails", state: { ticketDetails } });
+      });
+    } else {
+      alert("Enter Passenger details!");
+    }
   };
 
   return (

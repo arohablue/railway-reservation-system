@@ -53,6 +53,7 @@ const Trains = () => {
             <th>Destination Station</th>
             <th>General Fair</th>
             <th>Ac Fair</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

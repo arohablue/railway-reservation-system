@@ -39,7 +39,7 @@ const Routes = () => {
             <th>destination Station</th>
             <th>Gen Fair</th>
             <th>AC Fair</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
