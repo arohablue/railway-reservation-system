@@ -35,7 +35,9 @@ const AddStation = () => {
     <div>
       <h1 className="page-title">Add Station</h1>
       <div className="mb-3 add-train-wrapper">
-        <label htmlFor="">Station Name</label>
+        <label className="label-bold" htmlFor="">
+          Station Name
+        </label>
         <input
           onChange={(e) => {
             setStationName(e.target.value);

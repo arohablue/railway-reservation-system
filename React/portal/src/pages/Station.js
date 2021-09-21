@@ -27,13 +27,13 @@ const Station = () => {
   };
 
   return (
-    <div className="form-control">
+    <div className="">
       <h1 className="page-title">Stations</h1>
 
       <Link to="/add-station">
         <a className="btn btn-success">Add Station</a>
       </Link>
-      <table className="table table-striped">
+      <table className="table table-striped col-md-3">
         <thead>
           <tr>
             <th>Station Name</th>
@@ -46,6 +46,9 @@ const Station = () => {
           })}
         </tbody>
       </table>
+      <div>
+        <img className="img-background-wrapper" src="station.svg" />
+      </div>
     </div>
   );
 };

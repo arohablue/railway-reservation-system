@@ -58,6 +58,7 @@ const Users = () => {
           })}
         </tbody>
       </table>
+      <img className="img-background-wrapper" src="users.svg" />
     </div>
   );
 };

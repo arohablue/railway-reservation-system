@@ -62,6 +62,7 @@ const Trains = () => {
           })}
         </tbody>
       </table>
+      <img className="img-background-wrapper" src="train.svg" />
     </div>
   );
 };

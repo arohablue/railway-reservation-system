@@ -107,7 +107,9 @@ const AddTrain = () => {
     <div className="add-train-wrapper">
       <h1 className="page-title">Add Train</h1>
       <div className="mb-3">
-        <label htmlFor="">Name</label>
+        <label className="label-bold" htmlFor="">
+          Name
+        </label>
         <input
           onChange={(e) => {
             setTrainName(e.target.value);
@@ -117,7 +119,9 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">Number</label>
+        <label className="label-bold" htmlFor="">
+          Number
+        </label>
         <input
           onChange={(e) => {
             setTrainNumber(e.target.value);
@@ -127,7 +131,7 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label>Type :</label>
+        <label className="label-bold">Type :</label>
         <select
           name="type"
           id="type"
@@ -146,7 +150,9 @@ const AddTrain = () => {
         </select>
       </div>
       <div className="mb-3">
-        <label htmlFor="">No of Seats in General Class</label>
+        <label className="label-bold" htmlFor="">
+          No of Seats in General Class
+        </label>
         <input
           onChange={(e) => {
             setNoOfSeatsGen(e.target.value);
@@ -156,7 +162,9 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">No of Seats in AC Class</label>
+        <label className="label-bold" htmlFor="">
+          No of Seats in AC Class
+        </label>
         <input
           onChange={(e) => {
             setNoOfSeatsAC(e.target.value);
@@ -166,7 +174,9 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">Departure Time</label>
+        <label className="label-bold" htmlFor="">
+          Departure Time
+        </label>
         <input
           onChange={(e) => {
             setDepartureTime(e.target.value);
@@ -176,7 +186,9 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">Arrival Time</label>
+        <label className="label-bold" htmlFor="">
+          Arrival Time
+        </label>
         <input
           onChange={(e) => {
             setArrivalTime(e.target.value);
@@ -186,7 +198,9 @@ const AddTrain = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="">Route of Train</label>
+        <label className="label-bold" htmlFor="">
+          Route of Train
+        </label>
         <select
           value={routeId}
           onChange={handleRouteChange}
@@ -213,6 +227,7 @@ const AddTrain = () => {
           <a className="btn btn-warning">Back</a>
         </Link>
       </div>
+      <img src="train.svg" />
     </div>
   );
 };

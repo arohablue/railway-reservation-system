@@ -89,82 +89,81 @@ const ChangePassword = () => {
 
   return (
     <div className="style">
-      <div className="container">
-        <h1>Change Your Password</h1>
-        <div className="image">
-          <div className="mb-3">
+      <h1 className="page-title">Change Your Password</h1>
+      <div className="container-center">
+        <div className="mb-3 col-md-3 ">
+          <div className="mb-3 ">
+            <label className="label-bold">Email</label>
+            <input
+              onChange={(event) => {
+                // updating the state with user entered value
+                setEmail(event.target.value);
+              }}
+              className="form-control"
+              type="email"
+              placeholder="Enter Your Email"
+            />
+            {otpSent && !otpConfirm && (
+              <div className="mt-3">
+                <label className="label-bold">OTP</label>
+                <input
+                  onChange={(event) => {
+                    setOtp(event.target.value);
+                  }}
+                  className="form-control"
+                  type="OTP"
+                  placeholder="Enter Your OTP"
+                />
+                <button onClick={verifyOtp} className="btn btn-success mt-3">
+                  Verify OTP
+                </button>
+              </div>
+            )}
+          </div>
+          <div className="mb-3 ">
+            {!otpSent && (
+              <button onClick={sendOtp} className="btn btn-success">
+                Send OTP
+              </button>
+            )}
+          </div>
+          {otpConfirm && (
             <div className="mb-3">
-              <label>Email</label>
+              <label className="label-bold">New Password</label>
               <input
                 onChange={(event) => {
                   // updating the state with user entered value
-                  setEmail(event.target.value);
+                  setPassword(event.target.value);
                 }}
                 className="form-control"
-                type="email"
-                placeholder="Enter Your Email"
+                type="password"
+                placeholder="Enter New Password"
               />
-              {otpSent && !otpConfirm && (
-                <div className="mt-3">
-                  <label>OTP</label>
-                  <input
-                    onChange={(event) => {
-                      setOtp(event.target.value);
-                    }}
-                    className="form-control"
-                    type="OTP"
-                    placeholder="Enter Your OTP"
-                  />
-                  <button onClick={verifyOtp} className="btn btn-success mt-3">
-                    Verify OTP
-                  </button>
-                </div>
-              )}
+              <label className="label-bold">Confirm New Password</label>
+              <input
+                onChange={(event) => {
+                  // updating the state with user entered value
+                  setConfirmPassword(event.target.value);
+                }}
+                className="form-control"
+                type="password"
+                placeholder="Enter New Password"
+              />
             </div>
-            <div className="mb-3">
-              {!otpSent && (
-                <button onClick={sendOtp} className="btn btn-success">
-                  Send OTP
-                </button>
-              )}
-            </div>
+          )}
+          <div className="mb-3 col-md-3">
             {otpConfirm && (
-              <div className="mb-3">
-                <label>New Password</label>
-                <input
-                  onChange={(event) => {
-                    // updating the state with user entered value
-                    setPassword(event.target.value);
-                  }}
-                  className="form-control"
-                  type="password"
-                  placeholder="Enter New Password"
-                />
-                <label>Confirm New Password</label>
-                <input
-                  onChange={(event) => {
-                    // updating the state with user entered value
-                    setConfirmPassword(event.target.value);
-                  }}
-                  className="form-control"
-                  type="password"
-                  placeholder="Enter New Password"
-                />
-              </div>
+              <button onClick={changePassword} className="btn btn-success">
+                Change Password
+              </button>
             )}
-            <div className="mb-3">
-              {otpConfirm && (
-                <button onClick={changePassword} className="btn btn-success">
-                  Change Password
-                </button>
-              )}
-              <Link className="nav-link" to="/signin">
-                Back
-              </Link>
-            </div>
+            <Link className="nav-link" to="/signin">
+              Back
+            </Link>
           </div>
         </div>
       </div>
+      <img src="forgot-password.svg" />
     </div>
   );
 };

@@ -113,7 +113,7 @@ const Signup = () => {
         <h1>Sign up</h1>
         <div class="row">
           <div className="mb-3 col-md-6">
-            <label>Email</label>
+            <label className="label-bold">Email</label>
             <input
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -124,7 +124,7 @@ const Signup = () => {
             />
           </div>
           <div className="mb-3 col-md-6">
-            <label>Password</label>
+            <label className="label-bold">Password</label>
             <input
               onChange={(event) => {
                 setPassword(event.target.value);
@@ -137,7 +137,7 @@ const Signup = () => {
         </div>
         <div class="row">
           <div className="mb-3 col-md-6">
-            <label>Age</label>
+            <label className="label-bold">Age</label>
             <input
               onChange={(event) => {
                 setAge(event.target.value);
@@ -148,7 +148,7 @@ const Signup = () => {
             />
           </div>
           <div className="mb-3 col-md-6">
-            <label>Gender</label>
+            <label className="label-bold">Gender</label>
             <input
               onChange={(event) => {
                 setGender(event.target.value);
@@ -161,7 +161,7 @@ const Signup = () => {
         </div>
         <div class="row">
           <div className="mb-3 col-md-6">
-            <label>Mobile</label>
+            <label className="label-bold">Mobile</label>
             <input
               onChange={(event) => {
                 setMobile(event.target.value);
@@ -172,7 +172,7 @@ const Signup = () => {
             />
           </div>
           <div className="mb-3 col-md-6">
-            <label>State</label>
+            <label className="label-bold">State</label>
             <input
               onChange={(event) => {
                 setState(event.target.value);
@@ -185,7 +185,7 @@ const Signup = () => {
         </div>
         <div class="row">
           <div className="mb-3 col-md-6">
-            <label>City</label>
+            <label className="label-bold">City</label>
             <input
               onChange={(event) => {
                 setCity(event.target.value);
@@ -196,7 +196,7 @@ const Signup = () => {
             />
           </div>
           <div className="mb-3 col-md-6">
-            <label>Auth Code</label>
+            <label className="label-bold">Auth Code</label>
             <input
               onChange={(event) => {
                 setAuthCode(event.target.value);
@@ -209,7 +209,7 @@ const Signup = () => {
         </div>
         <div class="row">
           <div className="mb-3 col-md-6">
-            <label>Role :</label>
+            <label className="label-bold">Role :</label>
             <select
               name="role"
               id="role"

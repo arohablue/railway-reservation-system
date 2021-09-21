@@ -19,6 +19,9 @@ public class TicketDTO {
     private String status;
     private String bookingClass;
     private List<UserDTO> passengers;
+    private String cardNumber;
+    private String cardHolderName;
+    private String cardExpiry;
 
     public TicketDTO() {
     }
@@ -33,6 +36,32 @@ public class TicketDTO {
         this.status = status;
         this.bookingClass = bookingClass;
         this.passengers = passengers;
+    }
+
+    
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
+
+    public String getCardExpiry() {
+        return cardExpiry;
+    }
+
+    public void setCardExpiry(String cardExpiry) {
+        this.cardExpiry = cardExpiry;
     }
 
     public String getBookingClass() {

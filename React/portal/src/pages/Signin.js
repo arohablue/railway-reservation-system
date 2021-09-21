@@ -44,45 +44,52 @@ const Signin = () => {
   };
 
   return (
-    <div className="">
-      <h1>Sign in</h1>
-
-      <div className="mb-3 col-md-3">
-        <label>Email</label>
-        <input
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          placeholder="enter email"
-          className="form-control"
-          type="email"
-        />
+    <div>
+      <h1 className="page-title ">Sign in</h1>
+      <div className="row container-center">
+        <div className="mb-3 col-md-3">
+          <label className="label-bold">Email</label>
+          <input
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            placeholder="enter email"
+            className="form-control"
+            type="email"
+          />
+        </div>
+        <div className="mb-3 col-md-3">
+          <label className="label-bold">Password</label>
+          <input
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            placeholder="enter password"
+            className="form-control"
+            type="password"
+          />
+        </div>
       </div>
-      <div className="mb-3 col-md-3">
-        <label>Password</label>
-        <input
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          placeholder="enter password"
-          className="form-control"
-          type="password"
-        />
-      </div>
-      <div className="mb-3">
-        <button onClick={signinUser} className="btn btn-success">
-          Signin
-        </button>
-        {/* <Link className="nav-link" to="/home">
+      <div className="row container-center">
+        <div className="mb-3 col-md-3">
+          <button onClick={signinUser} className="btn btn-success">
+            Signin
+          </button>
+          {/* <Link className="nav-link" to="/home">
           already have an account
         </Link>
         <Link className="nav-link" to="/adminsignin">
           Admin Signin
         </Link>*/}
-        <Link className="nav-link" to="/forgotpassword">
-          Forgot password ?
-        </Link>
+        </div>
+        <div className="mb-3 col-md-3">
+          <Link className="nav-link" to="/forgotpassword">
+            Forgot password ?
+          </Link>
+        </div>
       </div>
+
+      <img className="img-background-wrapper" src="signin.svg" />
     </div>
   );
 };

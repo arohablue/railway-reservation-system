@@ -43,7 +43,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  font-family: "Numans", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .user-image {
@@ -81,4 +81,37 @@ body {
 
 .card-form {
   margin: 0 auto;
+}
+
+.img-background-wrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.label-bold {
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+
+.heading-text {
+  text-align: center;
+}
+
+.container-center {
+  display: flex;
+  justify-content: center;
+}
+
+.table-small {
+  width: 100%;
+}
+.feedback-background {
+  background-image: url("./images/feedback.svg");
+  width: 100%;
+}
+
+.passengers {
+  display: flex;
 }

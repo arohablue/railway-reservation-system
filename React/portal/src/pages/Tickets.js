@@ -56,6 +56,7 @@ export default function Tickets() {
           })}
         </tbody>
       </table>
+      <img className="img-background-wrapper" src="station.svg" />
     </div>
   );
 }

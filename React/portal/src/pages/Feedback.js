@@ -37,8 +37,8 @@ export default function Feedback() {
   return (
     <div>
       <div className="mt-3 page-title-bold">Please provide feedback</div>
-      <div className="mb-3">
-        <label>Name</label>
+      <div className="mb-3 col-md-3 ">
+        <label className="label-bold">Name</label>
         <input
           onChange={(event) => {
             setName(event.target.value);
@@ -50,8 +50,8 @@ export default function Feedback() {
           required={"Please enter name"}
         />
       </div>
-      <div className="mb-3">
-        <label>Email</label>
+      <div className="mb-3 col-md-3">
+        <label className="label-bold">Email</label>
         <input
           onChange={(event) => {
             setEmail(event.target.value);
@@ -63,8 +63,8 @@ export default function Feedback() {
           required
         />
       </div>
-      <div className="mb-3">
-        <label>Suggestion</label>
+      <div className="mb-3 col-md-3">
+        <label className="label-bold">Suggestion</label>
         <div>
           <textarea
             type="text"
@@ -80,6 +80,7 @@ export default function Feedback() {
       <button className="btn btn-primary" type="submit" onClick={onSubmit}>
         Submit
       </button>
+      <img src="feedback.svg" />
     </div>
   );
 }

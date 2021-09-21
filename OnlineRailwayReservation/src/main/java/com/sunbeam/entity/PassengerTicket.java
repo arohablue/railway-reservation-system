@@ -48,6 +48,15 @@ public class PassengerTicket {
 	@Column(name = "booking_class")
 	private String bookingClass;
 
+	@Column(name = "card_number")
+	private String cardNumber;
+
+	@Column(name = "card_holder_number")
+	private String cardHolderName;
+
+	@Column(name = "card_expiry")
+	private String cardExpiry;
+
 	@Column(name = "reservation_date")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd'T'HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -71,6 +80,30 @@ public class PassengerTicket {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pnr_id")
 	private PNRTable pnrTable;
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public String getCardHolderName() {
+		return cardHolderName;
+	}
+
+	public void setCardHolderName(String cardHolderName) {
+		this.cardHolderName = cardHolderName;
+	}
+
+	public String getCardExpiry() {
+		return cardExpiry;
+	}
+
+	public void setCardExpiry(String cardExpiry) {
+		this.cardExpiry = cardExpiry;
+	}
 
 	public String getBookingClass() {
 		return bookingClass;

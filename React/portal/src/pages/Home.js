@@ -34,27 +34,46 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="background-image-home">
       <h2 className="page-title">Welcome</h2>
-      <div>
-        <div>Check PNR Status</div>
-        <input
-          type="number"
-          onChange={(e) => {
-            setPnr(e.target.value);
-          }}
-        />
-        <button className="btn btn-secondary mx-2" onClick={searchPNR}>
-          Search
-        </button>
+      <div className="row container-center">
+        <div className="col-md-3">
+          <div>
+            <div>Check PNR Status</div>
+            <input
+              type="number"
+              onChange={(e) => {
+                setPnr(e.target.value);
+              }}
+            />
+            <button className="btn btn-success mx-2" onClick={searchPNR}>
+              Search
+            </button>
+          </div>
+          <div className="mt-4">OR</div>
+          <button
+            className="btn btn-success mt-4"
+            onClick={() => history.push("/searchtrain")}
+          >
+            Search Trains
+          </button>
+        </div>
       </div>
-      <div className="mt-4">OR</div>
-      <button
-        className="btn btn-info mt-4"
-        onClick={() => history.push("/searchtrain")}
-      >
-        Search Trains
-      </button>
+      <br />
+      <div className="row container-center">
+        <div className="col-md-3">
+          <div className="mt-3 text-1 grey-text">
+            Help us improve our portal's user experience
+          </div>
+          <button
+            className="btn btn-info text-1"
+            onClick={() => history.push("/feedback")}
+          >
+            Give feedback
+          </button>
+        </div>
+      </div>
+      <img src="train.svg" />
     </div>
   );
 };

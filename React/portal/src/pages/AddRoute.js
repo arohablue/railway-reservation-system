@@ -102,7 +102,9 @@ const AddRoute = () => {
     <div>
       <h1 className="page-title">Add Route</h1>
       <div className="mb-3 add-train-wrapper">
-        <label htmlFor="">Source</label>
+        <label className="label-bold" htmlFor="">
+          Source
+        </label>
         <select
           value={sourceStation}
           onChange={handleSourceChange}
@@ -118,7 +120,9 @@ const AddRoute = () => {
       </div>
 
       <div className="mb-3 add-train-wrapper">
-        <label htmlFor="">Destination</label>
+        <label className="label-bold" htmlFor="">
+          Destination
+        </label>
         <select
           value={destinationStation}
           onChange={handleDestinationChange}
@@ -133,7 +137,9 @@ const AddRoute = () => {
         </select>
       </div>
       <div className="mb-3 add-train-wrapper">
-        <label htmlFor="">General Fair</label>
+        <label className="label-bold" htmlFor="">
+          General Fair
+        </label>
         <input
           onChange={(e) => {
             setGenFair(e.target.value);
@@ -143,7 +149,9 @@ const AddRoute = () => {
         />
       </div>
       <div className="mb-3 add-train-wrapper">
-        <label htmlFor="">AC Fair</label>
+        <label className="label-bold" htmlFor="">
+          AC Fair
+        </label>
         <input
           onChange={(e) => {
             setACfair(e.target.value);
@@ -161,6 +169,7 @@ const AddRoute = () => {
           <a className="btn btn-warning">Back</a>
         </Link>
       </div>
+      <img src="routes.svg" />
     </div>
   );
 };

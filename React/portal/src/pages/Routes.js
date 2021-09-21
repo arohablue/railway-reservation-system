@@ -48,6 +48,7 @@ const Routes = () => {
           })}
         </tbody>
       </table>
+      <img className="img-background-wrapper" src="routes.svg" />
     </div>
   );
 };

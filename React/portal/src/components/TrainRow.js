@@ -53,8 +53,8 @@ const TrainRow = ({ train }) => {
       <td>{train.arrivalTime}</td>
       <td>{train.route.sourceStation.stationName}</td>
       <td>{train.route.destinationStation.stationName}</td>
-      <td>₹{train.route.acClassFair}</td>
       <td>₹{train.route.generalClassFair}</td>
+      <td>₹{train.route.acClassFair}</td>
       <td>
         {isAdmin ? (
           <button

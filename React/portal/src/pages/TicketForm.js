@@ -10,19 +10,19 @@ export default function TicketForm() {
   const [name, setName] = useState(null);
   const [age, setAge] = useState(null);
   const [email, setEmail] = useState(null);
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("None");
   const [name1, setName1] = useState(null);
   const [age1, setAge1] = useState(null);
   const [email1, setEmail1] = useState(null);
-  const [gender1, setGender1] = useState("male");
+  const [gender1, setGender1] = useState("None");
   const [name2, setName2] = useState(null);
   const [age2, setAge2] = useState(null);
   const [email2, setEmail2] = useState(null);
-  const [gender2, setGender2] = useState("male");
+  const [gender2, setGender2] = useState("None");
   const [name3, setName3] = useState(null);
   const [age3, setAge3] = useState(null);
   const [email3, setEmail3] = useState(null);
-  const [gender3, setGender3] = useState("male");
+  const [gender3, setGender3] = useState("None");
   const [bookingClass, setBookingClass] = useState("AC");
 
   const bookTicket = () => {
@@ -70,21 +70,18 @@ export default function TicketForm() {
       bookingClass: bookingClass,
       bookingDate: today,
       reservationDate: today,
+      cardNumber: "",
+      cardHolderName: "",
+      cardExpiry: "",
     };
 
     if (
       requestData.passengers[0].name !== null &&
       requestData.passengers[0].age !== null &&
-      requestData.passengers[0].email !== null
+      requestData.passengers[0].email !== null &&
+      requestData.passengers[0].gender !== "None"
     ) {
-      axios.post(url + "/user/bookticket", requestData).then((response) => {
-        const ticketDetails = response.data;
-        console.log(
-          "🚀 ~ file: TicketForm.js ~ line 28 ~ axios.post ~ ticketDetails",
-          ticketDetails
-        );
-        history.push({ pathname: "/ticketdetails", state: { ticketDetails } });
-      });
+      history.push({ pathname: "/payment", state: { requestData } });
     } else {
       alert("Enter Passenger details!");
     }
@@ -92,9 +89,9 @@ export default function TicketForm() {
 
   return (
     <div className="white-background">
-      <h2 className="mt-3">Enter Details to Book</h2>
+      <h2 className="mt-3 page-title">Enter Details to Book</h2>
       <div className="mb-3 col-md-3">
-        <label>Booking Class</label>
+        <label className="label-bold">Booking Class</label>
         <div>
           <select
             value={bookingClass}
@@ -108,7 +105,7 @@ export default function TicketForm() {
       <div class="row">
         <h4 className="mt-3">Passenger 1</h4>
         <div className="mb-3 col-md-3">
-          <label>Name</label>
+          <label className="label-bold">Name</label>
           <input
             onChange={(event) => {
               setName(event.target.value);
@@ -119,7 +116,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Age</label>
+          <label className="label-bold">Age</label>
           <input
             onChange={(event) => {
               setAge(event.target.value);
@@ -130,7 +127,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Email</label>
+          <label className="label-bold">Email</label>
           <input
             onChange={(event) => {
               setEmail(event.target.value);
@@ -141,12 +138,13 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Gender</label>
+          <label className="label-bold">Gender</label>
           <div>
             <select
               value={gender}
               onChange={(event) => setGender(event.target.value)}
             >
+              <option value="None">None</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -157,7 +155,7 @@ export default function TicketForm() {
       <div class="row">
         <h4 className="mt-3">Passenger 2</h4>
         <div className="mb-3 col-md-3">
-          <label>Name</label>
+          <label className="label-bold">Name</label>
           <input
             onChange={(event) => {
               setName1(event.target.value);
@@ -168,7 +166,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Age</label>
+          <label className="label-bold">Age</label>
           <input
             onChange={(event) => {
               setAge1(event.target.value);
@@ -179,7 +177,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Email</label>
+          <label className="label-bold">Email</label>
           <input
             onChange={(event) => {
               setEmail1(event.target.value);
@@ -190,12 +188,13 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Gender</label>
+          <label className="label-bold">Gender</label>
           <div>
             <select
               value={gender1}
               onChange={(event) => setGender1(event.target.value)}
             >
+              <option value="None">None</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -206,7 +205,7 @@ export default function TicketForm() {
       <div class="row">
         <h4 className="mt-3">Passenger 3</h4>
         <div className="mb-3 col-md-3">
-          <label>Name</label>
+          <label className="label-bold">Name</label>
           <input
             onChange={(event) => {
               setName2(event.target.value);
@@ -217,7 +216,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Age</label>
+          <label className="label-bold">Age</label>
           <input
             onChange={(event) => {
               setAge2(event.target.value);
@@ -228,7 +227,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Email</label>
+          <label className="label-bold">Email</label>
           <input
             onChange={(event) => {
               setEmail2(event.target.value);
@@ -239,12 +238,13 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Gender</label>
+          <label className="label-bold">Gender</label>
           <div>
             <select
               value={gender2}
               onChange={(event) => setGender2(event.target.value)}
             >
+              <option value="None">None</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -255,7 +255,7 @@ export default function TicketForm() {
       <div class="row">
         <h4 className="mt-3">Passenger 4</h4>
         <div className="mb-3 col-md-3">
-          <label>Name</label>
+          <label className="label-bold">Name</label>
           <input
             onChange={(event) => {
               setName3(event.target.value);
@@ -266,7 +266,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Age</label>
+          <label className="label-bold">Age</label>
           <input
             onChange={(event) => {
               setAge3(event.target.value);
@@ -277,7 +277,7 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Email</label>
+          <label className="label-bold">Email</label>
           <input
             onChange={(event) => {
               setEmail3(event.target.value);
@@ -288,12 +288,13 @@ export default function TicketForm() {
           />
         </div>
         <div className="mb-3 col-md-3">
-          <label>Gender</label>
+          <label className="label-bold">Gender</label>
           <div>
             <select
               value={gender3}
               onChange={(event) => setGender3(event.target.value)}
             >
+              <option value="None">None</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
