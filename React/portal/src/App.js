@@ -13,6 +13,7 @@ import TicketForm from "./pages/TicketForm";
 import TicketDetails from "./pages/TicketDetails";
 import Feedback from "./pages/Feedback";
 import Thankyou from "./pages/Thankyou";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -126,6 +127,7 @@ function App() {
             <Route path="/ticketdetails" component={TicketDetails} />
             <Route path="/feedback" component={Feedback} />
             <Route path="/thankyou" component={Thankyou} />
+            <Route path="/payment" component={PaymentPage} />
             <Route path="/" component={SplashScreen} />
           </Switch>
         </div>

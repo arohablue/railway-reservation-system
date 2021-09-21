@@ -9,19 +9,19 @@ const PassengerRow = ({ passenger }) => {
     <div class="row">
       <div className="mb-3 col-md-3">
         <span className="grey-text">Name: </span>
-        <span>{passenger.name}</span>
+        <span className="label-bold">{passenger.name}</span>
       </div>
-      <div className="mb-3 col-md-3">
+      <div className="mb-3 col-md-3 ">
         <span className="grey-text">Age: </span>
-        <span>{passenger.age}</span>
+        <span className="label-bold"> {passenger.age}</span>
       </div>
       <div className="mb-3 col-md-3">
         <span className="grey-text">Gender: </span>
-        <span>{passenger.gender}</span>
+        <span className="label-bold">{passenger.gender}</span>
       </div>
-      <div className="mb-3 col-md-3">
+      <div className="mb-3  col-md-3">
         <span className="grey-text">Email: </span>
-        <span>{passenger.email}</span>
+        <span className="label-bold">{passenger.email}</span>
       </div>
     </div>
   );

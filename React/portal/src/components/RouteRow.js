@@ -19,11 +19,11 @@ const RouteRow = ({ route }) => {
   };
   return (
     <tr>
-      <td>{route.routeId}</td>
-      <td>{route.sourceStation.stationName}</td>
-      <td>{route.destinationStation.stationName}</td>
-      <td>{route.generalClassFair}</td>
-      <td>{route.acClassFair}</td>
+      <td className="label-bold">{route.routeId}</td>
+      <td className="label-bold">{route.sourceStation.stationName}</td>
+      <td className="label-bold">{route.destinationStation.stationName}</td>
+      <td className="label-bold">{route.generalClassFair}</td>
+      <td className="label-bold">{route.acClassFair}</td>
       <td>
         {/* <button
           onClick={() => {

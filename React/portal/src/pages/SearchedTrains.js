@@ -45,6 +45,7 @@ const SearchedTrains = ({ trains }) => {
           )}
         </tbody>
       </table>
+      <img src="train.svg" />
     </div>
   );
 };
