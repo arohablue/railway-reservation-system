@@ -205,7 +205,7 @@ public class UserServiceImpl implements UserService {
 				passengerTicket.setPnr(String.valueOf(number));
 			}
 
-			if (udpateSeats(ticketDTO)) {
+			if (udpateSeats(ticketDTO, passengerTickets.size())) {
 
 				// save ticket
 				passengerTicketDao.saveAll(passengerTickets);
@@ -260,7 +260,7 @@ public class UserServiceImpl implements UserService {
 		return ticket;
 	}
 
-	private boolean udpateSeats(TicketDTO ticketDTO) {
+	private boolean udpateSeats(TicketDTO ticketDTO, int noOfSeats) {
 		try {
 
 			Train train = trainDao.findById(ticketDTO.getTrain().getTrainId());
@@ -270,10 +270,10 @@ public class UserServiceImpl implements UserService {
 			TrainStatus trainStatus = trainStatusDao.findByTrainAndJourneyDateBetween(train, startDate, endDate);
 			if (trainStatus != null && trainStatus.getAvailableSeatGen() > 0 && trainStatus.getAvailableSeatAC() > 0) {
 				if (ticketDTO.getBookingClass().equals("AC")) {
-					trainStatus.setAvailableSeatAC(trainStatus.getAvailableSeatAC() - ticketDTO.getPassengers().size());
+					trainStatus.setAvailableSeatAC(trainStatus.getAvailableSeatAC() - noOfSeats);
 				} else {
 					trainStatus
-							.setAvailableSeatGen(trainStatus.getAvailableSeatGen() - ticketDTO.getPassengers().size());
+							.setAvailableSeatGen(trainStatus.getAvailableSeatGen() - noOfSeats);
 				}
 				trainStatusDao.save(trainStatus);
 				return true;

@@ -24,12 +24,11 @@ const ChangePassword = () => {
       };
       axios.post(url + "/user/sendotp", data).then((response) => {
         const result = response.data;
-        alert("successful");
-
         if (result.status === "success") {
           alert("OTP sent to your email address");
           setOtpSent(true);
         } else {
+          setOtpSent(false);
           alert("Error While sending OTP");
         }
       });
@@ -48,17 +47,16 @@ const ChangePassword = () => {
 
       axios.post(url + "/user/verifyotp", data).then((response) => {
         const result = response.data;
-        alert("successful");
-
         if (result.status === "success") {
-          alert("OTP Confirm");
+          alert("OTP Confirmed");
           setOtpConfirm(true);
         } else {
-          alert("Error While sending OTP");
+          setOtpSent(false);
+          setOtpConfirm(false);
+          alert("Error While Verifying OTP");
         }
       });
     }
-    setOtpConfirm(true);
   };
 
   const changePassword = () => {
