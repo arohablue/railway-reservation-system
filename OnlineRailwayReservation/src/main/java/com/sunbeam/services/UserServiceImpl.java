@@ -225,6 +225,7 @@ public class UserServiceImpl implements UserService {
 			ticketDTO.setPnr(String.valueOf(number));
 			ticketDTO.setStatus(pnrTable.getPnrStatus());
 			ticketDTO.setTrain(TrainDTO.fromEntity(train));
+			ticketDTO.setReservationDate(train.getDepartureTime());
 			return ticketDTO;
 		}
 		return null;
