@@ -79,7 +79,15 @@ export default function TicketForm() {
       requestData.passengers[0].name !== null &&
       requestData.passengers[0].age !== null &&
       requestData.passengers[0].email !== null &&
-      requestData.passengers[0].gender !== "None"
+      requestData.passengers[0].gender !== "None" &&
+      requestData.passengers[1].name !== null &&
+      requestData.passengers[1].age !== null &&
+      requestData.passengers[1].email !== null &&
+      requestData.passengers[1].gender !== "None" &&
+      requestData.passengers[2].name !== null &&
+      requestData.passengers[2].age !== null &&
+      requestData.passengers[2].email !== null &&
+      requestData.passengers[2].gender !== "None"
     ) {
       history.push({ pathname: "/payment", state: { requestData } });
     } else {
